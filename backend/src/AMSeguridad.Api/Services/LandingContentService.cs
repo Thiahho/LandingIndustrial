@@ -32,7 +32,7 @@ public sealed class LandingContentService : ILandingContentService
 
         if (content is null)
         {
-            content = new LandingContent { Id = Guid.NewGuid() };
+            content = new LandingContent();
             _db.LandingContents.Add(content);
             await _db.SaveChangesAsync(cancellationToken);
         }
@@ -58,7 +58,7 @@ public sealed class LandingContentService : ILandingContentService
 
         if (content is null)
         {
-            content = new LandingContent { Id = Guid.NewGuid() };
+            content = new LandingContent();
             _db.LandingContents.Add(content);
         }
 
@@ -84,7 +84,6 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.HeroHighlights, dto.Hero.Highlights.Select(h => new HeroHighlight
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Title = h.Title,
             Text = h.Text
@@ -92,27 +91,23 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.GuidanceTags, dto.Guidance.Tags.Select(tag => new GuidanceTag
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Value = tag
         }));
 
         ReplaceCollection(content.Services, dto.Services.Select(service => new ServiceItem
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Title = service.Title,
             Description = service.Description,
             Items = service.Items.Select(item => new ServiceItemDetail
             {
-                Id = Guid.NewGuid(),
                 Value = item
             }).ToList()
         }));
 
         ReplaceCollection(content.Solutions, dto.Solutions.Select(solution => new SolutionItem
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Tag = solution.Tag,
             Title = solution.Title,
@@ -121,7 +116,6 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.Technology, dto.Technology.Select(item => new TechnologyItem
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Title = item.Title,
             Text = item.Text,
@@ -131,7 +125,6 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.Products, dto.Products.Select(item => new ProductItem
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Name = item.Name,
             Category = item.Category,
@@ -141,7 +134,6 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.CompanyMetrics, dto.Company.Select(metric => new CompanyMetric
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Value = metric.Value,
             Label = metric.Label,
@@ -150,7 +142,6 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.News, dto.News.Select(item => new NewsItem
         {
-            Id = item.Id == Guid.Empty ? Guid.NewGuid() : item.Id,
             LandingContentId = content.Id,
             Date = item.Date,
             Title = item.Title,
@@ -161,7 +152,6 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.ContactChannels, dto.Contact.Channels.Select(channel => new ContactChannel
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Label = channel.Label,
             Value = channel.Value
@@ -169,7 +159,6 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.Resources, dto.Contact.Resources.Select(resource => new ResourceItem
         {
-            Id = resource.Id == Guid.Empty ? Guid.NewGuid() : resource.Id,
             LandingContentId = content.Id,
             Title = resource.Title,
             Href = resource.Href,
@@ -178,18 +167,16 @@ public sealed class LandingContentService : ILandingContentService
 
         ReplaceCollection(content.JobsPoints, dto.Jobs.Points.Select(point => new JobsPoint
         {
-            Id = Guid.NewGuid(),
             LandingContentId = content.Id,
             Value = point
         }));
 
         _db.AuditLogs.Add(new AuditLog
         {
-            Id = Guid.NewGuid(),
             Actor = actor,
             Action = "Update",
             Entity = "LandingContent",
-            EntityId = content.Id.ToString(),
+            EntityId = content.Id,
             Metadata = "Actualización completa desde panel admin",
             CreatedAt = DateTimeOffset.UtcNow
         });

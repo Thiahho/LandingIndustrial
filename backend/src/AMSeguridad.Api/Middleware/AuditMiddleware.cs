@@ -32,15 +32,15 @@ public sealed class AuditMiddleware
 
         var audit = new AuditLog
         {
-            Id = Guid.NewGuid(),
             Actor = actor,
             Action = context.Request.Method,
             Entity = context.Request.Path.Value ?? "unknown",
-            EntityId = context.TraceIdentifier,
+            EntityId = null,
             Metadata = JsonSerializer.Serialize(new
             {
                 StatusCode = context.Response.StatusCode,
-                Path = context.Request.Path.Value
+                Path = context.Request.Path.Value,
+                TraceId = context.TraceIdentifier
             }),
             CreatedAt = DateTimeOffset.UtcNow
         };

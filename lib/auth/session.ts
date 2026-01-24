@@ -1,5 +1,7 @@
-import { SESSION_KEY, authMatrix } from "@/lib/auth/config";
-import type { LoginPayload, Role, SessionUser } from "@/lib/auth/types";
+import { SESSION_KEY } from "@/lib/auth/config";
+import type { LoginPayload, LoginResponse, Role, SessionUser } from "@/lib/auth/types";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000";
 
 function canUseStorage() {
   return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
@@ -32,13 +34,32 @@ export function isAllowed(user: SessionUser | null, allowedRoles: Role[]) {
   return allowedRoles.includes(user.role);
 }
 
-export function loginWithMatrix(payload: LoginPayload) {
-  const roleRecords = authMatrix[payload.role];
-  const record = roleRecords?.[payload.username.trim().toLowerCase()];
-  if (!record) return { ok: false as const, message: "Usuario inexistente para el rol seleccionado." };
-  if (record.password !== payload.password) {
-    return { ok: false as const, message: "Credenciales inválidas." };
+export async function loginWithApi(payload: LoginPayload): Promise<{ ok: true; user: SessionUser } | { ok: false; message: string }> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ message: "Credenciales inválidas." }));
+      return { ok: false, message: error.message || "Credenciales inválidas." };
+    }
+
+    const data: LoginResponse = await response.json();
+    const user: SessionUser = {
+      id: data.id,
+      username: data.username,
+      displayName: data.displayName,
+      role: data.role as Role,
+      token: data.token
+    };
+
+    saveSession(user);
+    return { ok: true, user };
+  } catch (error) {
+    console.error("Error en login:", error);
+    return { ok: false, message: "Error de conexión con el servidor." };
   }
-  saveSession(record.user);
-  return { ok: true as const, user: record.user };
 }

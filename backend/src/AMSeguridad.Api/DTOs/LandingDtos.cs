@@ -19,9 +19,9 @@ public sealed record SolutionItemDto(string Tag, string Title, string Text);
 public sealed record TechnologyItemDto(string Title, string Text, string Meta, string? ImageUrl);
 public sealed record ProductItemDto(string Name, string Category, string Description, string? ImageUrl);
 public sealed record CompanyMetricDto(string Value, string Label, string Text);
-public sealed record NewsItemDto(Guid Id, string Date, string Title, string Text, string? ImageUrl);
+public sealed record NewsItemDto(int Id, string Date, string Title, string Text, string? ImageUrl);
 public sealed record ContactChannelDto(string Label, string Value);
-public sealed record ResourceItemDto(Guid Id, string Title, string Href, string Description);
+public sealed record ResourceItemDto(int Id, string Title, string Href, string Description);
 public sealed record ContactDto(
     string Eyebrow,
     string Title,

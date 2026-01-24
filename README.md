@@ -13,11 +13,13 @@ Migración de la landing a una arquitectura moderna y escalable:
 ## Stack tecnológico
 
 ### Frontend
+
 - **Next.js 14** (App Router, TypeScript).
 - **Tailwind CSS** para estilos rápidos, consistentes y responsivos.
 - **Framer Motion** para animaciones suaves y controladas por viewport.
 
 ### Backend
+
 - **ASP.NET Core Minimal API (.NET 8)**.
 - Persistencia simple y transparente en `backend/data/content.json`.
 - Endpoints pensados para autogestión de contenido.
@@ -154,7 +156,6 @@ Si querés, en la próxima iteración lo convertimos en:
 - .NET en Azure App Service / Render
 - DB + storage real para imágenes
 
-
 ---
 
 ## Autenticación y roles (MVP)
@@ -163,7 +164,7 @@ Se agregó un login simple por roles para proteger `/admin`:
 
 - Ruta: `/login`
 - Roles: `admin` y `empleado`
-- Protección: el panel `/admin` requiere sesión válida en `localStorage`
+- Protección: el panel `/admin` requiere sesión válida en `sessionStorage`
 
 ### Credenciales demo
 
@@ -171,7 +172,6 @@ Se agregó un login simple por roles para proteger `/admin`:
 - **Empleado**: `empleado` / `Empleado123*`
 
 > Esto es un MVP de frontend. La siguiente iteración recomendada es moverlo al backend .NET con JWT/cookies httpOnly y control de permisos por endpoint.
-
 
 ---
 
@@ -185,13 +185,11 @@ https://res.cloudinary.com/<cloud>/image/upload/f_webp,q_auto/v123/archivo
 
 En el panel `/admin` hay un botón "Convertir a WebP" para normalizar URLs.
 
-
 ---
 
 ## Auditoría
 
 Se requiere auditoría completa: quién editó, qué cambió y cuándo. Esto se implementará con una tabla de logs de auditoría en PostgreSQL.
-
 
 ---
 

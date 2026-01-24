@@ -63,6 +63,18 @@ export default function AdminPage() {
     [content.contact.resources.length, content.news.length, content.services.length]
   );
 
+  const navItems = [
+    { id: "dashboard", label: "Dashboard" },
+    { id: "hero", label: "Hero" },
+    { id: "servicios", label: "Servicios" },
+    { id: "productos", label: "Productos" },
+    { id: "tecnologia", label: "Tecnología" },
+    { id: "novedades", label: "Novedades" },
+    { id: "contacto", label: "Contacto" },
+    { id: "permisos", label: "Permisos" },
+    { id: "publicacion", label: "Publicación" }
+  ];
+
   const updateHero = (patch: Partial<LandingContent["hero"]>) =>
     setContent((prev) => ({ ...prev, hero: { ...prev.hero, ...patch } }));
 
@@ -341,8 +353,71 @@ export default function AdminPage() {
             </div>
           ) : null}
 
-          <main className="mx-auto grid w-[min(1200px,92vw)] gap-10 pt-10">
-            <section className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6">
+          <div className="mx-auto grid w-[min(1200px,92vw)] gap-6 pt-8 lg:grid-cols-[240px_1fr]">
+            <aside className="sticky top-24 hidden h-fit rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6 lg:block">
+              <div className="space-y-3">
+                <p className="eyebrow">Módulos</p>
+                <nav className="grid gap-2 text-sm font-semibold text-am-silver">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className="rounded-2xl border border-transparent px-3 py-2 transition hover:border-white/10 hover:bg-white/[0.04] hover:text-white"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </aside>
+
+            <main className="grid gap-10">
+              <section
+                id="dashboard"
+                className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="eyebrow">Dashboard</p>
+                    <h2 className="text-2xl font-semibold">Resumen operativo</h2>
+                    <p className="text-sm text-am-muted">Accesos rápidos y estado del contenido.</p>
+                  </div>
+                  <Link
+                    href="/"
+                    className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
+                  >
+                    Ver landing
+                  </Link>
+                </div>
+                <div className="grid gap-3 md:grid-cols-3">
+                  {[
+                    { label: "Servicios", value: stats.servicios },
+                    { label: "Novedades", value: stats.novedades },
+                    { label: "Recursos", value: stats.recursos }
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-am-silver"
+                    >
+                      <span className="block text-xs uppercase tracking-[0.2em] text-am-muted">{item.label}</span>
+                      <span className="text-2xl font-bold text-white">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-2 lg:hidden">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className="rounded-full border border-white/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-am-silver transition hover:border-am-primary/60 hover:text-white"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </section>
+
+              <section id="hero" className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="eyebrow">Hero</p>
@@ -397,7 +472,7 @@ export default function AdminPage() {
                 </div>
                 <div className="grid gap-3 md:grid-cols-3">
                   {content.hero.highlights.map((highlight, index) => (
-                    <div key={index} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4">
+                    <div key={`${highlight.title}-${index}`} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4">
                       <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
                         Título
                         <input
@@ -428,7 +503,7 @@ export default function AdminPage() {
               </div>
             </section>
 
-            <section className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0d1716]/80 p-6">
+            <section id="servicios" className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0d1716]/80 p-6">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="eyebrow">Servicios</p>
@@ -445,7 +520,7 @@ export default function AdminPage() {
 
               <div className="grid gap-4">
                 {content.services.map((service, serviceIndex) => (
-                  <article key={serviceIndex} className="grid gap-3 rounded-3xl border border-white/10 bg-black/20 p-5">
+                  <article key={`${service.title}-${serviceIndex}`} className="grid gap-3 rounded-3xl border border-white/10 bg-black/20 p-5">
                     <div className="grid gap-3 md:grid-cols-2">
                       <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
                         Título
@@ -478,7 +553,7 @@ export default function AdminPage() {
                       </div>
                       <div className="grid gap-2 md:grid-cols-2">
                         {service.items.map((item, itemIndex) => (
-                          <div key={itemIndex} className="flex items-center gap-2">
+                          <div key={`${item}-${itemIndex}`} className="flex items-center gap-2">
                             <input
                               value={item}
                               onChange={(event) => updateServiceItem(serviceIndex, itemIndex, event.target.value)}
@@ -510,7 +585,7 @@ export default function AdminPage() {
               </div>
             </section>
 
-            <section className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1514]/80 p-6">
+            <section id="productos" className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1514]/80 p-6">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="eyebrow">Productos tecnológicos</p>
@@ -527,7 +602,7 @@ export default function AdminPage() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 {content.products.map((item, index) => (
-                  <article key={index} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5">
+                  <article key={`${item.name}-${index}`} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5">
                     <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
                       Nombre
                       <input
@@ -572,7 +647,7 @@ export default function AdminPage() {
               </div>
             </section>
 
-            <section className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1514]/80 p-6">
+            <section id="tecnologia" className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1514]/80 p-6">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="eyebrow">Tecnología</p>
@@ -589,7 +664,7 @@ export default function AdminPage() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 {content.technology.map((item, index) => (
-                  <article key={index} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5">
+                  <article key={`${item.title}-${index}`} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5">
                     {[
                       { label: "Título", value: item.title, key: "title" as const },
                       { label: "Texto", value: item.text, key: "text" as const },
@@ -628,7 +703,7 @@ export default function AdminPage() {
               </div>
             </section>
 
-            <section className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1413]/80 p-6">
+            <section id="novedades" className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1413]/80 p-6">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="eyebrow">Novedades</p>
@@ -683,7 +758,7 @@ export default function AdminPage() {
               </div>
             </section>
 
-            <section className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0b1312]/80 p-6">
+            <section id="contacto" className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0b1312]/80 p-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="eyebrow">Contacto y recursos</p>
@@ -735,7 +810,7 @@ export default function AdminPage() {
                 <div className="grid gap-3">
                   <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-am-silver">Canales</h3>
                   {content.contact.channels.map((channel, index) => (
-                    <div key={index} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4">
+                    <div key={`${channel.label}-${index}`} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4">
                       <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
                         Etiqueta
                         <input
@@ -794,7 +869,7 @@ export default function AdminPage() {
               </div>
             </section>
 
-            <section className="grid gap-4 rounded-[28px] border border-am-primary/40 bg-am-primary/10 p-6">
+            <section id="permisos" className="grid gap-4 rounded-[28px] border border-am-primary/40 bg-am-primary/10 p-6">
               <div className="space-y-1">
                 <p className="eyebrow">Permisos activos</p>
                 <h2 className="text-2xl font-semibold">Qué puede hacer tu rol</h2>
@@ -809,7 +884,7 @@ export default function AdminPage() {
               </ul>
             </section>
 
-            <section className="flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-white/10 bg-[#0c1715]/80 p-6">
+            <section id="publicacion" className="flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-white/10 bg-[#0c1715]/80 p-6">
               <div className="space-y-1">
                 <p className="eyebrow">Publicación</p>
                 <h2 className="text-2xl font-semibold">Guardar cambios</h2>

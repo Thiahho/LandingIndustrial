@@ -1,0 +1,98 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+const links = [
+  { href: "#servicios", label: "Servicios" },
+  { href: "#soluciones", label: "Soluciones" },
+  { href: "#tecnologia", label: "Tecnología" },
+  { href: "#empresa", label: "Empresa" },
+  { href: "#productos", label: "Productos" },
+  { href: "#novedades", label: "Novedades" },
+  { href: "#trabaja", label: "Trabajá" }
+];
+
+export function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onHashChange = () => setIsOpen(false);
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  return (
+    <header
+      className={`sticky top-0 z-40 border-b transition-colors duration-200 ${
+        scrolled ? "border-white/10 bg-[#0b1110]/90" : "border-transparent bg-[#0b1110]/60"
+      } backdrop-blur`}
+    >
+      <div className="mx-auto flex w-[min(1200px,92vw)] items-center justify-between gap-4 py-4">
+        <Link href="#inicio" className="flex items-center gap-3">
+          <motion.div
+            className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-am-primary to-emerald-900 font-extrabold text-black shadow-glow"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            AM
+          </motion.div>
+          <div className="grid leading-tight">
+            <span className="text-sm font-semibold">AM Seguridad</span>
+            <span className="text-xs text-am-muted">Soluciones integrales</span>
+          </div>
+        </Link>
+
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-am-silver md:hidden"
+          aria-expanded={isOpen}
+          aria-controls="nav-menu"
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          Menú
+        </button>
+
+        <nav
+          id="nav-menu"
+          className={`absolute right-[4vw] top-20 w-64 flex-col gap-1 rounded-3xl border border-white/10 bg-[#0c1413]/95 p-3 shadow-glow md:static md:flex md:w-auto md:flex-row md:items-center md:border-none md:bg-transparent md:p-0 md:shadow-none ${
+            isOpen ? "flex" : "hidden md:flex"
+          }`}
+          aria-label="Principal"
+        >
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-full px-4 py-2 text-sm font-semibold text-am-silver transition hover:bg-white/5 hover:text-white"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="#contacto"
+            className="mt-2 inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-bold text-am-silver transition hover:border-am-primary hover:text-white md:ml-2 md:mt-0"
+          >
+            Contacto
+          </Link>
+          <Link
+            href="/login"
+            className="mt-1 inline-flex items-center justify-center rounded-full bg-am-primary px-4 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong md:ml-2 md:mt-0"
+          >
+            Ingresar
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}

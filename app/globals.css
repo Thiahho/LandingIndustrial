@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-am-bg text-am-text antialiased;
+  background-image:
+    radial-gradient(circle at top left, rgba(31, 138, 91, 0.18), transparent 46%),
+    radial-gradient(circle at 80% 0%, rgba(199, 206, 209, 0.08), transparent 50%);
+  min-height: 100vh;
+}
+
+a {
+  @apply transition-colors duration-200;
+}
+
+a:hover,
+a:focus-visible {
+  color: theme("colors.am.primaryStrong");
+}
+
+::selection {
+  background: rgba(31, 138, 91, 0.32);
+  color: #e8f5ef;
+}
+
+.section-heading {
+  @apply max-w-3xl space-y-3;
+}
+
+.section-heading h2 {
+  @apply text-3xl font-semibold leading-tight md:text-5xl;
+}
+
+.section-heading p {
+  @apply text-am-muted;
+}
+
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.3em] text-am-primaryStrong;
+}
+
+.glass-panel {
+  @apply border border-white/10 bg-white/5 backdrop-blur;
+}

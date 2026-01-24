@@ -191,3 +191,29 @@ En el panel `/admin` hay un botón "Convertir a WebP" para normalizar URLs.
 ## Auditoría
 
 Se requiere auditoría completa: quién editó, qué cambió y cuándo. Esto se implementará con una tabla de logs de auditoría en PostgreSQL.
+
+
+---
+
+## Backend .NET completo (PostgreSQL)
+
+Se agregó un backend con **Entity Framework Core** y **PostgreSQL**:
+
+- `AppDbContext` en `backend/src/AMSeguridad.Api/Data/AppDbContext.cs`
+- Entidades en `backend/src/AMSeguridad.Api/Entities/`
+- DTOs en `backend/src/AMSeguridad.Api/DTOs/`
+- Servicios y controllers en `backend/src/AMSeguridad.Api/Services/` y `Controllers/`
+- Middlewares: `ExceptionHandlingMiddleware` y `AuditMiddleware`
+- Script SQL para crear la base: `backend/sql/schema.sql`
+
+### Endpoints principales
+
+- `POST /api/auth/login`
+- `GET/PUT /api/content`
+- `GET /api/audit`
+- `GET/POST /api/users`
+- `PUT /api/users/{id}/status`
+
+### Base de datos
+
+El archivo `backend/sql/schema.sql` contiene la estructura completa (usuarios, auditoría y contenido).Configurar conexión en `backend/src/AMSeguridad.Api/appsettings.json`.

@@ -153,3 +153,41 @@ Si querés, en la próxima iteración lo convertimos en:
 - Next.js en Vercel
 - .NET en Azure App Service / Render
 - DB + storage real para imágenes
+
+
+---
+
+## Autenticación y roles (MVP)
+
+Se agregó un login simple por roles para proteger `/admin`:
+
+- Ruta: `/login`
+- Roles: `admin` y `empleado`
+- Protección: el panel `/admin` requiere sesión válida en `localStorage`
+
+### Credenciales demo
+
+- **Admin**: `admin` / `Admin123*`
+- **Empleado**: `empleado` / `Empleado123*`
+
+> Esto es un MVP de frontend. La siguiente iteración recomendada es moverlo al backend .NET con JWT/cookies httpOnly y control de permisos por endpoint.
+
+
+---
+
+## Media y Cloudinary (WebP obligatorio)
+
+Las imágenes se cargan desde **Cloudinary** y se convierten a WebP antes de publicar. Se recomienda usar el formato:
+
+```
+https://res.cloudinary.com/<cloud>/image/upload/f_webp,q_auto/v123/archivo
+```
+
+En el panel `/admin` hay un botón "Convertir a WebP" para normalizar URLs.
+
+
+---
+
+## Auditoría
+
+Se requiere auditoría completa: quién editó, qué cambió y cuándo. Esto se implementará con una tabla de logs de auditoría en PostgreSQL.

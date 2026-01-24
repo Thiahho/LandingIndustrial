@@ -9,6 +9,7 @@ const links = [
   { href: "#soluciones", label: "Soluciones" },
   { href: "#tecnologia", label: "Tecnología" },
   { href: "#empresa", label: "Empresa" },
+  { href: "#productos", label: "Productos" },
   { href: "#novedades", label: "Novedades" },
   { href: "#trabaja", label: "Trabajá" }
 ];
@@ -83,6 +84,12 @@ export function NavBar() {
             className="mt-2 inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-bold text-am-silver transition hover:border-am-primary hover:text-white md:ml-2 md:mt-0"
           >
             Contacto
+          </Link>
+          <Link
+            href="/login"
+            className="mt-1 inline-flex items-center justify-center rounded-full bg-am-primary px-4 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong md:ml-2 md:mt-0"
+          >
+            Ingresar
           </Link>
         </nav>
       </div>

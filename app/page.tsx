@@ -213,6 +213,26 @@ export default function HomePage() {
           </div>
         </AnimatedSection>
 
+        <AnimatedSection id="productos" className="py-24">
+          <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
+            <SectionHeading
+              eyebrow="Productos tecnológicos"
+              title="Equipamiento confiable, listo para operar."
+              description="Seleccionamos recursos tecnológicos que sostienen continuidad operativa y control total."
+              align="left"
+            />
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {content.products.map((item, index) => (
+                <TechnologyCard
+                  key={`${item.name}-${index}`}
+                  item={{ title: item.name, text: item.description, meta: item.category, imageUrl: item.imageUrl }}
+                  index={index}
+                />
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
         <AnimatedSection id="empresa" className="bg-gradient-to-br from-am-primary/10 via-transparent to-transparent py-24">
           <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
             <SectionHeading
@@ -390,9 +410,10 @@ export default function HomePage() {
             {[
               { href: "#servicios", label: "Servicios" },
               { href: "#empresa", label: "Empresa" },
+              { href: "#productos", label: "Productos" },
               { href: "#novedades", label: "Novedades" },
               { href: "#contacto", label: "Contacto" },
-              { href: "/admin", label: "Autogestión" }
+              { href: "/login", label: "Autogestión" }
             ].map((link) => (
               <Link key={link.href} href={link.href} className="rounded-full border border-transparent px-4 py-2 hover:border-white/15">
                 {link.label}

@@ -8,22 +8,41 @@
     "contactCta": "Contacto inmediato",
     "imageUrl": "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?q=80&w=2070&auto=format&fit=crop",
     "highlights": [
-      { "title": "Central 24/7", "text": "Monitoreo activo y respuesta coordinada." },
-      { "title": "Operación real", "text": "Recursos, móviles y protocolos auditables." },
-      { "title": "Tecnología", "text": "Integración entre personas, datos y dispositivos." }
+      {
+        "title": "Central 24/7",
+        "text": "Monitoreo activo y respuesta coordinada."
+      },
+      {
+        "title": "Operación real",
+        "text": "Recursos, móviles y protocolos auditables."
+      },
+      {
+        "title": "Tecnología",
+        "text": "Integración entre personas, datos y dispositivos."
+      }
     ]
   },
   "guidance": {
     "eyebrow": "Asesoramiento orientativo",
     "title": "¿Qué solución es para vos?",
     "text": "Te guiamos con recomendaciones claras según tu contexto. Sin tecnicismos, sin vueltas, con foco en resolver.",
-    "tags": ["Hogar", "Comercio", "Empresa", "Flota"]
+    "tags": [
+      "Hogar",
+      "Comercio",
+      "Empresa",
+      "Flota"
+    ]
   },
   "services": [
     {
       "title": "Central de Monitoreo",
       "description": "Información accionable en tiempo real para prevenir y responder.",
-      "items": ["Monitoreo de cámaras", "Monitoreo de alarmas", "Análisis logístico", "Seguimiento satelital"]
+      "items": [
+        "Monitoreo de cámaras",
+        "Monitoreo de alarmas",
+        "Análisis logístico",
+        "Seguimiento satelital"
+      ]
     },
     {
       "title": "Vigilancia Física",
@@ -38,22 +57,37 @@
     {
       "title": "Seguridad Electrónica",
       "description": "Tecnología integrada para detectar, alertar y auditar cada evento.",
-      "items": ["Alarmas", "Cámaras de vigilancia (CCTV)", "Control de accesos", "Cerco eléctrico"]
+      "items": [
+        "Alarmas",
+        "Cámaras de vigilancia (CCTV)",
+        "Control de accesos",
+        "Cerco eléctrico"
+      ]
     },
     {
       "title": "Seguridad Patrimonial",
       "description": "Cuidamos activos críticos y el cumplimiento normativo.",
-      "items": ["Seguridad e higiene", "Seguridad medioambiental"]
+      "items": [
+        "Seguridad e higiene",
+        "Seguridad medioambiental"
+      ]
     },
     {
       "title": "Investigaciones",
       "description": "Información confiable para tomar decisiones y reducir riesgos.",
-      "items": ["Investigación de fraude", "Informes ambientales", "Capacitaciones", "Siniestros"]
+      "items": [
+        "Investigación de fraude",
+        "Informes ambientales",
+        "Capacitaciones",
+        "Siniestros"
+      ]
     },
     {
       "title": "Servicios Complementarios",
       "description": "Refuerzos específicos para elevar el estándar operativo.",
-      "items": ["Control de pérdidas"]
+      "items": [
+        "Control de pérdidas"
+      ]
     }
   ],
   "solutions": [
@@ -150,9 +184,18 @@
     "whatsapp": "https://wa.me/5490000000000",
     "commercialEmail": "comercial@amseguridad.com.ar",
     "channels": [
-      { "label": "Clientes", "value": "clientes@amseguridad.com.ar" },
-      { "label": "Teléfono", "value": "+54 9 0000 0000" },
-      { "label": "Horario", "value": "Atención + operación 24/7" }
+      {
+        "label": "Clientes",
+        "value": "clientes@amseguridad.com.ar"
+      },
+      {
+        "label": "Teléfono",
+        "value": "+54 9 0000 0000"
+      },
+      {
+        "label": "Horario",
+        "value": "Atención + operación 24/7"
+      }
     ],
     "resources": [
       {
@@ -179,6 +222,30 @@
     "eyebrow": "Trabajá con nosotros",
     "title": "Sumate a un equipo operativo y profesional.",
     "text": "Postulate de forma simple. Un canal dedicado para recursos humanos.",
-    "points": ["Procesos claros y seguimiento.", "Roles operativos y técnicos.", "Capacitación continua."]
-  }
+    "points": [
+      "Procesos claros y seguimiento.",
+      "Roles operativos y técnicos.",
+      "Capacitación continua."
+    ]
+  },
+  "products": [
+    {
+      "name": "Sistema CCTV inteligente",
+      "category": "Video vigilancia",
+      "description": "Cámaras con analítica, grabación segura y acceso remoto.",
+      "imageUrl": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      "name": "Control de accesos",
+      "category": "Accesos",
+      "description": "Gestión segura de ingresos con credenciales físicas o biométricas.",
+      "imageUrl": "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      "name": "Alarmas perimetrales",
+      "category": "Perímetro",
+      "description": "Detección temprana con sensores inteligentes y alertas inmediatas.",
+      "imageUrl": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2070&auto=format&fit=crop"
+    }
+  ]
 }

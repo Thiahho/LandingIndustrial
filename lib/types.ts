@@ -33,6 +33,13 @@ export type TechnologyItem = {
   imageUrl?: string;
 };
 
+export type ProductItem = {
+  name: string;
+  category: string;
+  description: string;
+  imageUrl?: string;
+};
+
 export type CompanyMetric = {
   value: string;
   label: string;
@@ -107,6 +114,7 @@ export type LandingContent = {
   services: Service[];
   solutions: Solution[];
   technology: TechnologyItem[];
+  products: ProductItem[];
   company: CompanyMetric[];
   news: NewsItem[];
   contact: ContactContent;

@@ -13,6 +13,7 @@ public sealed record class LandingContent
     public List<ServiceItem> Services { get; init; } = [];
     public List<SolutionItem> Solutions { get; init; } = [];
     public List<TechnologyItem> Technology { get; init; } = [];
+    public List<ProductItem> Products { get; init; } = [];
     public List<CompanyMetric> Company { get; init; } = [];
     public List<NewsItem> News { get; init; } = [];
 
@@ -68,6 +69,15 @@ public sealed record class TechnologyItem
     public string Title { get; init; } = string.Empty;
     public string Text { get; init; } = string.Empty;
     public string Meta { get; init; } = string.Empty;
+    public string? ImageUrl { get; init; }
+}
+
+
+public sealed record class ProductItem
+{
+    public string Name { get; init; } = string.Empty;
+    public string Category { get; init; } = string.Empty;
+    public string Description { get; init; } = string.Empty;
     public string? ImageUrl { get; init; }
 }
 

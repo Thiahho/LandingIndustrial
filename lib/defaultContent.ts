@@ -105,6 +105,29 @@ export const defaultContent: LandingContent = {
         "https://images.unsplash.com/photo-1563770660941-10a636076e8c?q=80&w=2070&auto=format&fit=crop"
     }
   ],
+  products: [
+    {
+      name: "Sistema CCTV inteligente",
+      category: "Video vigilancia",
+      description: "Cámaras con analítica, grabación segura y acceso remoto.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      name: "Control de accesos",
+      category: "Accesos",
+      description: "Gestión segura de ingresos con credenciales físicas o biométricas.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      name: "Alarmas perimetrales",
+      category: "Perímetro",
+      description: "Detección temprana con sensores inteligentes y alertas inmediatas.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2070&auto=format&fit=crop"
+    }
+  ],
   company: [
     {
       value: "+20",

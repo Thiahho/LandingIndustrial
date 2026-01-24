@@ -397,7 +397,7 @@ export default function AdminPage() {
                 </div>
                 <div className="grid gap-3 md:grid-cols-3">
                   {content.hero.highlights.map((highlight, index) => (
-                    <div key={`${highlight.title}-${index}`} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4">
+                    <div key={index} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4">
                       <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
                         Título
                         <input
@@ -445,7 +445,7 @@ export default function AdminPage() {
 
               <div className="grid gap-4">
                 {content.services.map((service, serviceIndex) => (
-                  <article key={`${service.title}-${serviceIndex}`} className="grid gap-3 rounded-3xl border border-white/10 bg-black/20 p-5">
+                  <article key={serviceIndex} className="grid gap-3 rounded-3xl border border-white/10 bg-black/20 p-5">
                     <div className="grid gap-3 md:grid-cols-2">
                       <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
                         Título
@@ -478,7 +478,7 @@ export default function AdminPage() {
                       </div>
                       <div className="grid gap-2 md:grid-cols-2">
                         {service.items.map((item, itemIndex) => (
-                          <div key={`${item}-${itemIndex}`} className="flex items-center gap-2">
+                          <div key={itemIndex} className="flex items-center gap-2">
                             <input
                               value={item}
                               onChange={(event) => updateServiceItem(serviceIndex, itemIndex, event.target.value)}
@@ -527,7 +527,7 @@ export default function AdminPage() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 {content.products.map((item, index) => (
-                  <article key={`${item.name}-${index}`} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5">
+                  <article key={index} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5">
                     <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
                       Nombre
                       <input
@@ -589,7 +589,7 @@ export default function AdminPage() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 {content.technology.map((item, index) => (
-                  <article key={`${item.title}-${index}`} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5">
+                  <article key={index} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5">
                     {[
                       { label: "Título", value: item.title, key: "title" as const },
                       { label: "Texto", value: item.text, key: "text" as const },
@@ -735,7 +735,7 @@ export default function AdminPage() {
                 <div className="grid gap-3">
                   <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-am-silver">Canales</h3>
                   {content.contact.channels.map((channel, index) => (
-                    <div key={`${channel.label}-${index}`} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4">
+                    <div key={index} className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4">
                       <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
                         Etiqueta
                         <input

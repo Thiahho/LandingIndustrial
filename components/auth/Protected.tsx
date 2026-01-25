@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { Role, SessionUser } from "@/lib/auth/types";
@@ -7,7 +8,7 @@ import { getSessionUser, isAllowed } from "@/lib/auth/session";
 
 type ProtectedProps = {
   allowedRoles: Role[];
-  children: (user: SessionUser) => React.ReactNode;
+  children: (user: SessionUser) => ReactNode;
 };
 
 type GuardState = "checking" | "allowed" | "blocked";

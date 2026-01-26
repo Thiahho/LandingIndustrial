@@ -1,22 +1,23 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace backend.src.AMSeguridad.Api.Models
+namespace AMSeguridad.Api.Models;
+
+[Table("services")]
+public class Service
 {
-    [Table("services")]
-    public class Service
-    {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
+    [Key]
+    [Column("id")]
+    public int Id { get; set; }
 
-        [Column("landing_content_id")]
-        public int LandingContentId { get; set; }
+    [Column("landing_content_id")]
+    public int LandingContentId { get; set; }
 
-        [ForeignKey("LandingContentId")]
-        public virtual LandingContent? LandingContent { get; set; }
+    [ForeignKey("LandingContentId")]
+    public virtual LandingContent? LandingContent { get; set; }
 
-        [Required] [Column("title")] public string Title { get; set; } = string.Empty;
-        [Required] [Column("description")] public string Description { get; set; } = string.Empty;
-    }
+    [Required] [Column("title")] public string Title { get; set; } = string.Empty;
+    [Required] [Column("description")] public string Description { get; set; } = string.Empty;
+
+    public List<ServiceItem> Items { get; set; } = [];
 }

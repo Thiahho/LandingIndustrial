@@ -1,6 +1,6 @@
 using System.Text.Json;
 using AMSeguridad.Api.Data;
-using AMSeguridad.Api.Entities;
+using AMSeguridad.Api.Models;
 
 namespace AMSeguridad.Api.Middleware;
 

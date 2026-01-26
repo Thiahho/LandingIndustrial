@@ -1,6 +1,6 @@
 using AMSeguridad.Api.Data;
 using AMSeguridad.Api.DTOs;
-using AMSeguridad.Api.Entities;
+using AMSeguridad.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AMSeguridad.Api.Services;
@@ -95,18 +95,18 @@ public sealed class LandingContentService : ILandingContentService
             Value = tag
         }));
 
-        ReplaceCollection(content.Services, dto.Services.Select(service => new ServiceItem
+        ReplaceCollection(content.Services, dto.Services.Select(service => new Service
         {
             LandingContentId = content.Id,
             Title = service.Title,
             Description = service.Description,
-            Items = service.Items.Select(item => new ServiceItemDetail
+            Items = service.Items.Select(item => new ServiceItem
             {
                 Value = item
             }).ToList()
         }));
 
-        ReplaceCollection(content.Solutions, dto.Solutions.Select(solution => new SolutionItem
+        ReplaceCollection(content.Solutions, dto.Solutions.Select(solution => new Solution
         {
             LandingContentId = content.Id,
             Tag = solution.Tag,
@@ -123,7 +123,7 @@ public sealed class LandingContentService : ILandingContentService
             ImageUrl = item.ImageUrl
         }));
 
-        ReplaceCollection(content.Products, dto.Products.Select(item => new ProductItem
+        ReplaceCollection(content.Products, dto.Products.Select(item => new Products
         {
             LandingContentId = content.Id,
             Name = item.Name,
@@ -157,7 +157,7 @@ public sealed class LandingContentService : ILandingContentService
             Value = channel.Value
         }));
 
-        ReplaceCollection(content.Resources, dto.Contact.Resources.Select(resource => new ResourceItem
+        ReplaceCollection(content.Resources, dto.Contact.Resources.Select(resource => new Resource
         {
             LandingContentId = content.Id,
             Title = resource.Title,

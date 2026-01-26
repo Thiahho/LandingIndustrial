@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using AMSeguridad.Api.Data;
 using AMSeguridad.Api.DTOs;
-using AMSeguridad.Api.Entities;
+using AMSeguridad.Api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

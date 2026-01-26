@@ -57,7 +57,7 @@ public sealed class AuthService : IAuthService
             DisplayName = request.DisplayName,
             Role = "admin",
             IsActive = true,
-            CreatedAt = DateTimeOffset.UtcNow
+            CreatedAt = DateTime.UtcNow
         };
 
         user.PasswordHash = _hasher.HashPassword(user, request.Password);
@@ -83,7 +83,7 @@ public sealed class AuthService : IAuthService
             DisplayName = request.DisplayName,
             Role = "empleado",
             IsActive = true,
-            CreatedAt = DateTimeOffset.UtcNow
+            CreatedAt = DateTime.UtcNow
         };
 
         user.PasswordHash = _hasher.HashPassword(user, request.Password);

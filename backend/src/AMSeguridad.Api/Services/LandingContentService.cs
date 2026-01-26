@@ -80,7 +80,7 @@ public sealed class LandingContentService : ILandingContentService
         content.JobsEyebrow = dto.Jobs.Eyebrow;
         content.JobsTitle = dto.Jobs.Title;
         content.JobsText = dto.Jobs.Text;
-        content.UpdatedAt = DateTimeOffset.UtcNow;
+        content.UpdatedAt = DateTime.UtcNow;
 
         ReplaceCollection(content.HeroHighlights, dto.Hero.Highlights.Select(h => new HeroHighlight
         {
@@ -147,7 +147,7 @@ public sealed class LandingContentService : ILandingContentService
             Title = item.Title,
             Text = item.Text,
             ImageUrl = item.ImageUrl,
-            CreatedAt = DateTimeOffset.UtcNow
+            CreatedAt = DateTime.UtcNow
         }));
 
         ReplaceCollection(content.ContactChannels, dto.Contact.Channels.Select(channel => new ContactChannel
@@ -178,7 +178,7 @@ public sealed class LandingContentService : ILandingContentService
             Entity = "LandingContent",
             EntityId = content.Id,
             Metadata = "Actualización completa desde panel admin",
-            CreatedAt = DateTimeOffset.UtcNow
+            CreatedAt = DateTime.UtcNow
         });
 
         await _db.SaveChangesAsync(cancellationToken);

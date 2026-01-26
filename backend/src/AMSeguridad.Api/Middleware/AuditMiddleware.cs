@@ -42,7 +42,7 @@ public sealed class AuditMiddleware
                 Path = context.Request.Path.Value,
                 TraceId = context.TraceIdentifier
             }),
-            CreatedAt = DateTimeOffset.UtcNow
+            CreatedAt = DateTime.UtcNow
         };
 
         db.AuditLogs.Add(audit);

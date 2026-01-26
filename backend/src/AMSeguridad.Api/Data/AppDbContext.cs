@@ -43,84 +43,84 @@ public class AppDbContext : DbContext
         // Relación: LandingContent -> HeroHighlights
         modelBuilder.Entity<HeroHighlight>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.HeroHighlights)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> GuidanceTags
         modelBuilder.Entity<GuidanceTag>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.GuidanceTags)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> Services
         modelBuilder.Entity<Service>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.Services)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: Service -> ServiceItems
         modelBuilder.Entity<ServiceItem>()
             .HasOne(e => e.Service)
-            .WithMany()
+            .WithMany(s => s.Items)
             .HasForeignKey(e => e.ServiceId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> Solutions
         modelBuilder.Entity<Solution>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.Solutions)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> TechnologyItems
         modelBuilder.Entity<TechnologyItem>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.Technology)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> Products (Table: product_items)
         modelBuilder.Entity<Products>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.Products)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> CompanyMetrics
         modelBuilder.Entity<CompanyMetric>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.CompanyMetrics)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> NewsItems
         modelBuilder.Entity<NewsItem>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.News)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> ContactChannels
         modelBuilder.Entity<ContactChannel>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.ContactChannels)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> Resources
         modelBuilder.Entity<Resource>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.Resources)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relación: LandingContent -> JobsPoints
         modelBuilder.Entity<JobsPoint>()
             .HasOne(e => e.LandingContent)
-            .WithMany()
+            .WithMany(lc => lc.JobsPoints)
             .HasForeignKey(e => e.LandingContentId)
             .OnDelete(DeleteBehavior.Cascade);
     }

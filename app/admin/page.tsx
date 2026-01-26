@@ -21,8 +21,11 @@ import type {
 
 type Notice = { type: "success" | "warning" | "error"; text: string } | null;
 
-function uid(prefix: string) {
-  return `${prefix}-${globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2, 10)}`;
+// Genera un ID temporal negativo para nuevos items (el backend asignará el ID real)
+let tempIdCounter = 0;
+function tempId(): number {
+  tempIdCounter -= 1;
+  return tempIdCounter;
 }
 
 export default function AdminPage() {
@@ -37,8 +40,10 @@ export default function AdminPage() {
     const load = async () => {
       try {
         const data = await apiClient.getContent();
+        console.log("API Response:", data);
+        console.log("Services from API:", data.services);
         setContent(data);
-        setNotice({ type: "success", text: "Contenido cargado desde la API." });
+        setNotice({ type: "success", text: `Contenido cargado desde la API. Servicios: ${data.services?.length ?? 0}` });
       } catch (error) {
         setContent(defaultContent);
         setNotice({
@@ -217,7 +222,7 @@ export default function AdminPage() {
       ...prev,
       news: [
         {
-          id: uid("news"),
+          id: tempId(),
           date: "Categoría",
           title: "Nueva novedad",
           text: "Texto breve de la novedad.",
@@ -276,7 +281,7 @@ export default function AdminPage() {
         ...prev.contact,
         resources: [
           {
-            id: uid("resource"),
+            id: tempId(),
             title: "Nuevo recurso",
             href: "#",
             description: "Descripción breve del recurso."
@@ -474,7 +479,7 @@ export default function AdminPage() {
                   <div className="grid gap-3 md:grid-cols-3">
                     {content.hero.highlights.map((highlight, index) => (
                       <div
-                        key={`${highlight.title}-${index}`}
+                        key={`highlight-${index}`}
                         className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4"
                       >
                         <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
@@ -527,7 +532,7 @@ export default function AdminPage() {
                 <div className="grid gap-4">
                   {content.services.map((service, serviceIndex) => (
                     <article
-                      key={`${service.title}-${serviceIndex}`}
+                      key={`service-${serviceIndex}`}
                       className="grid gap-3 rounded-3xl border border-white/10 bg-black/20 p-5"
                     >
                       <div className="grid gap-3 md:grid-cols-2">
@@ -564,7 +569,7 @@ export default function AdminPage() {
 
                         <div className="grid gap-2 md:grid-cols-2">
                           {service.items.map((item, itemIndex) => (
-                            <div key={`${item}-${itemIndex}`} className="flex items-center gap-2">
+                            <div key={`service-${serviceIndex}-item-${itemIndex}`} className="flex items-center gap-2">
                               <input
                                 value={item}
                                 onChange={(event) => updateServiceItem(serviceIndex, itemIndex, event.target.value)}
@@ -614,7 +619,7 @@ export default function AdminPage() {
                 <div className="grid gap-4 md:grid-cols-2">
                   {content.products.map((item, index) => (
                     <article
-                      key={`${item.name}-${index}`}
+                      key={`product-${index}`}
                       className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5"
                     >
                       <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">
@@ -683,7 +688,7 @@ export default function AdminPage() {
                 <div className="grid gap-4 md:grid-cols-2">
                   {content.technology.map((item, index) => (
                     <article
-                      key={`${item.title}-${index}`}
+                      key={`tech-${index}`}
                       className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-5"
                     >
                       {[
@@ -844,7 +849,7 @@ export default function AdminPage() {
                     <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-am-silver">Canales</h3>
                     {content.contact.channels.map((channel, index) => (
                       <div
-                        key={`${channel.label}-${index}`}
+                        key={`channel-${index}`}
                         className="grid gap-2 rounded-3xl border border-white/10 bg-black/20 p-4"
                       >
                         <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.2em] text-am-muted">

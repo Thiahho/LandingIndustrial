@@ -11,6 +11,60 @@ function getAuthHeaders(): Record<string, string> {
   return {};
 }
 
+// Convierte PascalCase a camelCase
+function toCamelCase(str: string): string {
+  return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
+// Convierte camelCase a PascalCase
+function toPascalCase(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Convierte recursivamente las keys de un objeto de PascalCase a camelCase
+function keysToCamelCase<T>(obj: unknown): T {
+  if (obj === null || obj === undefined) {
+    return obj as T;
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map((item) => keysToCamelCase(item)) as T;
+  }
+
+  if (typeof obj === "object") {
+    const result: Record<string, unknown> = {};
+    for (const key in obj as Record<string, unknown>) {
+      const camelKey = toCamelCase(key);
+      result[camelKey] = keysToCamelCase((obj as Record<string, unknown>)[key]);
+    }
+    return result as T;
+  }
+
+  return obj as T;
+}
+
+// Convierte recursivamente las keys de un objeto de camelCase a PascalCase
+function keysToPascalCase<T>(obj: unknown): T {
+  if (obj === null || obj === undefined) {
+    return obj as T;
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map((item) => keysToPascalCase(item)) as T;
+  }
+
+  if (typeof obj === "object") {
+    const result: Record<string, unknown> = {};
+    for (const key in obj as Record<string, unknown>) {
+      const pascalKey = toPascalCase(key);
+      result[pascalKey] = keysToPascalCase((obj as Record<string, unknown>)[key]);
+    }
+    return result as T;
+  }
+
+  return obj as T;
+}
+
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...init,
@@ -27,7 +81,8 @@ async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
     throw new Error(message || "No se pudo completar la solicitud.");
   }
 
-  return (await response.json()) as T;
+  const data = await response.json();
+  return keysToCamelCase<T>(data);
 }
 
 export const apiClient = {
@@ -36,6 +91,6 @@ export const apiClient = {
   saveContent: (content: LandingContent) =>
     fetchJson<LandingContent>("/api/content", {
       method: "PUT",
-      body: JSON.stringify(content)
+      body: JSON.stringify(keysToPascalCase(content))
     })
 };

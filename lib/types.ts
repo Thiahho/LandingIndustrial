@@ -47,7 +47,7 @@ export type CompanyMetric = {
 };
 
 export type NewsItem = {
-  id: string;
+  id: number;
   date: string;
   title: string;
   text: string;
@@ -55,7 +55,7 @@ export type NewsItem = {
 };
 
 export type ResourceItem = {
-  id: string;
+  id: number;
   title: string;
   href: string;
   description: string;

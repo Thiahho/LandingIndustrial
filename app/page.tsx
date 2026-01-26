@@ -23,6 +23,8 @@ export default function HomePage() {
       setState("loading");
       try {
         const data = await apiClient.getContent();
+        console.log("API Response (landing):", data);
+        console.log("Services from API:", data.services);
         setContent(data);
         setState("ready");
         setErrorMessage("");

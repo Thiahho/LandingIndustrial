@@ -1,101 +1,128 @@
-using AMSeguridad.Api.Entities;
 using Microsoft.EntityFrameworkCore;
+using backend.src.AMSeguridad.Api.Models;
 
-namespace AMSeguridad.Api.Data;
-
-public sealed class AppDbContext : DbContext
+namespace backend.src.AMSeguridad.Api.Data
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
-
-    public DbSet<LandingContent> LandingContents => Set<LandingContent>();
-    public DbSet<HeroHighlight> HeroHighlights => Set<HeroHighlight>();
-    public DbSet<GuidanceTag> GuidanceTags => Set<GuidanceTag>();
-    public DbSet<ServiceItem> ServiceItems => Set<ServiceItem>();
-    public DbSet<ServiceItemDetail> ServiceItemDetails => Set<ServiceItemDetail>();
-    public DbSet<SolutionItem> SolutionItems => Set<SolutionItem>();
-    public DbSet<TechnologyItem> TechnologyItems => Set<TechnologyItem>();
-    public DbSet<ProductItem> ProductItems => Set<ProductItem>();
-    public DbSet<CompanyMetric> CompanyMetrics => Set<CompanyMetric>();
-    public DbSet<NewsItem> NewsItems => Set<NewsItem>();
-    public DbSet<ContactChannel> ContactChannels => Set<ContactChannel>();
-    public DbSet<ResourceItem> ResourceItems => Set<ResourceItem>();
-    public DbSet<JobsPoint> JobsPoints => Set<JobsPoint>();
-
-    public DbSet<UserAccount> UserAccounts => Set<UserAccount>();
-    public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public class ApplicationDbContext : DbContext
     {
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.HeroHighlights)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.GuidanceTags)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+        // 1. Tablas de Sistema
+        public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<AuditLog> AuditLogs { get; set; }
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.Services)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+        // 2. Contenido Principal
+        public DbSet<LandingContent> LandingContents { get; set; }
 
-        modelBuilder.Entity<ServiceItem>()
-            .HasMany(s => s.Items)
-            .WithOne()
-            .HasForeignKey(i => i.ServiceItemId)
-            .OnDelete(DeleteBehavior.Cascade);
+        // 3. Tablas Relacionadas (Hijos directos de LandingContent)
+        public DbSet<HeroHighlight> HeroHighlights { get; set; }
+        public DbSet<GuidanceTag> GuidanceTags { get; set; }
+        public DbSet<Solution> Solutions { get; set; }
+        public DbSet<TechnologyItem> TechnologyItems { get; set; }
+        public DbSet<Products> ProductItems { get; set; } // Mapeado a la clase Products
+        public DbSet<CompanyMetric> CompanyMetrics { get; set; }
+        public DbSet<NewsItem> NewsItems { get; set; }
+        public DbSet<ContactChannel> ContactChannels { get; set; }
+        public DbSet<Resource> Resources { get; set; }
+        public DbSet<JobsPoint> JobsPoints { get; set; }
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.Solutions)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+        // 4. Servicios y sus items (Jerarquía anidada)
+        public DbSet<Service> Services { get; set; }
+        public DbSet<ServiceItem> ServiceItems { get; set; }
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.Technology)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.Products)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // --- Configuración de Relaciones y Borrado en Cascada ---
+            // Esto asegura que Entity Framework respete el ON DELETE CASCADE de tu SQL
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.CompanyMetrics)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // Relación: LandingContent -> HeroHighlights
+            modelBuilder.Entity<HeroHighlight>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.News)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // Relación: LandingContent -> GuidanceTags
+            modelBuilder.Entity<GuidanceTag>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.ContactChannels)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // Relación: LandingContent -> Services
+            modelBuilder.Entity<Service>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.Resources)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // Relación: Service -> ServiceItems
+            modelBuilder.Entity<ServiceItem>()
+                .HasOne(e => e.Service)
+                .WithMany()
+                .HasForeignKey(e => e.ServiceId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<LandingContent>()
-            .HasMany(l => l.JobsPoints)
-            .WithOne()
-            .HasForeignKey(h => h.LandingContentId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // Relación: LandingContent -> Solutions
+            modelBuilder.Entity<Solution>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación: LandingContent -> TechnologyItems
+            modelBuilder.Entity<TechnologyItem>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación: LandingContent -> Products (Table: product_items)
+            modelBuilder.Entity<Products>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación: LandingContent -> CompanyMetrics
+            modelBuilder.Entity<CompanyMetric>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación: LandingContent -> NewsItems
+            modelBuilder.Entity<NewsItem>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación: LandingContent -> ContactChannels
+            modelBuilder.Entity<ContactChannel>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación: LandingContent -> Resources
+            modelBuilder.Entity<Resource>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación: LandingContent -> JobsPoints
+            modelBuilder.Entity<JobsPoint>()
+                .HasOne(e => e.LandingContent)
+                .WithMany()
+                .HasForeignKey(e => e.LandingContentId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

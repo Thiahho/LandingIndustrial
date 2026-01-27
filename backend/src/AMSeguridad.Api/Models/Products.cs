@@ -20,7 +20,7 @@ namespace AMSeguridad.Api.Models
         [Required] [Column("category")] public string Category { get; set; } = string.Empty;
         [Required] [Column("description")] public string Description { get; set; } = string.Empty;
         
-        [Column("image_url")] 
-        public string? ImageUrl { get; set; }
+        [Column("image_public_id")]
+        public string? ImagePublicId { get; set; }
     }
 }

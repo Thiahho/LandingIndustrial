@@ -20,8 +20,8 @@ namespace AMSeguridad.Api.Models
         [Required] [Column("title")] public string Title { get; set; } = string.Empty;
         [Required] [Column("text")] public string Text { get; set; } = string.Empty;
         
-        [Column("image_url")] 
-        public string? ImageUrl { get; set; }
+        [Column("image_public_id")]
+        public string? ImagePublicId { get; set; }
 
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }

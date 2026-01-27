@@ -131,7 +131,9 @@ export default function AdminPage() {
         {
           title: "Nuevo servicio",
           description: "Descripción breve del servicio.",
-          items: ["Ítem 1", "Ítem 2"]
+          items: ["Ítem 1", "Ítem 2"],
+          imageUrl: "",
+          imagePublicId: ""
         }
       ]
     }));
@@ -180,7 +182,8 @@ export default function AdminPage() {
           title: "Nuevo diferencial tecnológico",
           text: "Detalle breve de la capacidad tecnológica.",
           meta: "Meta",
-          imageUrl: ""
+          imageUrl: "",
+          imagePublicId: ""
         }
       ]
     }));
@@ -194,7 +197,8 @@ export default function AdminPage() {
           name: "Nuevo producto tecnológico",
           category: "Categoría",
           description: "Descripción breve del producto.",
-          imageUrl: ""
+          imageUrl: "",
+          imagePublicId: ""
         }
       ]
     }));
@@ -226,7 +230,8 @@ export default function AdminPage() {
           date: "Categoría",
           title: "Nueva novedad",
           text: "Texto breve de la novedad.",
-          imageUrl: ""
+          imageUrl: "",
+          imagePublicId: ""
         },
         ...prev.news
       ]
@@ -449,6 +454,9 @@ export default function AdminPage() {
                         label={field.label}
                         value={field.value}
                         onChange={(value) => updateHero({ [field.key]: value })}
+                        publicIdValue={content.hero.imagePublicId ?? ""}
+                        onPublicIdChange={(value) => updateHero({ imagePublicId: value })}
+                        publicIdLabel="Public ID imagen hero"
                         helper="Subí la imagen en Cloudinary; se convertirá a WebP automáticamente."
                       />
                     ) : (
@@ -555,6 +563,15 @@ export default function AdminPage() {
                         </label>
                       </div>
 
+                      <ImageUrlField
+                        label="Imagen del servicio"
+                        value={service.imageUrl ?? ""}
+                        onChange={(value) => updateService(serviceIndex, { imageUrl: value })}
+                        publicIdValue={service.imagePublicId ?? ""}
+                        onPublicIdChange={(value) => updateService(serviceIndex, { imagePublicId: value })}
+                        publicIdLabel="Public ID del servicio"
+                      />
+
                       <div className="grid gap-2">
                         <div className="flex items-center justify-between">
                           <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-am-silver">Ítems del servicio</h3>
@@ -654,6 +671,9 @@ export default function AdminPage() {
                         label="URL imagen"
                         value={item.imageUrl ?? ""}
                         onChange={(value) => updateProduct(index, { imageUrl: value })}
+                        publicIdValue={item.imagePublicId ?? ""}
+                        onPublicIdChange={(value) => updateProduct(index, { imagePublicId: value })}
+                        publicIdLabel="Public ID del producto"
                       />
 
                       <div className="flex justify-end">
@@ -703,6 +723,9 @@ export default function AdminPage() {
                             label={field.label}
                             value={field.value}
                             onChange={(value) => updateTechnology(index, { [field.key]: value })}
+                            publicIdValue={item.imagePublicId ?? ""}
+                            onPublicIdChange={(value) => updateTechnology(index, { imagePublicId: value })}
+                            publicIdLabel="Public ID del bloque"
                           />
                         ) : (
                           <label
@@ -763,6 +786,9 @@ export default function AdminPage() {
                             label={field.label}
                             value={field.value}
                             onChange={(value) => updateNews(index, { [field.key]: value })}
+                            publicIdValue={item.imagePublicId ?? ""}
+                            onPublicIdChange={(value) => updateNews(index, { imagePublicId: value })}
+                            publicIdLabel="Public ID de la novedad"
                           />
                         ) : (
                           <label

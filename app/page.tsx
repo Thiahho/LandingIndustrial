@@ -8,6 +8,7 @@ import { NavBar } from "@/components/NavBar";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CompanyCard, NewsCard, ResourceCard, ServiceCard, SolutionCard, TechnologyCard } from "@/components/cards";
 import { apiClient } from "@/lib/api";
+import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { defaultContent } from "@/lib/defaultContent";
 import type { LandingContent } from "@/lib/types";
 
@@ -43,6 +44,9 @@ export default function HomePage() {
   }, []);
 
   const heroHighlights = useMemo(() => content.hero.highlights.slice(0, 3), [content.hero.highlights]);
+  const heroImage = content.hero.imagePublicId
+    ? buildCloudinaryUrl(content.hero.imagePublicId)
+    : content.hero.imageUrl;
 
   return (
     <div className="relative">
@@ -66,7 +70,7 @@ export default function HomePage() {
           <div className="pointer-events-none absolute inset-0 -z-20">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-40"
-              style={{ backgroundImage: `url(${content.hero.imageUrl})` }}
+              style={{ backgroundImage: `url(${heroImage})` }}
             />
             <div className="absolute inset-0 bg-gradient-to-br from-[#07100f]/95 via-[#0b1413]/92 to-[#0b1413]/85" />
             <div className="absolute inset-0 bg-hero-overlay opacity-80" />
@@ -227,7 +231,13 @@ export default function HomePage() {
               {content.products.map((item, index) => (
                 <TechnologyCard
                   key={`${item.name}-${index}`}
-                  item={{ title: item.name, text: item.description, meta: item.category, imageUrl: item.imageUrl }}
+                  item={{
+                    title: item.name,
+                    text: item.description,
+                    meta: item.category,
+                    imageUrl: item.imageUrl,
+                    imagePublicId: item.imagePublicId
+                  }}
                   index={index}
                 />
               ))}

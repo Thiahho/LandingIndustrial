@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace backend.src.AMSeguridad.Api.Models
+namespace AMSeguridad.Api.Models
 {
     [Table("jobs_points")]
     public class JobsPoint

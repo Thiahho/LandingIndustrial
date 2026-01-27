@@ -11,6 +11,7 @@ export type HeroContent = {
   secondaryCta: string;
   contactCta: string;
   imageUrl: string;
+  imagePublicId?: string;
   highlights: HeroHighlight[];
 };
 
@@ -18,6 +19,8 @@ export type Service = {
   title: string;
   description: string;
   items: string[];
+  imageUrl?: string;
+  imagePublicId?: string;
 };
 
 export type Solution = {
@@ -31,6 +34,7 @@ export type TechnologyItem = {
   text: string;
   meta: string;
   imageUrl?: string;
+  imagePublicId?: string;
 };
 
 export type ProductItem = {
@@ -38,6 +42,7 @@ export type ProductItem = {
   category: string;
   description: string;
   imageUrl?: string;
+  imagePublicId?: string;
 };
 
 export type CompanyMetric = {
@@ -52,6 +57,7 @@ export type NewsItem = {
   title: string;
   text: string;
   imageUrl?: string;
+  imagePublicId?: string;
 };
 
 export type ResourceItem = {

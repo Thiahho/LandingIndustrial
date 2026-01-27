@@ -13,3 +13,14 @@ export function toWebp(url: string) {
 
   return url.replace("/upload/", `/upload/${WEBP_TRANSFORMATION}/`);
 }
+
+export function buildCloudinaryUrl(publicId: string, transformation = WEBP_TRANSFORMATION) {
+  if (!publicId) return "";
+
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  if (!cloudName) {
+    return publicId;
+  }
+
+  return `https://res.cloudinary.com/${cloudName}/image/upload/${transformation}/${publicId}`;
+}

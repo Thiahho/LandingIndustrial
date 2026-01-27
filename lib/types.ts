@@ -10,14 +10,14 @@ export type HeroContent = {
   primaryCta: string;
   secondaryCta: string;
   contactCta: string;
-  imagePublicId?: string;
+  imagePublicId?: string | null;
   highlights: HeroHighlight[];
 };
 
 export type Service = {
   title: string;
   description: string;
-  imagePublicId?: string;
+  imagePublicId?: string | null;
   items: string[];
 };
 
@@ -31,14 +31,14 @@ export type TechnologyItem = {
   title: string;
   text: string;
   meta: string;
-  imagePublicId?: string;
+  imagePublicId?: string | null;
 };
 
 export type ProductItem = {
   name: string;
   category: string;
   description: string;
-  imagePublicId?: string;
+  imagePublicId?: string | null;
 };
 
 export type CompanyMetric = {
@@ -52,7 +52,7 @@ export type NewsItem = {
   date: string;
   title: string;
   text: string;
-  imagePublicId?: string;
+  imagePublicId?: string | null;
 };
 
 export type ResourceItem = {

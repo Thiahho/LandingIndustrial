@@ -7,7 +7,6 @@ import { UserBadge } from "@/components/auth/UserBadge";
 import { ImageUrlField } from "@/components/admin/ImageUrlField";
 import { permissionsByRole } from "@/lib/auth/permissions";
 import { apiClient } from "@/lib/api";
-import { defaultContent } from "@/lib/defaultContent";
 import type {
   ContactChannel,
   HeroHighlight,
@@ -29,7 +28,7 @@ function tempId(): number {
 }
 
 export default function AdminPage() {
-  const [content, setContent] = useState<LandingContent>(defaultContent);
+  const [content, setContent] = useState<LandingContent | null>(null);
   const [notice, setNotice] = useState<Notice>({
     type: "warning",
     text: "Cargando contenido…",
@@ -48,13 +47,12 @@ export default function AdminPage() {
           text: `Contenido cargado desde la API. Servicios: ${data.services?.length ?? 0}`,
         });
       } catch (error) {
-        setContent(defaultContent);
         setNotice({
-          type: "warning",
+          type: "error",
           text:
             error instanceof Error
-              ? `${error.message} · usando contenido por defecto local.`
-              : "No se pudo conectar con la API · usando contenido por defecto local.",
+              ? `${error.message} · no se pudo cargar el contenido desde la API.`
+              : "No se pudo conectar con la API.",
         });
       }
     };
@@ -62,18 +60,23 @@ export default function AdminPage() {
     load();
   }, []);
 
-  const stats = useMemo(
-    () => ({
+  const stats = useMemo(() => {
+    if (!content) {
+      return { servicios: 0, novedades: 0, recursos: 0 };
+    }
+
+    return {
       servicios: content.services.length,
       novedades: content.news.length,
       recursos: content.contact.resources.length,
-    }),
-    [
-      content.services.length,
-      content.news.length,
-      content.contact.resources.length,
-    ],
-  );
+    };
+  }, [content]);
+
+  const updateContent = (
+    updater: (prev: LandingContent) => LandingContent,
+  ) => {
+    setContent((prev) => (prev ? updater(prev) : prev));
+  };
 
   const navItems = [
     { id: "dashboard", label: "Dashboard" },
@@ -88,10 +91,10 @@ export default function AdminPage() {
   ];
 
   const updateHero = (patch: Partial<LandingContent["hero"]>) =>
-    setContent((prev) => ({ ...prev, hero: { ...prev.hero, ...patch } }));
+    updateContent((prev) => ({ ...prev, hero: { ...prev.hero, ...patch } }));
 
   const updateHeroHighlight = (index: number, patch: Partial<HeroHighlight>) =>
-    setContent((prev) => {
+    updateContent((prev) => {
       const highlights = prev.hero.highlights.map((item, idx) =>
         idx === index ? { ...item, ...patch } : item,
       );
@@ -99,7 +102,7 @@ export default function AdminPage() {
     });
 
   const addHeroHighlight = () =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       hero: {
         ...prev.hero,
@@ -111,7 +114,7 @@ export default function AdminPage() {
     }));
 
   const removeHeroHighlight = (index: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       hero: {
         ...prev.hero,
@@ -120,7 +123,7 @@ export default function AdminPage() {
     }));
 
   const updateService = (index: number, patch: Partial<Service>) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       services: prev.services.map((service, idx) =>
         idx === index ? { ...service, ...patch } : service,
@@ -132,7 +135,7 @@ export default function AdminPage() {
     itemIndex: number,
     value: string,
   ) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       services: prev.services.map((service, idx) => {
         if (idx !== serviceIndex) return service;
@@ -144,27 +147,27 @@ export default function AdminPage() {
     }));
 
   const addService = () =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       services: [
         ...prev.services,
         {
           title: "Nuevo servicio",
           description: "Descripción breve del servicio.",
-          imagePublicId: "",
+          imagePublicId: null,
           items: ["Ítem 1", "Ítem 2"],
         },
       ],
     }));
 
   const removeService = (index: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       services: prev.services.filter((_, idx) => idx !== index),
     }));
 
   const addServiceItem = (serviceIndex: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       services: prev.services.map((service, idx) =>
         idx === serviceIndex
@@ -174,7 +177,7 @@ export default function AdminPage() {
     }));
 
   const removeServiceItem = (serviceIndex: number, itemIndex: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       services: prev.services.map((service, idx) => {
         if (idx !== serviceIndex) return service;
@@ -186,7 +189,7 @@ export default function AdminPage() {
     }));
 
   const updateTechnology = (index: number, patch: Partial<TechnologyItem>) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       technology: prev.technology.map((item, idx) =>
         idx === index ? { ...item, ...patch } : item,
@@ -194,7 +197,7 @@ export default function AdminPage() {
     }));
 
   const updateProduct = (index: number, patch: Partial<ProductItem>) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       products: prev.products.map((item, idx) =>
         idx === index ? { ...item, ...patch } : item,
@@ -202,7 +205,7 @@ export default function AdminPage() {
     }));
 
   const addTechnology = () =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       technology: [
         ...prev.technology,
@@ -210,13 +213,13 @@ export default function AdminPage() {
           title: "Nuevo diferencial tecnológico",
           text: "Detalle breve de la capacidad tecnológica.",
           meta: "Meta",
-          imagePublicId: "",
+          imagePublicId: null,
         },
       ],
     }));
 
   const addProduct = () =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       products: [
         ...prev.products,
@@ -224,25 +227,25 @@ export default function AdminPage() {
           name: "Nuevo producto tecnológico",
           category: "Categoría",
           description: "Descripción breve del producto.",
-          imagePublicId: "",
+          imagePublicId: null,
         },
       ],
     }));
 
   const removeTechnology = (index: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       technology: prev.technology.filter((_, idx) => idx !== index),
     }));
 
   const removeProduct = (index: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       products: prev.products.filter((_, idx) => idx !== index),
     }));
 
   const updateNews = (index: number, patch: Partial<NewsItem>) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       news: prev.news.map((item, idx) =>
         idx === index ? { ...item, ...patch } : item,
@@ -250,7 +253,7 @@ export default function AdminPage() {
     }));
 
   const addNews = () =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       news: [
         {
@@ -259,20 +262,20 @@ export default function AdminPage() {
           title: "Nueva novedad",
           text: "Texto breve de la novedad.",
           // imageUrl: "",
-          imagePublicId: "",
+          imagePublicId: null,
         },
         ...prev.news,
       ],
     }));
 
   const removeNews = (index: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       news: prev.news.filter((_, idx) => idx !== index),
     }));
 
   const updateChannel = (index: number, patch: Partial<ContactChannel>) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       contact: {
         ...prev.contact,
@@ -283,7 +286,7 @@ export default function AdminPage() {
     }));
 
   const addChannel = () =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       contact: {
         ...prev.contact,
@@ -295,7 +298,7 @@ export default function AdminPage() {
     }));
 
   const removeChannel = (index: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       contact: {
         ...prev.contact,
@@ -304,7 +307,7 @@ export default function AdminPage() {
     }));
 
   const updateResource = (index: number, patch: Partial<ResourceItem>) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       contact: {
         ...prev.contact,
@@ -315,7 +318,7 @@ export default function AdminPage() {
     }));
 
   const addResource = () =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       contact: {
         ...prev.contact,
@@ -332,7 +335,7 @@ export default function AdminPage() {
     }));
 
   const removeResource = (index: number) =>
-    setContent((prev) => ({
+    updateContent((prev) => ({
       ...prev,
       contact: {
         ...prev.contact,
@@ -341,6 +344,14 @@ export default function AdminPage() {
     }));
 
   const save = async () => {
+    if (!content) {
+      setNotice({
+        type: "error",
+        text: "No hay contenido cargado desde la API para guardar.",
+      });
+      return;
+    }
+
     setSaving(true);
     setNotice({ type: "warning", text: "Guardando cambios..." });
     try {
@@ -427,7 +438,29 @@ export default function AdminPage() {
             </aside>
 
             <main className="grid gap-10">
-              <section
+              {!content ? (
+                <section className="grid gap-4 rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6 text-center">
+                  <p className="eyebrow">Sin contenido</p>
+                  <h2 className="text-2xl font-semibold text-white">
+                    No hay datos cargados desde la API
+                  </h2>
+                  <p className="text-sm text-am-muted">
+                    Revisá la conexión con el backend o los permisos del usuario
+                    e intentá nuevamente.
+                  </p>
+                  <div className="flex justify-center">
+                    <button
+                      type="button"
+                      onClick={() => window.location.reload()}
+                      className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
+                    >
+                      Reintentar carga
+                    </button>
+                  </div>
+                </section>
+              ) : (
+                <>
+                  <section
                 id="dashboard"
                 className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6"
               >
@@ -535,7 +568,7 @@ export default function AdminPage() {
                     },
                     {
                       label: "Imagen hero (Public ID)",
-                      value: content.hero.imagePublicId ?? "",
+                      value: content.hero.imagePublicId ?? null,
                       key: "imagePublicId" as const,
                     },
                   ].map((field) =>
@@ -556,7 +589,7 @@ export default function AdminPage() {
                       >
                         {field.label}
                         <input
-                          value={field.value}
+                          value={field.value ?? ""}
                           onChange={(event) =>
                             updateHero({ [field.key]: event.target.value })
                           }
@@ -682,7 +715,7 @@ export default function AdminPage() {
                       <div className="md:col-span-2">
                         <ImageUrlField
                           label="Imagen del Servicio (Public ID)"
-                          value={service.imagePublicId ?? ""}
+                          value={service.imagePublicId ?? null}
                           onChange={(newPublicId) =>
                             updateService(serviceIndex, {
                               imagePublicId: newPublicId,
@@ -818,7 +851,7 @@ export default function AdminPage() {
 
                       <ImageUrlField
                         label="Imagen (Public ID)"
-                        value={item.imagePublicId ?? ""}
+                        value={item.imagePublicId ?? null}
                         onChange={(value) =>
                           updateProduct(index, { imagePublicId: value })
                         }
@@ -882,7 +915,7 @@ export default function AdminPage() {
                         },
                         {
                           label: "Imagen (Public ID)",
-                          value: item.imagePublicId ?? "",
+                          value: item.imagePublicId ?? null,
                           key: "imagePublicId" as const,
                         },
                       ].map((field) =>
@@ -902,7 +935,7 @@ export default function AdminPage() {
                           >
                             {field.label}
                             <input
-                              value={field.value}
+                              value={field.value ?? ""}
                               onChange={(event) =>
                                 updateTechnology(index, {
                                   [field.key]: event.target.value,
@@ -972,7 +1005,7 @@ export default function AdminPage() {
                         },
                         {
                           label: "Imagen (Public ID)",
-                          value: item.imagePublicId ?? "",
+                          value: item.imagePublicId ?? null,
                           key: "imagePublicId" as const,
                         },
                       ].map((field) =>
@@ -992,7 +1025,7 @@ export default function AdminPage() {
                           >
                             {field.label}
                             <input
-                              value={field.value}
+                              value={field.value ?? ""}
                               onChange={(event) =>
                                 updateNews(index, {
                                   [field.key]: event.target.value,
@@ -1083,7 +1116,7 @@ export default function AdminPage() {
                       <input
                         value={field.value}
                         onChange={(event) =>
-                          setContent((prev) => ({
+                          updateContent((prev) => ({
                             ...prev,
                             contact: {
                               ...prev.contact,
@@ -1249,6 +1282,8 @@ export default function AdminPage() {
                   {saving ? "Guardando…" : "Guardar en backend"}
                 </button>
               </section>
+                </>
+              )}
             </main>
           </div>
         </div>

@@ -8,8 +8,8 @@ import {
 
 type ImageUrlFieldProps = {
   label: string;
-  value: string;
-  onChange: (value: string) => void;
+  value: string | null;
+  onChange: (value: string | null) => void;
   helper?: string;
 };
 
@@ -35,8 +35,10 @@ export function ImageUrlField({
 
       <div className="flex flex-wrap gap-2">
         <input
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
+          value={value ?? ""}
+          onChange={(event) =>
+            onChange(event.target.value ? event.target.value : null)
+          }
           className="flex-1 rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-am-primary focus:outline-none"
           placeholder="Public ID de Cloudinary"
         />

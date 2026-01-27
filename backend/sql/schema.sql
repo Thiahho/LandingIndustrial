@@ -61,7 +61,8 @@ CREATE TABLE IF NOT EXISTS services (
   id SERIAL PRIMARY KEY,
   landing_content_id INT NOT NULL REFERENCES landing_contents(id) ON DELETE CASCADE,
   title TEXT NOT NULL,
-  description TEXT NOT NULL
+  description TEXT NOT NULL,
+  image_public_id TEXT
 );
 
 CREATE TABLE IF NOT EXISTS service_items (

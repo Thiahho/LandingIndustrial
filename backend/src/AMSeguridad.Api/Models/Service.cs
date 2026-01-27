@@ -18,6 +18,7 @@ public class Service
 
     [Required] [Column("title")] public string Title { get; set; } = string.Empty;
     [Required] [Column("description")] public string Description { get; set; } = string.Empty;
+    [Column("image_public_id")] public string? ImagePublicId { get; set; }
 
     public List<ServiceItem> Items { get; set; } = [];
 }

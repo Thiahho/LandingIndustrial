@@ -6,16 +6,22 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { NavBar } from "@/components/NavBar";
 import { SectionHeading } from "@/components/SectionHeading";
-import { CompanyCard, NewsCard, ResourceCard, ServiceCard, SolutionCard, TechnologyCard } from "@/components/cards";
+import {
+  CompanyCard,
+  NewsCard,
+  ResourceCard,
+  ServiceCard,
+  SolutionCard,
+  TechnologyCard,
+} from "@/components/cards";
 import { apiClient } from "@/lib/api";
 import { buildCloudinaryUrl } from "@/lib/cloudinary";
-import { defaultContent } from "@/lib/defaultContent";
 import type { LandingContent } from "@/lib/types";
 
 type LoadState = "idle" | "loading" | "ready" | "error";
 
 export default function HomePage() {
-  const [content, setContent] = useState<LandingContent>(defaultContent);
+  const [content, setContent] = useState<LandingContent | null>(null);
   const [state, setState] = useState<LoadState>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -33,21 +39,77 @@ export default function HomePage() {
         setState("error");
         setErrorMessage(
           error instanceof Error
-            ? `${error.message} · mostrando contenido local por defecto.`
-            : "No se pudo conectar con la API · mostrando contenido local por defecto."
+            ? error.message
+            : "No se pudo conectar con la API.",
         );
-        setContent(defaultContent);
       }
     };
 
     load();
   }, []);
 
-  const heroHighlights = useMemo(() => content.hero.highlights.slice(0, 3), [content.hero.highlights]);
-  const heroImage = content.hero.imagePublicId
+  const heroHighlights = useMemo(
+    () => content?.hero.highlights.slice(0, 3) ?? [],
+    [content?.hero.highlights],
+  );
+  const heroImage = content?.hero.imagePublicId
     ? buildCloudinaryUrl(content.hero.imagePublicId)
     : "";
 
+  // Loading state
+  if (state === "loading" || state === "idle") {
+    return (
+      <div className="relative min-h-screen">
+        <NavBar />
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <div className="text-center space-y-4">
+            <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-am-primary border-t-transparent" />
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-am-muted">
+              Cargando contenido...
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (state === "error" || !content) {
+    return (
+      <div className="relative min-h-screen">
+        <NavBar />
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <div className="mx-auto max-w-md space-y-4 rounded-[28px] border border-red-500/30 bg-red-500/10 p-8 text-center">
+            <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-red-500/20">
+              <svg
+                className="h-8 w-8 text-red-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                />
+              </svg>
+            </div>
+            <h2 className="text-xl font-bold text-white">Error al cargar</h2>
+            <p className="text-sm text-red-300">{errorMessage}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="inline-flex items-center justify-center rounded-full bg-red-500/20 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-red-300 transition hover:bg-red-500/30"
+            >
+              Reintentar
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Content loaded successfully
   return (
     <div className="relative">
       <a
@@ -59,14 +121,11 @@ export default function HomePage() {
 
       <NavBar />
 
-      {state === "error" ? (
-        <div className="border-b border-amber-400/30 bg-amber-500/10 py-2 text-center text-xs font-semibold uppercase tracking-[0.24em] text-amber-300">
-          {errorMessage}
-        </div>
-      ) : null}
-
       <main id="contenido">
-        <section id="inicio" className="relative overflow-hidden pb-32 pt-28 md:pt-36">
+        <section
+          id="inicio"
+          className="relative overflow-hidden pb-32 pt-28 md:pt-36"
+        >
           <div className="pointer-events-none absolute inset-0 -z-20">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-40"
@@ -85,8 +144,12 @@ export default function HomePage() {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <p className="eyebrow">{content.hero.eyebrow}</p>
-              <h1 className="text-4xl font-extrabold leading-[1.02] md:text-6xl">{content.hero.title}</h1>
-              <p className="text-lg text-am-silver md:text-xl">{content.hero.lead}</p>
+              <h1 className="text-4xl font-extrabold leading-[1.02] md:text-6xl">
+                {content.hero.title}
+              </h1>
+              <p className="text-lg text-am-silver md:text-xl">
+                {content.hero.lead}
+              </p>
 
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -119,7 +182,9 @@ export default function HomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.15 + index * 0.07 }}
                 >
-                  <p className="text-base font-bold text-white">{highlight.title}</p>
+                  <p className="text-base font-bold text-white">
+                    {highlight.title}
+                  </p>
                   <p className="text-sm text-am-muted">{highlight.text}</p>
                 </motion.div>
               ))}
@@ -139,19 +204,24 @@ export default function HomePage() {
             {[
               {
                 title: "Habilitados y auditables",
-                text: "Operamos bajo normativa vigente, procesos verificables y protocolos trazables."
+                text: "Operamos bajo normativa vigente, procesos verificables y protocolos trazables.",
               },
               {
                 title: "Respuesta inmediata",
-                text: "Protocolos claros para incidentes, prevención activa y coordinación con recursos en campo."
+                text: "Protocolos claros para incidentes, prevención activa y coordinación con recursos en campo.",
               },
               {
                 title: "Visibilidad total",
-                text: "Información útil para decidir rápido y con respaldo operativo, técnico y documental."
-              }
+                text: "Información útil para decidir rápido y con respaldo operativo, técnico y documental.",
+              },
             ].map((item) => (
-              <article key={item.title} className="space-y-2 rounded-3xl border border-white/5 bg-white/[0.03] p-5">
-                <h2 className="text-lg font-semibold text-white">{item.title}</h2>
+              <article
+                key={item.title}
+                className="space-y-2 rounded-3xl border border-white/5 bg-white/[0.03] p-5"
+              >
+                <h2 className="text-lg font-semibold text-white">
+                  {item.title}
+                </h2>
                 <p className="text-sm text-am-muted">{item.text}</p>
               </article>
             ))}
@@ -167,13 +237,20 @@ export default function HomePage() {
             />
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {content.services.map((service, index) => (
-                <ServiceCard key={service.title} service={service} index={index} />
+                <ServiceCard
+                  key={service.title}
+                  service={service}
+                  index={index}
+                />
               ))}
             </div>
           </div>
         </AnimatedSection>
 
-        <AnimatedSection id="soluciones" className="border-y border-white/10 bg-[#0d1716]/85 py-24">
+        <AnimatedSection
+          id="soluciones"
+          className="border-y border-white/10 bg-[#0d1716]/85 py-24"
+        >
           <div className="mx-auto grid w-[min(1200px,92vw)] items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
             <div className="space-y-6">
               <SectionHeading
@@ -197,7 +274,11 @@ export default function HomePage() {
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               {content.solutions.map((solution, index) => (
-                <SolutionCard key={`${solution.tag}-${solution.title}`} solution={solution} index={index} />
+                <SolutionCard
+                  key={`${solution.tag}-${solution.title}`}
+                  solution={solution}
+                  index={index}
+                />
               ))}
             </div>
           </div>
@@ -236,7 +317,6 @@ export default function HomePage() {
                     text: item.description,
                     meta: item.category,
                     imagePublicId: item.imagePublicId,
-                    // imagePublicId: item.imagePublicId
                   }}
                   index={index}
                 />
@@ -245,7 +325,10 @@ export default function HomePage() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection id="empresa" className="bg-gradient-to-br from-am-primary/10 via-transparent to-transparent py-24">
+        <AnimatedSection
+          id="empresa"
+          className="bg-gradient-to-br from-am-primary/10 via-transparent to-transparent py-24"
+        >
           <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
             <SectionHeading
               eyebrow="Empresa y solidez"
@@ -255,13 +338,20 @@ export default function HomePage() {
             />
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {content.company.map((metric, index) => (
-                <CompanyCard key={`${metric.value}-${metric.label}`} metric={metric} index={index} />
+                <CompanyCard
+                  key={`${metric.value}-${metric.label}`}
+                  metric={metric}
+                  index={index}
+                />
               ))}
             </div>
           </div>
         </AnimatedSection>
 
-        <AnimatedSection id="novedades" className="border-y border-white/10 bg-[#0c1514]/90 py-24">
+        <AnimatedSection
+          id="novedades"
+          className="border-y border-white/10 bg-[#0c1514]/90 py-24"
+        >
           <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
             <SectionHeading
               eyebrow="Novedades"
@@ -287,7 +377,10 @@ export default function HomePage() {
               />
               <ul className="grid gap-2 text-sm">
                 {content.jobs.points.map((point) => (
-                  <li key={point} className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 font-semibold text-am-silver">
+                  <li
+                    key={point}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 font-semibold text-am-silver"
+                  >
                     {point}
                   </li>
                 ))}
@@ -295,10 +388,23 @@ export default function HomePage() {
             </div>
             <form className="space-y-4 rounded-[28px] border border-white/10 bg-gradient-to-br from-[#10201c]/95 to-[#0b1110] p-8 shadow-glow">
               {[
-                { id: "job-name", label: "Nombre y apellido", type: "text", placeholder: "Tu nombre" },
-                { id: "job-email", label: "Email", type: "email", placeholder: "tu@email.com" }
+                {
+                  id: "job-name",
+                  label: "Nombre y apellido",
+                  type: "text",
+                  placeholder: "Tu nombre",
+                },
+                {
+                  id: "job-email",
+                  label: "Email",
+                  type: "email",
+                  placeholder: "tu@email.com",
+                },
               ].map((field) => (
-                <label key={field.id} className="grid gap-2 text-sm font-semibold">
+                <label
+                  key={field.id}
+                  className="grid gap-2 text-sm font-semibold"
+                >
                   {field.label}
                   <input
                     id={field.id}
@@ -338,7 +444,9 @@ export default function HomePage() {
               >
                 Enviar CV
               </button>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-am-muted">Canal exclusivo para postulaciones</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-am-muted">
+                Canal exclusivo para postulaciones
+              </p>
             </form>
           </div>
         </AnimatedSection>
@@ -375,7 +483,8 @@ export default function HomePage() {
               <ul className="grid gap-2 text-sm text-am-silver">
                 {content.contact.channels.map((channel) => (
                   <li key={channel.label}>
-                    <strong className="text-white">{channel.label}:</strong> {channel.value}
+                    <strong className="text-white">{channel.label}:</strong>{" "}
+                    {channel.value}
                   </li>
                 ))}
               </ul>
@@ -390,17 +499,31 @@ export default function HomePage() {
             >
               <div className="space-y-2">
                 <p className="eyebrow">Recursos</p>
-                <h3 className="text-2xl font-semibold">Material listo para compartir</h3>
-                <p className="text-sm text-am-muted">Descargá una carta de presentación y conocé la estructura operativa.</p>
+                <h3 className="text-2xl font-semibold">
+                  Material listo para compartir
+                </h3>
+                <p className="text-sm text-am-muted">
+                  Descargá una carta de presentación y conocé la estructura
+                  operativa.
+                </p>
               </div>
               <div className="grid gap-3">
                 {content.contact.resources.map((resource, index) => (
-                  <ResourceCard key={resource.id} resource={resource} index={index} />
+                  <ResourceCard
+                    key={resource.id}
+                    resource={resource}
+                    index={index}
+                  />
                 ))}
               </div>
               <div className="rounded-3xl border border-am-primary/40 bg-am-primary/15 p-4 text-sm">
-                <p className="font-bold uppercase tracking-[0.2em] text-am-primaryStrong">Medición activa</p>
-                <p className="text-am-silver">El sitio está preparado para integrar analítica, campañas y trazabilidad comercial.</p>
+                <p className="font-bold uppercase tracking-[0.2em] text-am-primaryStrong">
+                  Medición activa
+                </p>
+                <p className="text-am-silver">
+                  El sitio está preparado para integrar analítica, campañas y
+                  trazabilidad comercial.
+                </p>
               </div>
             </motion.aside>
           </div>
@@ -415,19 +538,27 @@ export default function HomePage() {
             </div>
             <div className="grid leading-tight">
               <span className="font-semibold">AM Seguridad</span>
-              <span className="text-xs text-am-muted">Solidez, tecnología y confianza</span>
+              <span className="text-xs text-am-muted">
+                Solidez, tecnología y confianza
+              </span>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 text-sm font-semibold text-am-silver">
-            {[
-              { href: "#servicios", label: "Servicios" },
-              { href: "#empresa", label: "Empresa" },
-              { href: "#productos", label: "Productos" },
-              { href: "#novedades", label: "Novedades" },
-              { href: "#contacto", label: "Contacto" },
-              { href: "/login", label: "Autogestión" }
-            ].map((link) => (
-              <Link key={link.href} href={link.href} className="rounded-full border border-transparent px-4 py-2 hover:border-white/15">
+            {(
+              [
+                { href: "#servicios", label: "Servicios" },
+                { href: "#empresa", label: "Empresa" },
+                { href: "#productos", label: "Productos" },
+                { href: "#novedades", label: "Novedades" },
+                { href: "#contacto", label: "Contacto" },
+                { href: "/login", label: "Autogestión" },
+              ] as const
+            ).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-full border border-transparent px-4 py-2 hover:border-white/15"
+              >
                 {link.label}
               </Link>
             ))}

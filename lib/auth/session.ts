@@ -1,16 +1,25 @@
 import { SESSION_KEY } from "@/lib/auth/config";
-import type { LoginPayload, LoginResponse, Role, SessionUser } from "@/lib/auth/types";
+import type {
+  LoginPayload,
+  LoginResponse,
+  Role,
+  SessionUser,
+} from "@/lib/auth/types";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000";
 
 function canUseStorage() {
-  return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+  return (
+    typeof window !== "undefined" &&
+    typeof window.sessionStorage !== "undefined"
+  );
 }
 
 export function getSessionUser(): SessionUser | null {
   if (!canUseStorage()) return null;
   try {
-    const raw = window.localStorage.getItem(SESSION_KEY);
+    const raw = window.sessionStorage.getItem(SESSION_KEY);
     if (!raw) return null;
     return JSON.parse(raw) as SessionUser;
   } catch (error) {
@@ -21,12 +30,12 @@ export function getSessionUser(): SessionUser | null {
 
 export function saveSession(user: SessionUser) {
   if (!canUseStorage()) return;
-  window.localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+  window.sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
 }
 
 export function clearSession() {
   if (!canUseStorage()) return;
-  window.localStorage.removeItem(SESSION_KEY);
+  window.sessionStorage.removeItem(SESSION_KEY);
 }
 
 export function isAllowed(user: SessionUser | null, allowedRoles: Role[]) {
@@ -34,16 +43,20 @@ export function isAllowed(user: SessionUser | null, allowedRoles: Role[]) {
   return allowedRoles.includes(user.role);
 }
 
-export async function loginWithApi(payload: LoginPayload): Promise<{ ok: true; user: SessionUser } | { ok: false; message: string }> {
+export async function loginWithApi(
+  payload: LoginPayload,
+): Promise<{ ok: true; user: SessionUser } | { ok: false; message: string }> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: "Credenciales inválidas." }));
+      const error = await response
+        .json()
+        .catch(() => ({ message: "Credenciales inválidas." }));
       return { ok: false, message: error.message || "Credenciales inválidas." };
     }
 
@@ -53,7 +66,7 @@ export async function loginWithApi(payload: LoginPayload): Promise<{ ok: true; u
       username: data.username,
       displayName: data.displayName,
       role: data.role as Role,
-      token: data.token
+      token: data.token,
     };
 
     saveSession(user);

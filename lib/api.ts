@@ -78,6 +78,7 @@ async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
 
   if (!response.ok) {
     const message = await response.text();
+    console.error("API Error:", response.status, message);
     throw new Error(message || "No se pudo completar la solicitud.");
   }
 
@@ -88,9 +89,12 @@ async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
 export const apiClient = {
   baseUrl: API_BASE_URL,
   getContent: () => fetchJson<LandingContent>("/api/content"),
-  saveContent: (content: LandingContent) =>
-    fetchJson<LandingContent>("/api/content", {
+  saveContent: (content: LandingContent) => {
+    const payload = keysToPascalCase(content);
+    console.log("Sending payload:", JSON.stringify(payload, null, 2));
+    return fetchJson<LandingContent>("/api/content", {
       method: "PUT",
-      body: JSON.stringify(keysToPascalCase(content))
-    })
+      body: JSON.stringify(payload)
+    });
+  }
 };

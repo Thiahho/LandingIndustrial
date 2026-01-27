@@ -1,6 +1,10 @@
 "use client";
 
-import { CldImage, CldUploadWidget, CloudinaryUploadWidgetResults } from "next-cloudinary";
+import {
+  CldImage,
+  CldUploadWidget,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
 
 type ImageUrlFieldProps = {
   label: string;
@@ -13,10 +17,14 @@ export function ImageUrlField({
   label,
   value,
   onChange,
-  helper
+  helper,
 }: ImageUrlFieldProps) {
   const handleUploadSuccess = (result: CloudinaryUploadWidgetResults) => {
-    if (result.info && typeof result.info === "object" && "public_id" in result.info) {
+    if (
+      result.info &&
+      typeof result.info === "object" &&
+      "public_id" in result.info
+    ) {
       onChange(result.info.public_id as string);
     }
   };
@@ -36,7 +44,7 @@ export function ImageUrlField({
 
       <div className="flex flex-wrap items-start gap-4">
         <CldUploadWidget
-          uploadPreset="ml_default"
+          uploadPreset="AMSeguridad"
           onSuccess={handleUploadSuccess}
           options={{
             maxFiles: 1,
@@ -56,9 +64,9 @@ export function ImageUrlField({
                 error: "#ef4444",
                 inProgress: "#6366f1",
                 complete: "#22c55e",
-                sourceBg: "#0f0f23"
-              }
-            }
+                sourceBg: "#0f0f23",
+              },
+            },
           }}
         >
           {({ open }) => (

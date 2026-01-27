@@ -14,14 +14,14 @@ public sealed record HeroDto(
 
 public sealed record GuidanceDto(string Eyebrow, string Title, string Text, List<string> Tags);
 
-public sealed record ServiceItemDto(string Title, string Description, List<string> Items);
+public sealed record ServiceItemDto(string Title, string Description, List<string> Items, string? ImagePublicId = null);
 public sealed record SolutionItemDto(string Tag, string Title, string Text);
 public sealed record TechnologyItemDto(string Title, string Text, string Meta, string? ImagePublicId);
 public sealed record ProductItemDto(string Name, string Category, string Description, string? ImagePublicId);
 public sealed record CompanyMetricDto(string Value, string Label, string Text);
-public sealed record NewsItemDto(int Id, string Date, string Title, string Text, string? ImagePublicId);
+public sealed record NewsItemDto(string Date, string Title, string Text, string? ImagePublicId = null, int Id = 0);
 public sealed record ContactChannelDto(string Label, string Value);
-public sealed record ResourceItemDto(int Id, string Title, string Href, string Description);
+public sealed record ResourceItemDto(string Title, string Href, string Description, int Id = 0);
 public sealed record ContactDto(
     string Eyebrow,
     string Title,

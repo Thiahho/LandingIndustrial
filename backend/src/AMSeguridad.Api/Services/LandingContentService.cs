@@ -16,6 +16,8 @@ public sealed class LandingContentService : ILandingContentService
 
     public async Task<LandingContentDto> GetAsync(CancellationToken cancellationToken)
     {
+        // Usamos CancellationToken.None para evitar cancelar la query si el cliente se desconecta
+        // (común en React StrictMode que monta/desmonta componentes en desarrollo)
         var content = await _db.LandingContents
             .Include(l => l.HeroHighlights)
             .Include(l => l.GuidanceTags)
@@ -28,13 +30,13 @@ public sealed class LandingContentService : ILandingContentService
             .Include(l => l.ContactChannels)
             .Include(l => l.Resources)
             .Include(l => l.JobsPoints)
-            .FirstOrDefaultAsync(cancellationToken);
+            .FirstOrDefaultAsync(CancellationToken.None);
 
         if (content is null)
         {
             content = new LandingContent();
             _db.LandingContents.Add(content);
-            await _db.SaveChangesAsync(cancellationToken);
+            await _db.SaveChangesAsync(CancellationToken.None);
         }
 
         return MapToDto(content);
@@ -42,6 +44,7 @@ public sealed class LandingContentService : ILandingContentService
 
     public async Task<LandingContentDto> UpdateAsync(LandingContentDto dto, string actor, CancellationToken cancellationToken)
     {
+        // Usamos CancellationToken.None para las queries de BD
         var content = await _db.LandingContents
             .Include(l => l.HeroHighlights)
             .Include(l => l.GuidanceTags)
@@ -54,7 +57,7 @@ public sealed class LandingContentService : ILandingContentService
             .Include(l => l.ContactChannels)
             .Include(l => l.Resources)
             .Include(l => l.JobsPoints)
-            .FirstOrDefaultAsync(cancellationToken);
+            .FirstOrDefaultAsync(CancellationToken.None);
 
         if (content is null)
         {
@@ -100,6 +103,7 @@ public sealed class LandingContentService : ILandingContentService
             LandingContentId = content.Id,
             Title = service.Title,
             Description = service.Description,
+            ImagePublicId = service.ImagePublicId,
             Items = service.Items.Select(item => new ServiceItem
             {
                 Value = item
@@ -181,7 +185,7 @@ public sealed class LandingContentService : ILandingContentService
             CreatedAt = DateTime.UtcNow
         });
 
-        await _db.SaveChangesAsync(cancellationToken);
+        await _db.SaveChangesAsync(CancellationToken.None);
 
         return MapToDto(content);
     }
@@ -214,7 +218,8 @@ public sealed class LandingContentService : ILandingContentService
             content.Services.Select(service => new ServiceItemDto(
                 service.Title,
                 service.Description,
-                service.Items.Select(item => item.Value).ToList()
+                service.Items.Select(item => item.Value).ToList(),
+                service.ImagePublicId
             )).ToList(),
             content.Solutions.Select(solution => new SolutionItemDto(
                 solution.Tag,
@@ -239,11 +244,11 @@ public sealed class LandingContentService : ILandingContentService
                 metric.Text
             )).ToList(),
             content.News.Select(news => new NewsItemDto(
-                news.Id,
                 news.Date,
                 news.Title,
                 news.Text,
-                news.ImagePublicId
+                news.ImagePublicId,
+                news.Id
             )).ToList(),
             new ContactDto(
                 content.ContactEyebrow,
@@ -253,10 +258,10 @@ public sealed class LandingContentService : ILandingContentService
                 content.ContactCommercialEmail,
                 content.ContactChannels.Select(channel => new ContactChannelDto(channel.Label, channel.Value)).ToList(),
                 content.Resources.Select(resource => new ResourceItemDto(
-                    resource.Id,
                     resource.Title,
                     resource.Href,
-                    resource.Description
+                    resource.Description,
+                    resource.Id
                 )).ToList()
             ),
             new JobsDto(

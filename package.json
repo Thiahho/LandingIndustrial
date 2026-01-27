@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cloudinary": "^2.9.0",
     "framer-motion": "^11.11.17",
     "next": "14.2.35",
     "next-cloudinary": "^6.17.5",

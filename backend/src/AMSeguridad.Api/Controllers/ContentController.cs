@@ -25,6 +25,15 @@ public sealed class ContentController : ControllerBase
     [HttpPut]
     public async Task<ActionResult<LandingContentDto>> Update([FromBody] LandingContentDto dto, CancellationToken cancellationToken)
     {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+            return BadRequest(new { message = "Error de validación", errors });
+        }
+
         var actor = Request.Headers["X-User"].ToString();
         if (string.IsNullOrWhiteSpace(actor))
         {

@@ -46,7 +46,7 @@ export default function HomePage() {
   const heroHighlights = useMemo(() => content.hero.highlights.slice(0, 3), [content.hero.highlights]);
   const heroImage = content.hero.imagePublicId
     ? buildCloudinaryUrl(content.hero.imagePublicId)
-    : content.hero.imageUrl;
+    : "";
 
   return (
     <div className="relative">
@@ -235,8 +235,8 @@ export default function HomePage() {
                     title: item.name,
                     text: item.description,
                     meta: item.category,
-                    imageUrl: item.imageUrl,
-                    imagePublicId: item.imagePublicId
+                    imagePublicId: item.imagePublicId,
+                    // imagePublicId: item.imagePublicId
                   }}
                   index={index}
                 />

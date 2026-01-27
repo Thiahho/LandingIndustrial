@@ -131,9 +131,8 @@ export default function AdminPage() {
         {
           title: "Nuevo servicio",
           description: "Descripción breve del servicio.",
-          items: ["Ítem 1", "Ítem 2"],
-          imageUrl: "",
-          imagePublicId: ""
+          imagePublicId:"",
+          items: ["Ítem 1", "Ítem 2"]
         }
       ]
     }));
@@ -182,7 +181,6 @@ export default function AdminPage() {
           title: "Nuevo diferencial tecnológico",
           text: "Detalle breve de la capacidad tecnológica.",
           meta: "Meta",
-          imageUrl: "",
           imagePublicId: ""
         }
       ]
@@ -197,7 +195,6 @@ export default function AdminPage() {
           name: "Nuevo producto tecnológico",
           category: "Categoría",
           description: "Descripción breve del producto.",
-          imageUrl: "",
           imagePublicId: ""
         }
       ]
@@ -230,7 +227,7 @@ export default function AdminPage() {
           date: "Categoría",
           title: "Nueva novedad",
           text: "Texto breve de la novedad.",
-          imageUrl: "",
+          // imageUrl: "",
           imagePublicId: ""
         },
         ...prev.news
@@ -446,18 +443,15 @@ export default function AdminPage() {
                     { label: "CTA físico", value: content.hero.primaryCta, key: "primaryCta" as const },
                     { label: "CTA electrónico", value: content.hero.secondaryCta, key: "secondaryCta" as const },
                     { label: "CTA contacto", value: content.hero.contactCta, key: "contactCta" as const },
-                    { label: "URL imagen hero", value: content.hero.imageUrl, key: "imageUrl" as const }
+                    { label: "Imagen hero (Public ID)", value: content.hero.imagePublicId ?? "", key: "imagePublicId" as const }
                   ].map((field) =>
-                    field.key === "imageUrl" ? (
+                    field.key === "imagePublicId" ? (
                       <ImageUrlField
                         key={field.key}
                         label={field.label}
                         value={field.value}
-                        onChange={(value) => updateHero({ [field.key]: value })}
-                        publicIdValue={content.hero.imagePublicId ?? ""}
-                        onPublicIdChange={(value) => updateHero({ imagePublicId: value })}
-                        publicIdLabel="Public ID imagen hero"
-                        helper="Subí la imagen en Cloudinary; se convertirá a WebP automáticamente."
+                        onChange={(value) => updateHero({ imagePublicId: value })}
+                        helper="Subí la imagen en Cloudinary o ingresá el Public ID."
                       />
                     ) : (
                       <label key={field.key} className="grid gap-2 text-sm font-semibold">
@@ -563,14 +557,14 @@ export default function AdminPage() {
                         </label>
                       </div>
 
-                      <ImageUrlField
-                        label="Imagen del servicio"
-                        value={service.imageUrl ?? ""}
-                        onChange={(value) => updateService(serviceIndex, { imageUrl: value })}
-                        publicIdValue={service.imagePublicId ?? ""}
-                        onPublicIdChange={(value) => updateService(serviceIndex, { imagePublicId: value })}
-                        publicIdLabel="Public ID del servicio"
-                      />
+                      <div className="md:col-span-2">
+                        <ImageUrlField 
+                          label="Imagen del Servicio (Public ID)"
+                          value={service.imagePublicId ?? ""}
+                          onChange={(value) => updateService(serviceIndex, {imagePublicId: value})}
+                          helper="Esta imagen se mostrara en miniatura o fondo del servicio."
+                          />
+                      </div>
 
                       <div className="grid gap-2">
                         <div className="flex items-center justify-between">
@@ -603,7 +597,7 @@ export default function AdminPage() {
                           ))}
                         </div>
                       </div>
-
+                      
                       <div className="flex justify-end">
                         <button
                           type="button"
@@ -668,12 +662,9 @@ export default function AdminPage() {
                       </label>
 
                       <ImageUrlField
-                        label="URL imagen"
-                        value={item.imageUrl ?? ""}
-                        onChange={(value) => updateProduct(index, { imageUrl: value })}
-                        publicIdValue={item.imagePublicId ?? ""}
-                        onPublicIdChange={(value) => updateProduct(index, { imagePublicId: value })}
-                        publicIdLabel="Public ID del producto"
+                        label="Imagen (Public ID)"
+                        value={item.imagePublicId ?? ""}
+                        onChange={(value) => updateProduct(index, { imagePublicId: value })}
                       />
 
                       <div className="flex justify-end">
@@ -715,17 +706,14 @@ export default function AdminPage() {
                         { label: "Título", value: item.title, key: "title" as const },
                         { label: "Texto", value: item.text, key: "text" as const },
                         { label: "Meta", value: item.meta, key: "meta" as const },
-                        { label: "URL imagen", value: item.imageUrl ?? "", key: "imageUrl" as const }
+                        { label: "Imagen (Public ID)", value: item.imagePublicId ?? "", key: "imagePublicId" as const }
                       ].map((field) =>
-                        field.key === "imageUrl" ? (
+                        field.key === "imagePublicId" ? (
                           <ImageUrlField
                             key={field.key}
                             label={field.label}
                             value={field.value}
-                            onChange={(value) => updateTechnology(index, { [field.key]: value })}
-                            publicIdValue={item.imagePublicId ?? ""}
-                            onPublicIdChange={(value) => updateTechnology(index, { imagePublicId: value })}
-                            publicIdLabel="Public ID del bloque"
+                            onChange={(value) => updateTechnology(index, { imagePublicId: value })}
                           />
                         ) : (
                           <label
@@ -778,17 +766,14 @@ export default function AdminPage() {
                         { label: "Categoría / fecha", value: item.date, key: "date" as const },
                         { label: "Título", value: item.title, key: "title" as const },
                         { label: "Texto", value: item.text, key: "text" as const },
-                        { label: "URL imagen", value: item.imageUrl ?? "", key: "imageUrl" as const }
+                        { label: "Imagen (Public ID)", value: item.imagePublicId ?? "", key: "imagePublicId" as const }
                       ].map((field) =>
-                        field.key === "imageUrl" ? (
+                        field.key === "imagePublicId" ? (
                           <ImageUrlField
                             key={field.key}
                             label={field.label}
                             value={field.value}
-                            onChange={(value) => updateNews(index, { [field.key]: value })}
-                            publicIdValue={item.imagePublicId ?? ""}
-                            onPublicIdChange={(value) => updateNews(index, { imagePublicId: value })}
-                            publicIdLabel="Public ID de la novedad"
+                            onChange={(value) => updateNews(index, { imagePublicId: value })}
                           />
                         ) : (
                           <label

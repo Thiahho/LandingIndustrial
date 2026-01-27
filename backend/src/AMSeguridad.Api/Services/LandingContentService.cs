@@ -68,7 +68,7 @@ public sealed class LandingContentService : ILandingContentService
         content.HeroPrimaryCta = dto.Hero.PrimaryCta;
         content.HeroSecondaryCta = dto.Hero.SecondaryCta;
         content.HeroContactCta = dto.Hero.ContactCta;
-        content.HeroImageUrl = dto.Hero.ImageUrl;
+        content.HeroImagePublicId = dto.Hero.ImagePublicId;
         content.GuidanceEyebrow = dto.Guidance.Eyebrow;
         content.GuidanceTitle = dto.Guidance.Title;
         content.GuidanceText = dto.Guidance.Text;
@@ -120,7 +120,7 @@ public sealed class LandingContentService : ILandingContentService
             Title = item.Title,
             Text = item.Text,
             Meta = item.Meta,
-            ImageUrl = item.ImageUrl
+            ImagePublicId = item.ImagePublicId
         }));
 
         ReplaceCollection(content.Products, dto.Products.Select(item => new Products
@@ -129,7 +129,7 @@ public sealed class LandingContentService : ILandingContentService
             Name = item.Name,
             Category = item.Category,
             Description = item.Description,
-            ImageUrl = item.ImageUrl
+            ImagePublicId = item.ImagePublicId
         }));
 
         ReplaceCollection(content.CompanyMetrics, dto.Company.Select(metric => new CompanyMetric
@@ -146,7 +146,7 @@ public sealed class LandingContentService : ILandingContentService
             Date = item.Date,
             Title = item.Title,
             Text = item.Text,
-            ImageUrl = item.ImageUrl,
+            ImagePublicId = item.ImagePublicId,
             CreatedAt = DateTime.UtcNow
         }));
 
@@ -202,7 +202,7 @@ public sealed class LandingContentService : ILandingContentService
                 content.HeroPrimaryCta,
                 content.HeroSecondaryCta,
                 content.HeroContactCta,
-                content.HeroImageUrl,
+                content.HeroImagePublicId,
                 content.HeroHighlights.Select(h => new HeroHighlightDto(h.Title, h.Text)).ToList()
             ),
             new GuidanceDto(
@@ -225,13 +225,13 @@ public sealed class LandingContentService : ILandingContentService
                 item.Title,
                 item.Text,
                 item.Meta,
-                item.ImageUrl
+                item.ImagePublicId
             )).ToList(),
             content.Products.Select(item => new ProductItemDto(
                 item.Name,
                 item.Category,
                 item.Description,
-                item.ImageUrl
+                item.ImagePublicId
             )).ToList(),
             content.CompanyMetrics.Select(metric => new CompanyMetricDto(
                 metric.Value,
@@ -243,7 +243,7 @@ public sealed class LandingContentService : ILandingContentService
                 news.Date,
                 news.Title,
                 news.Text,
-                news.ImageUrl
+                news.ImagePublicId
             )).ToList(),
             new ContactDto(
                 content.ContactEyebrow,

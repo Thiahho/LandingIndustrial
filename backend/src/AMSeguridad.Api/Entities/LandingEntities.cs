@@ -141,7 +141,7 @@ public sealed class TechnologyItem
     public string Text { get; set; } = string.Empty;
     [Column("meta")]
     public string Meta { get; set; } = string.Empty;
-    [Column("image_url")]
+    [Column("image_public_id")]
     public string? ImageUrl { get; set; }
 }
 
@@ -158,7 +158,7 @@ public sealed class ProductItem
     public string Category { get; set; } = string.Empty;
     [Column("description")]
     public string Description { get; set; } = string.Empty;
-    [Column("image_url")]
+    [Column("image_public_id")]
     public string? ImageUrl { get; set; }
 }
 
@@ -190,7 +190,7 @@ public sealed class NewsItem
     public string Title { get; set; } = string.Empty;
     [Column("text")]
     public string Text { get; set; } = string.Empty;
-    [Column("image_url")]
+    [Column("image_public_id")]
     public string? ImageUrl { get; set; }
     [Column("created_at")]
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;

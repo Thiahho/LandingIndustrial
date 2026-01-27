@@ -9,8 +9,6 @@ export const defaultContent: LandingContent = {
     primaryCta: "Seguridad física",
     secondaryCta: "Seguridad electrónica",
     contactCta: "Contacto inmediato",
-    imageUrl:
-      "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?q=80&w=2070&auto=format&fit=crop",
     imagePublicId: "",
     highlights: [
       { title: "Central 24/7", text: "Monitoreo activo y respuesta coordinada." },
@@ -28,10 +26,7 @@ export const defaultContent: LandingContent = {
     {
       title: "Central de Monitoreo",
       description: "Información accionable en tiempo real para prevenir y responder.",
-      items: ["Monitoreo de cámaras", "Monitoreo de alarmas", "Análisis logístico", "Seguimiento satelital"],
-      imageUrl:
-        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=2070&auto=format&fit=crop",
-      imagePublicId: ""
+      items: ["Monitoreo de cámaras", "Monitoreo de alarmas", "Análisis logístico", "Seguimiento satelital"]
     },
     {
       title: "Vigilancia Física",
@@ -41,42 +36,27 @@ export const defaultContent: LandingContent = {
         "Custodia de mercaderías en tránsito",
         "Custodia personal",
         "Prevención de incendios"
-      ],
-      imageUrl:
-        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop",
-      imagePublicId: ""
+      ]
     },
     {
       title: "Seguridad Electrónica",
       description: "Tecnología integrada para detectar, alertar y auditar cada evento.",
-      items: ["Alarmas", "Cámaras de vigilancia (CCTV)", "Control de accesos", "Cerco eléctrico"],
-      imageUrl:
-        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
-      imagePublicId: ""
+      items: ["Alarmas", "Cámaras de vigilancia (CCTV)", "Control de accesos", "Cerco eléctrico"]
     },
     {
       title: "Seguridad Patrimonial",
       description: "Cuidamos activos críticos y el cumplimiento normativo.",
-      items: ["Seguridad e higiene", "Seguridad medioambiental"],
-      imageUrl:
-        "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop",
-      imagePublicId: ""
+      items: ["Seguridad e higiene", "Seguridad medioambiental"]
     },
     {
       title: "Investigaciones",
       description: "Información confiable para tomar decisiones y reducir riesgos.",
-      items: ["Investigación de fraude", "Informes ambientales", "Capacitaciones", "Siniestros"],
-      imageUrl:
-        "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2070&auto=format&fit=crop",
-      imagePublicId: ""
+      items: ["Investigación de fraude", "Informes ambientales", "Capacitaciones", "Siniestros"]
     },
     {
       title: "Servicios Complementarios",
       description: "Refuerzos específicos para elevar el estándar operativo.",
-      items: ["Control de pérdidas"],
-      imageUrl:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
-      imagePublicId: ""
+      items: ["Control de pérdidas"]
     }
   ],
   solutions: [
@@ -106,24 +86,18 @@ export const defaultContent: LandingContent = {
       title: "Central inteligente",
       text: "Eventos priorizados, protocolos activos y coordinación entre equipos físicos y electrónicos.",
       meta: "Operación 24/7",
-      imageUrl:
-        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=2070&auto=format&fit=crop",
       imagePublicId: ""
     },
     {
       title: "Datos para decidir",
       text: "Indicadores, reportes y visualización simple para tomar decisiones con respaldo.",
       meta: "Visibilidad real",
-      imageUrl:
-        "https://images.unsplash.com/photo-1551281044-8b9a3c711d7b?q=80&w=2070&auto=format&fit=crop",
       imagePublicId: ""
     },
     {
       title: "Equipamiento validado",
       text: "Tecnología probada en campo para sostener continuidad operativa.",
       meta: "Implementación confiable",
-      imageUrl:
-        "https://images.unsplash.com/photo-1563770660941-10a636076e8c?q=80&w=2070&auto=format&fit=crop",
       imagePublicId: ""
     }
   ],
@@ -132,24 +106,18 @@ export const defaultContent: LandingContent = {
       name: "Sistema CCTV inteligente",
       category: "Video vigilancia",
       description: "Cámaras con analítica, grabación segura y acceso remoto.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=2070&auto=format&fit=crop",
       imagePublicId: ""
     },
     {
       name: "Control de accesos",
       category: "Accesos",
       description: "Gestión segura de ingresos con credenciales físicas o biométricas.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop",
       imagePublicId: ""
     },
     {
       name: "Alarmas perimetrales",
       category: "Perímetro",
       description: "Detección temprana con sensores inteligentes y alertas inmediatas.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2070&auto=format&fit=crop",
       imagePublicId: ""
     }
   ],
@@ -181,8 +149,6 @@ export const defaultContent: LandingContent = {
       date: "Actualización tecnológica",
       title: "Nueva capa de monitoreo preventivo",
       text: "Sumamos análisis de eventos para anticipar desvíos y reducir tiempos de respuesta.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
       imagePublicId: ""
     },
     {
@@ -190,8 +156,6 @@ export const defaultContent: LandingContent = {
       date: "Operación",
       title: "Refuerzo de móviles y supervisión",
       text: "Ampliamos cobertura territorial con más recursos y trazabilidad en tiempo real.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop",
       imagePublicId: ""
     },
     {
@@ -199,8 +163,6 @@ export const defaultContent: LandingContent = {
       date: "Clientes",
       title: "Bienvenida a nuevas cuentas corporativas",
       text: "Seguimos creciendo con estructuras que exigen solidez operativa y visibilidad total.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
       imagePublicId: ""
     }
   ],

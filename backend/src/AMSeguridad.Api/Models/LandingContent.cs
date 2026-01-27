@@ -17,7 +17,7 @@ public class LandingContent
     [Required] [Column("hero_primary_cta")] public string HeroPrimaryCta { get; set; } = string.Empty;
     [Required] [Column("hero_secondary_cta")] public string HeroSecondaryCta { get; set; } = string.Empty;
     [Required] [Column("hero_contact_cta")] public string HeroContactCta { get; set; } = string.Empty;
-    [Required] [Column("hero_image_url")] public string HeroImageUrl { get; set; } = string.Empty;
+    [Column("hero_image_public_id")] public string? HeroImagePublicId { get; set; }
 
     // Guidance Section
     [Required] [Column("guidance_eyebrow")] public string GuidanceEyebrow { get; set; } = string.Empty;

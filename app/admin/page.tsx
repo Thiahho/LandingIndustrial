@@ -19,6 +19,7 @@ import type {
 } from "@/lib/types";
 
 type Notice = { type: "success" | "warning" | "error"; text: string } | null;
+type SavingSection = "hero" | "services" | "products" | "technology" | "news" | "contact" | "all" | null;
 
 // Genera un ID temporal negativo para nuevos items (el backend asignará el ID real)
 let tempIdCounter = 0;
@@ -34,6 +35,7 @@ export default function AdminPage() {
     text: "Cargando contenido…",
   });
   const [saving, setSaving] = useState(false);
+  const [savingSection, setSavingSection] = useState<SavingSection>(null);
 
   useEffect(() => {
     const load = async () => {
@@ -353,6 +355,7 @@ export default function AdminPage() {
     }
 
     setSaving(true);
+    setSavingSection("all");
     setNotice({ type: "warning", text: "Guardando cambios..." });
     try {
       const saved = await apiClient.saveContent(content);
@@ -371,6 +374,115 @@ export default function AdminPage() {
       });
     } finally {
       setSaving(false);
+      setSavingSection(null);
+    }
+  };
+
+  const saveHero = async () => {
+    if (!content) return;
+    setSavingSection("hero");
+    setNotice({ type: "warning", text: "Guardando Hero..." });
+    try {
+      const saved = await apiClient.saveHero(content.hero);
+      updateContent((prev) => ({ ...prev, hero: saved }));
+      setNotice({ type: "success", text: "Hero guardado correctamente." });
+    } catch (error) {
+      setNotice({
+        type: "error",
+        text: error instanceof Error ? error.message : "Error al guardar Hero.",
+      });
+    } finally {
+      setSavingSection(null);
+    }
+  };
+
+  const saveServices = async () => {
+    if (!content) return;
+    setSavingSection("services");
+    setNotice({ type: "warning", text: "Guardando Servicios..." });
+    try {
+      const saved = await apiClient.saveServices(content.services);
+      updateContent((prev) => ({ ...prev, services: saved }));
+      setNotice({ type: "success", text: "Servicios guardados correctamente." });
+    } catch (error) {
+      setNotice({
+        type: "error",
+        text: error instanceof Error ? error.message : "Error al guardar Servicios.",
+      });
+    } finally {
+      setSavingSection(null);
+    }
+  };
+
+  const saveProducts = async () => {
+    if (!content) return;
+    setSavingSection("products");
+    setNotice({ type: "warning", text: "Guardando Productos..." });
+    try {
+      const saved = await apiClient.saveProducts(content.products);
+      updateContent((prev) => ({ ...prev, products: saved }));
+      setNotice({ type: "success", text: "Productos guardados correctamente." });
+    } catch (error) {
+      setNotice({
+        type: "error",
+        text: error instanceof Error ? error.message : "Error al guardar Productos.",
+      });
+    } finally {
+      setSavingSection(null);
+    }
+  };
+
+  const saveTechnology = async () => {
+    if (!content) return;
+    setSavingSection("technology");
+    setNotice({ type: "warning", text: "Guardando Tecnología..." });
+    try {
+      const saved = await apiClient.saveTechnology(content.technology);
+      updateContent((prev) => ({ ...prev, technology: saved }));
+      setNotice({ type: "success", text: "Tecnología guardada correctamente." });
+    } catch (error) {
+      setNotice({
+        type: "error",
+        text: error instanceof Error ? error.message : "Error al guardar Tecnología.",
+      });
+    } finally {
+      setSavingSection(null);
+    }
+  };
+
+  const saveNews = async () => {
+    if (!content) return;
+    setSavingSection("news");
+    setNotice({ type: "warning", text: "Guardando Novedades..." });
+    try {
+      const saved = await apiClient.saveNews(content.news);
+      updateContent((prev) => ({ ...prev, news: saved }));
+      setNotice({ type: "success", text: "Novedades guardadas correctamente." });
+    } catch (error) {
+      setNotice({
+        type: "error",
+        text: error instanceof Error ? error.message : "Error al guardar Novedades.",
+      });
+    } finally {
+      setSavingSection(null);
+    }
+  };
+
+  const saveContact = async () => {
+    if (!content) return;
+    setSavingSection("contact");
+    setNotice({ type: "warning", text: "Guardando Contacto..." });
+    try {
+      const saved = await apiClient.saveContact(content.contact);
+      updateContent((prev) => ({ ...prev, contact: saved }));
+      setNotice({ type: "success", text: "Contacto guardado correctamente." });
+    } catch (error) {
+      setNotice({
+        type: "error",
+        text: error instanceof Error ? error.message : "Error al guardar Contacto.",
+      });
+    } finally {
+      setSavingSection(null);
     }
   };
 
@@ -526,12 +638,22 @@ export default function AdminPage() {
                       Mensaje principal e imagen
                     </h2>
                   </div>
-                  <Link
-                    href="/"
-                    className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
-                  >
-                    Ver landing
-                  </Link>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={saveHero}
+                      disabled={savingSection !== null}
+                      className="rounded-full bg-am-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-black transition hover:bg-am-primaryStrong disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {savingSection === "hero" ? "Guardando..." : "Guardar Hero"}
+                    </button>
+                    <Link
+                      href="/"
+                      className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
+                    >
+                      Ver landing
+                    </Link>
+                  </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
@@ -669,13 +791,23 @@ export default function AdminPage() {
                       Cobertura y detalle operativo
                     </h2>
                   </div>
-                  <button
-                    type="button"
-                    onClick={addService}
-                    className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
-                  >
-                    Agregar servicio
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={saveServices}
+                      disabled={savingSection !== null}
+                      className="rounded-full bg-am-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-black transition hover:bg-am-primaryStrong disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {savingSection === "services" ? "Guardando..." : "Guardar Servicios"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={addService}
+                      className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
+                    >
+                      Agregar servicio
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid gap-4">
@@ -796,13 +928,23 @@ export default function AdminPage() {
                       Catálogo interno y recursos disponibles
                     </h2>
                   </div>
-                  <button
-                    type="button"
-                    onClick={addProduct}
-                    className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
-                  >
-                    Agregar producto
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={saveProducts}
+                      disabled={savingSection !== null}
+                      className="rounded-full bg-am-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-black transition hover:bg-am-primaryStrong disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {savingSection === "products" ? "Guardando..." : "Guardar Productos"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={addProduct}
+                      className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
+                    >
+                      Agregar producto
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
@@ -882,13 +1024,23 @@ export default function AdminPage() {
                       Diferenciales tecnológicos y recursos
                     </h2>
                   </div>
-                  <button
-                    type="button"
-                    onClick={addTechnology}
-                    className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
-                  >
-                    Agregar bloque
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={saveTechnology}
+                      disabled={savingSection !== null}
+                      className="rounded-full bg-am-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-black transition hover:bg-am-primaryStrong disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {savingSection === "technology" ? "Guardando..." : "Guardar Tecnología"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={addTechnology}
+                      className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
+                    >
+                      Agregar bloque
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
@@ -972,13 +1124,23 @@ export default function AdminPage() {
                       Actividad y evolución
                     </h2>
                   </div>
-                  <button
-                    type="button"
-                    onClick={addNews}
-                    className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
-                  >
-                    Agregar novedad
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={saveNews}
+                      disabled={savingSection !== null}
+                      className="rounded-full bg-am-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-black transition hover:bg-am-primaryStrong disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {savingSection === "news" ? "Guardando..." : "Guardar Novedades"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={addNews}
+                      className="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-am-silver"
+                    >
+                      Agregar novedad
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
@@ -1063,6 +1225,14 @@ export default function AdminPage() {
                     </h2>
                   </div>
                   <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={saveContact}
+                      disabled={savingSection !== null}
+                      className="rounded-full bg-am-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-black transition hover:bg-am-primaryStrong disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {savingSection === "contact" ? "Guardando..." : "Guardar Contacto"}
+                    </button>
                     <button
                       type="button"
                       onClick={addChannel}

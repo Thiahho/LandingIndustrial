@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 
 namespace AMSeguridad.Api.Models
 {
@@ -27,7 +28,7 @@ namespace AMSeguridad.Api.Models
 
         // Mapeado como string para JSONB, o puedes usar JsonDocument
         [Column("metadata", TypeName = "jsonb")]
-        public string? Metadata { get; set; }
+        public JsonDocument? Metadata { get; set; }
 
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }

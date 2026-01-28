@@ -49,12 +49,25 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
-        npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
-            maxRetryCount: 3,
-            maxRetryDelay: TimeSpan.FromSeconds(5),
-            errorCodesToAdd: null)));
+// builder.Services.AddDbContext<AppDbContext>(options =>
+//     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+//         npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
+//             maxRetryCount: 3,
+//             maxRetryDelay: TimeSpan.FromSeconds(5),
+//             errorCodesToAdd: null)));
+var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    opt.UseNpgsql(connString, o =>
+    {
+        o.EnableRetryOnFailure(0); // diagnóstico: sin reintentos
+        o.CommandTimeout(30);      // correcto
+    });
+
+    opt.EnableDetailedErrors();        // correcto
+    opt.EnableSensitiveDataLogging();  // solo dev
+});
 
 builder.Services.AddScoped<ILandingContentService, LandingContentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();

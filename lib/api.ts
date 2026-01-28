@@ -1,4 +1,16 @@
-import type { LandingContent } from "@/lib/types";
+import type {
+  LandingContent,
+  HeroContent,
+  GuidanceContent,
+  Service,
+  Solution,
+  TechnologyItem,
+  ProductItem,
+  CompanyMetric,
+  NewsItem,
+  ContactContent,
+  JobsContent,
+} from "@/lib/types";
 import { getSessionUser } from "@/lib/auth/session";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000";
@@ -93,6 +105,87 @@ export const apiClient = {
     const payload = keysToPascalCase(content);
     console.log("Sending payload:", JSON.stringify(payload, null, 2));
     return fetchJson<LandingContent>("/api/content", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  // Métodos de guardado por sección
+  saveHero: (hero: HeroContent) => {
+    const payload = keysToPascalCase(hero);
+    return fetchJson<HeroContent>("/api/content/hero", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveGuidance: (guidance: GuidanceContent) => {
+    const payload = keysToPascalCase(guidance);
+    return fetchJson<GuidanceContent>("/api/content/guidance", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveServices: (services: Service[]) => {
+    const payload = keysToPascalCase({ services });
+    return fetchJson<Service[]>("/api/content/services", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveSolutions: (solutions: Solution[]) => {
+    const payload = keysToPascalCase({ solutions });
+    return fetchJson<Solution[]>("/api/content/solutions", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveTechnology: (technology: TechnologyItem[]) => {
+    const payload = keysToPascalCase({ technology });
+    return fetchJson<TechnologyItem[]>("/api/content/technology", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveProducts: (products: ProductItem[]) => {
+    const payload = keysToPascalCase({ products });
+    return fetchJson<ProductItem[]>("/api/content/products", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveCompany: (metrics: CompanyMetric[]) => {
+    const payload = keysToPascalCase({ metrics });
+    return fetchJson<CompanyMetric[]>("/api/content/company", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveNews: (news: NewsItem[]) => {
+    const payload = keysToPascalCase({ news });
+    return fetchJson<NewsItem[]>("/api/content/news", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveContact: (contact: ContactContent) => {
+    const payload = keysToPascalCase(contact);
+    return fetchJson<ContactContent>("/api/content/contact", {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+
+  saveJobs: (jobs: JobsContent) => {
+    const payload = keysToPascalCase(jobs);
+    return fetchJson<JobsContent>("/api/content/jobs", {
       method: "PUT",
       body: JSON.stringify(payload)
     });

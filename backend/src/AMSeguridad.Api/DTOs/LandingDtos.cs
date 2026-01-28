@@ -45,3 +45,15 @@ public sealed record LandingContentDto(
     ContactDto Contact,
     JobsDto Jobs
 );
+
+// DTOs de actualización por sección
+public sealed record HeroUpdateDto(string Eyebrow, string Title, string Lead, string PrimaryCta, string SecondaryCta, string ContactCta, string? ImagePublicId, List<HeroHighlightDto> Highlights);
+public sealed record GuidanceUpdateDto(string Eyebrow, string Title, string Text, List<string> Tags);
+public sealed record ServicesUpdateDto(List<ServiceItemDto> Services);
+public sealed record SolutionsUpdateDto(List<SolutionItemDto> Solutions);
+public sealed record TechnologyUpdateDto(List<TechnologyItemDto> Technology);
+public sealed record ProductsUpdateDto(List<ProductItemDto> Products);
+public sealed record CompanyUpdateDto(List<CompanyMetricDto> Metrics);
+public sealed record NewsUpdateDto(List<NewsItemDto> News);
+public sealed record ContactUpdateDto(string Eyebrow, string Title, string Text, string Whatsapp, string CommercialEmail, List<ContactChannelDto> Channels, List<ResourceItemDto> Resources);
+public sealed record JobsUpdateDto(string Eyebrow, string Title, string Text, List<string> Points);

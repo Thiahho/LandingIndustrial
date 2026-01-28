@@ -24,7 +24,15 @@ public sealed class ExceptionHandlingMiddleware
             _logger.LogError(ex, "Unhandled exception");
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Response.ContentType = "application/json";
-            await context.Response.WriteAsJsonAsync(new { message = "Error interno del servidor." });
+
+            // Mostrar detalles del error (TODO: quitar en producción)
+            await context.Response.WriteAsJsonAsync(new
+            {
+                message = "Error interno del servidor.",
+                error = ex.Message,
+                stackTrace = ex.StackTrace,
+                innerException = ex.InnerException?.Message
+            });
         }
     }
 }

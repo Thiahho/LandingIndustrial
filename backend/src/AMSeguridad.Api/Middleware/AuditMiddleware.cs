@@ -36,12 +36,12 @@ public sealed class AuditMiddleware
             Action = context.Request.Method,
             Entity = context.Request.Path.Value ?? "unknown",
             EntityId = null,
-            Metadata = JsonSerializer.Serialize(new
+            Metadata = JsonDocument.Parse(JsonSerializer.Serialize(new
             {
                 StatusCode = context.Response.StatusCode,
                 Path = context.Request.Path.Value,
                 TraceId = context.TraceIdentifier
-            }),
+            })),
             CreatedAt = DateTime.UtcNow
         };
 

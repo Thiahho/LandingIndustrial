@@ -27,8 +27,24 @@ export function ServiceCard({ service, index }: { service: Service } & CardProps
         <div className="absolute inset-0 flex h-full w-full flex-col gap-5 overflow-hidden rounded-3xl p-6 [backface-visibility:hidden]">
           <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-am-primary/20 blur-3xl" />
           <div className="relative h-36 w-full overflow-hidden rounded-2xl border border-white/10">
-            <div className="h-full w-full bg-gradient-to-br from-am-primary/20 via-[#0f1a18] to-[#0b1110]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/30 to-transparent" />
+            {service.imagePublicId ? (
+              <>
+                <CldImage
+                  src={service.imagePublicId}
+                  width={640}
+                  height={240}
+                  alt={service.title}
+                  crop={{ type: "fill", gravity: "auto" }}
+                  className="h-full w-full object-cover opacity-70"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/30 to-transparent" />
+              </>
+            ) : (
+              <>
+                <div className="h-full w-full bg-gradient-to-br from-am-primary/20 via-[#0f1a18] to-[#0b1110]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/30 to-transparent" />
+              </>
+            )}
           </div>
           <header className="space-y-2">
             <h3 className="text-xl font-semibold">{service.title}</h3>

@@ -3,6 +3,7 @@ export type ServiceDetail = {
   title: string;
   summary: string;
   image: string;
+  itemsDetails: ServiceItemDetail[];
   problems: string[];
   steps: string[];
   includes: string[];
@@ -11,6 +12,12 @@ export type ServiceDetail = {
   cases: string[];
   faqs: { question: string; answer: string }[];
   gallery: string[];
+};
+
+export type ServiceItemDetail = {
+  slug: string;
+  title: string;
+  description: string;
 };
 
 export type SectorDetail = {
@@ -82,6 +89,26 @@ export const services: ServiceDetail[] = [
       "Presencia profesional en campo para disuadir, prevenir y responder con protocolos claros.",
     image:
       "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop",
+    itemsDetails: [
+      {
+        slug: "vigilancia-fija",
+        title: "Vigilancia fija",
+        description:
+          "Cobertura permanente con puestos estratégicos, rondas y control de accesos."
+      },
+      {
+        slug: "custodias-logisticas",
+        title: "Custodias logísticas",
+        description:
+          "Acompañamiento operativo para traslados críticos con protocolos auditables."
+      },
+      {
+        slug: "prevencion-incidentes",
+        title: "Prevención de incidentes",
+        description:
+          "Planificación preventiva para mitigar riesgos y coordinar respuestas rápidas."
+      }
+    ],
     problems: [
       "Necesidad de presencia permanente en áreas críticas.",
       "Control de ingresos y egresos sin fricciones.",
@@ -129,6 +156,26 @@ export const services: ServiceDetail[] = [
       "Supervisión 24/7 con alertas inteligentes, protocolos de respuesta y trazabilidad operativa.",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+    itemsDetails: [
+      {
+        slug: "monitoreo-24-7",
+        title: "Monitoreo 24/7",
+        description:
+          "Operadores especializados con respuesta inmediata y trazabilidad completa."
+      },
+      {
+        slug: "protocolos-respuesta",
+        title: "Protocolos de respuesta",
+        description:
+          "Escalamiento y coordinación con recursos en campo según criticidad."
+      },
+      {
+        slug: "reportes-ejecutivos",
+        title: "Reportes ejecutivos",
+        description:
+          "Informes para auditorías, compliance y toma de decisiones."
+      }
+    ],
     problems: [
       "Eventos críticos sin respuesta inmediata.",
       "Falta de visibilidad sobre lo que ocurre en sedes remotas.",
@@ -171,6 +218,26 @@ export const services: ServiceDetail[] = [
       "Sensores, CCTV y alarmas integradas para anticipar riesgos y registrar evidencia.",
     image:
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+    itemsDetails: [
+      {
+        slug: "cctv-analitico",
+        title: "CCTV con analítica",
+        description:
+          "Cobertura visual con detección inteligente y evidencia confiable."
+      },
+      {
+        slug: "alarmas-monitoreadas",
+        title: "Alarmas monitoreadas",
+        description:
+          "Alertas en tiempo real integradas con la central de monitoreo."
+      },
+      {
+        slug: "control-perimetral",
+        title: "Control perimetral",
+        description:
+          "Sensores y barreras para proteger perímetros críticos."
+      }
+    ],
     problems: [
       "Necesidad de detección temprana.",
       "Control de perímetros extensos.",
@@ -213,6 +280,26 @@ export const services: ServiceDetail[] = [
       "Gestión segura de ingresos con registros automáticos, credenciales y reportes.",
     image:
       "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop",
+    itemsDetails: [
+      {
+        slug: "credenciales-seguras",
+        title: "Credenciales seguras",
+        description:
+          "Accesos con tarjetas, biometría o móviles para validar ingresos."
+      },
+      {
+        slug: "reportes-automaticos",
+        title: "Reportes automáticos",
+        description:
+          "Históricos de accesos exportables para auditoría y compliance."
+      },
+      {
+        slug: "integracion-cctv",
+        title: "Integración con CCTV",
+        description:
+          "Registro visual de ingresos con trazabilidad inmediata."
+      }
+    ],
     problems: [
       "Ingresos sin trazabilidad.",
       "Necesidad de validar credenciales rápidamente.",
@@ -255,6 +342,26 @@ export const services: ServiceDetail[] = [
       "Informes confiables y discretos para reducir riesgos y tomar decisiones informadas.",
     image:
       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop",
+    itemsDetails: [
+      {
+        slug: "investigacion-fraudes",
+        title: "Investigación de fraudes",
+        description:
+          "Análisis documental y de campo para esclarecer incidentes internos."
+      },
+      {
+        slug: "informes-confidenciales",
+        title: "Informes confidenciales",
+        description:
+          "Documentación clara para decisiones críticas y respaldo legal."
+      },
+      {
+        slug: "recomendaciones-mejora",
+        title: "Recomendaciones de mejora",
+        description:
+          "Plan de acción para mitigar riesgos futuros."
+      }
+    ],
     problems: [
       "Necesidad de evidencia ante incidentes.",
       "Verificación de antecedentes y procesos.",
@@ -297,6 +404,26 @@ export const services: ServiceDetail[] = [
       "Capacitaciones, auditorías y refuerzos operativos para elevar el estándar de seguridad.",
     image:
       "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop",
+    itemsDetails: [
+      {
+        slug: "capacitaciones",
+        title: "Capacitaciones",
+        description:
+          "Entrenamiento de equipos en protocolos y respuesta ante incidentes."
+      },
+      {
+        slug: "auditorias-internas",
+        title: "Auditorías internas",
+        description:
+          "Revisión de procesos para asegurar cumplimiento y mejora continua."
+      },
+      {
+        slug: "control-perdidas",
+        title: "Control de pérdidas",
+        description:
+          "Acciones preventivas para reducir desvíos en operaciones críticas."
+      }
+    ],
     problems: [
       "Necesidad de reforzar protocolos internos.",
       "Falta de procedimientos estandarizados.",

@@ -6,12 +6,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { caseStudies, services } from "@/lib/site-data";
 
-export function generateStaticParams() {
-  return services.map((service) => ({
-    slug: service.slug,
-  }));
-}
-
 type ServiceDetailPageProps = {
   params: { slug: string };
 };
@@ -115,6 +109,27 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
                 className="h-48 w-full rounded-3xl border border-white/10 object-cover"
                 loading="lazy"
               />
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-6">
+          <SectionHeading
+            eyebrow="Ítems del servicio"
+            title="Detalle de cada componente operativo"
+            description="Accedé a la ficha específica de cada ítem con su alcance y descripción."
+            align="left"
+          />
+          <div className="grid gap-4 md:grid-cols-3">
+            {service.itemsDetails.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/soluciones/${service.slug}/items/${item.slug}`}
+                className="rounded-3xl border border-white/10 bg-[#0e1716]/95 p-5 transition hover:border-am-primary"
+              >
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm text-am-muted">{item.description}</p>
+              </Link>
             ))}
           </div>
         </section>

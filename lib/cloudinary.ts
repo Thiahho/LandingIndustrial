@@ -19,6 +19,9 @@ export function buildCloudinaryUrl(
   transformation = WEBP_TRANSFORMATION,
 ) {
   if (!publicId) return "";
+  if (publicId.startsWith("http://") || publicId.startsWith("https://")) {
+    return publicId;
+  }
 
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   if (!cloudName) {

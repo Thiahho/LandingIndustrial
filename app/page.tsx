@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { NavBar } from "@/components/NavBar";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SiteFooter } from "@/components/SiteFooter";
 import {
   CompanyCard,
   NewsCard,
@@ -16,6 +17,7 @@ import {
 } from "@/components/cards";
 import { apiClient } from "@/lib/api";
 import { buildCloudinaryUrl } from "@/lib/cloudinary";
+import { caseStudies, mission, values, vision } from "@/lib/site-data";
 import type { LandingContent } from "@/lib/types";
 
 type LoadState = "idle" | "loading" | "ready" | "error";
@@ -153,19 +155,19 @@ export default function HomePage() {
 
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href="#servicios"
+                  href="/configurador"
                   className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
                 >
                   {content.hero.primaryCta}
                 </Link>
                 <Link
-                  href="#servicios"
+                  href="/soluciones"
                   className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-white/40 hover:text-white"
                 >
                   {content.hero.secondaryCta}
                 </Link>
                 <Link
-                  href="#contacto"
+                  href="/contacto"
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-am-primary/60 hover:text-white"
                 >
                   {content.hero.contactCta}
@@ -284,6 +286,44 @@ export default function HomePage() {
           </div>
         </AnimatedSection>
 
+        <AnimatedSection id="casos-reales" className="py-24">
+          <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
+            <SectionHeading
+              eyebrow="Casos reales"
+              title="Resultados comprobables en operaciones reales."
+              description="Implementaciones con foco en seguridad empresarial, continuidad operativa y respuesta rápida."
+            />
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {caseStudies.map((item) => (
+                <article
+                  key={item.slug}
+                  className="flex h-full flex-col gap-4 overflow-hidden rounded-3xl border border-white/10 bg-[#0e1716]/95"
+                >
+                  <div className="relative h-36 w-full overflow-hidden">
+                    <img
+                      src={buildCloudinaryUrl(item.image)}
+                      alt={item.title}
+                      className="h-full w-full object-cover opacity-80"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d1514] via-[#0d1514]/60 to-transparent" />
+                  </div>
+                  <div className="flex flex-1 flex-col gap-3 p-6">
+                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-am-primaryStrong">
+                      {item.sector}
+                    </p>
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                    <p className="text-sm text-am-muted">{item.summary}</p>
+                    <span className="mt-auto text-sm font-semibold text-am-silver">
+                      {item.result}
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
         <AnimatedSection id="tecnologia" className="py-24">
           <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
             <SectionHeading
@@ -343,6 +383,39 @@ export default function HomePage() {
                   metric={metric}
                   index={index}
                 />
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection id="nosotros" className="py-24">
+          <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
+            <SectionHeading
+              eyebrow="Nosotros"
+              title="Misión, visión y valores que guían cada operación."
+              description="Operamos con foco en el cliente, cumplimiento real y mejora continua en cada servicio."
+            />
+            <div className="grid gap-6 lg:grid-cols-2">
+              <article className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+                <h3 className="text-lg font-semibold text-white">Misión</h3>
+                <p className="mt-2 text-sm text-am-muted">{mission}</p>
+              </article>
+              <article className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+                <h3 className="text-lg font-semibold text-white">Visión</h3>
+                <p className="mt-2 text-sm text-am-muted">{vision}</p>
+              </article>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {values.map((value) => (
+                <article
+                  key={value.title}
+                  className="rounded-3xl border border-white/10 bg-[#0e1716]/95 p-5"
+                >
+                  <h4 className="text-base font-semibold text-white">
+                    {value.title}
+                  </h4>
+                  <p className="mt-2 text-sm text-am-muted">{value.text}</p>
+                </article>
               ))}
             </div>
           </div>
@@ -530,41 +603,7 @@ export default function HomePage() {
         </AnimatedSection>
       </main>
 
-      <footer className="border-t border-white/10 bg-[#080f0e] py-10">
-        <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-am-primary to-emerald-900 font-extrabold text-black">
-              AM
-            </div>
-            <div className="grid leading-tight">
-              <span className="font-semibold">AM Seguridad</span>
-              <span className="text-xs text-am-muted">
-                Solidez, tecnología y confianza
-              </span>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2 text-sm font-semibold text-am-silver">
-            {(
-              [
-                { href: "#servicios", label: "Servicios" },
-                { href: "#empresa", label: "Empresa" },
-                { href: "#productos", label: "Productos" },
-                { href: "#novedades", label: "Novedades" },
-                { href: "#contacto", label: "Contacto" },
-                { href: "/login", label: "Autogestión" },
-              ] as const
-            ).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-full border border-transparent px-4 py-2 hover:border-white/15"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

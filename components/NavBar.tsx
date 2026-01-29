@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
-  { href: "#servicios", label: "Servicios" },
-  { href: "#soluciones", label: "Soluciones" },
-  { href: "#tecnologia", label: "Tecnología" },
-  { href: "#empresa", label: "Empresa" },
-  { href: "#productos", label: "Productos" },
-  { href: "#novedades", label: "Novedades" },
-  { href: "#trabaja", label: "Trabajá" }
+  { href: "/", label: "Inicio" },
+  { href: "/soluciones", label: "Soluciones" },
+  { href: "/sectores", label: "Sectores" },
+  { href: "/tecnologia", label: "Tecnología" },
+  { href: "/casos-reales", label: "Casos reales" },
+  { href: "/novedades", label: "Novedades" },
+  { href: "/nosotros", label: "Nosotros" }
 ];
 
 export function NavBar() {
@@ -38,7 +38,7 @@ export function NavBar() {
       } backdrop-blur`}
     >
       <div className="mx-auto flex w-[min(1200px,92vw)] items-center justify-between gap-4 py-4">
-        <Link href="#inicio" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <motion.div
             className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-am-primary to-emerald-900 font-extrabold text-black shadow-glow"
             initial={{ scale: 0.9, opacity: 0 }}
@@ -80,19 +80,19 @@ export function NavBar() {
             </Link>
           ))}
           <Link
-            href="#contacto"
-            className="mt-2 inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-bold text-am-silver transition hover:border-am-primary hover:text-white md:ml-2 md:mt-0"
+            href="/contacto"
+            className="mt-2 inline-flex items-center justify-center rounded-full bg-am-primary px-4 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong md:ml-2 md:mt-0"
           >
-            Contacto
-          </Link>
-          <Link
-            href="/login"
-            className="mt-1 inline-flex items-center justify-center rounded-full bg-am-primary px-4 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong md:ml-2 md:mt-0"
-          >
-            Ingresar
+            Hablar con ventas
           </Link>
         </nav>
       </div>
+      <Link
+        href="/contacto"
+        className="fixed bottom-5 right-5 z-40 inline-flex items-center justify-center rounded-full bg-am-primary px-5 py-3 text-xs font-extrabold uppercase tracking-[0.18em] text-black shadow-glow transition hover:bg-am-primaryStrong md:hidden"
+      >
+        Hablar con ventas
+      </Link>
     </header>
   );
 }

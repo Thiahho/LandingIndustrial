@@ -1,8 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CldImage } from "next-cloudinary";
-import type { CompanyMetric, NewsItem, ResourceItem, Service, Solution, TechnologyItem } from "@/lib/types";
+import type {
+  CompanyMetric,
+  NewsItem,
+  ResourceItem,
+  Service,
+  Solution,
+  TechnologyItem,
+} from "@/lib/types";
+import { buildCloudinaryUrl } from "@/lib/cloudinary";
 
 type CardProps = {
   index: number;
@@ -14,6 +21,7 @@ const fadeUp = {
 };
 
 export function ServiceCard({ service, index }: { service: Service } & CardProps) {
+  const imageUrl = buildCloudinaryUrl(service.imagePublicId);
   return (
     <motion.article
       className="group relative min-h-[320px] overflow-visible rounded-3xl border border-white/10 bg-gradient-to-br from-am-surface/95 to-[#0b1211]/95 shadow-glow [perspective:1200px]"
@@ -27,15 +35,13 @@ export function ServiceCard({ service, index }: { service: Service } & CardProps
         <div className="absolute inset-0 flex h-full w-full flex-col gap-5 overflow-hidden rounded-3xl p-6 [backface-visibility:hidden]">
           <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-am-primary/20 blur-3xl" />
           <div className="relative h-36 w-full overflow-hidden rounded-2xl border border-white/10">
-            {service.imagePublicId ? (
+            {imageUrl ? (
               <>
-                <CldImage
-                  src={service.imagePublicId}
-                  width={640}
-                  height={240}
+                <img
+                  src={imageUrl}
                   alt={service.title}
-                  crop={{ type: "fill", gravity: "auto" }}
                   className="h-full w-full object-cover opacity-70"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/30 to-transparent" />
               </>
@@ -94,6 +100,7 @@ export function SolutionCard({ solution, index }: { solution: Solution } & CardP
 }
 
 export function TechnologyCard({ item, index }: { item: TechnologyItem } & CardProps) {
+  const imageUrl = buildCloudinaryUrl(item.imagePublicId);
   return (
     <motion.article
       className="flex min-h-[240px] flex-col gap-4 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#0f1a18]/95 to-[#0a100f]"
@@ -103,15 +110,13 @@ export function TechnologyCard({ item, index }: { item: TechnologyItem } & CardP
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.42, delay: index * 0.05 }}
     >
-      {item.imagePublicId ? (
+      {imageUrl ? (
         <div className="relative h-28 w-full">
-          <CldImage
-            src={item.imagePublicId}
-            width={640}
-            height={240}
+          <img
+            src={imageUrl}
             alt={item.title}
-            crop={{ type: "fill", gravity: "auto" }}
             className="h-full w-full object-cover opacity-70"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/70 to-transparent" />
         </div>
@@ -143,6 +148,7 @@ export function CompanyCard({ metric, index }: { metric: CompanyMetric } & CardP
 }
 
 export function NewsCard({ item, index }: { item: NewsItem } & CardProps) {
+  const imageUrl = buildCloudinaryUrl(item.imagePublicId);
   return (
     <motion.article
       className="flex h-full flex-col gap-4 overflow-hidden rounded-3xl border border-white/10 bg-[#0e1716]/95"
@@ -152,15 +158,13 @@ export function NewsCard({ item, index }: { item: NewsItem } & CardProps) {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45, delay: index * 0.05 }}
     >
-      {item.imagePublicId ? (
+      {imageUrl ? (
         <div className="relative h-32 w-full">
-          <CldImage
-            src={item.imagePublicId}
-            width={640}
-            height={240}
+          <img
+            src={imageUrl}
             alt={item.title}
-            crop={{ type: "fill", gravity: "auto" }}
             className="h-full w-full object-cover opacity-70"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0d1514] via-[#0d1514]/60 to-transparent" />
         </div>

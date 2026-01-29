@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import type { SessionUser } from "@/lib/auth/types";
+import { getSessionUser, clearSession } from "@/lib/auth/session";
 
 const links = [
   { href: "/", label: "Inicio" },
@@ -17,6 +19,11 @@ const links = [
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState<SessionUser | null>(null);
+
+  useEffect(() => {
+    setUser(getSessionUser());
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -30,6 +37,12 @@ export function NavBar() {
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
+
+  const handleLogout = () => {
+    clearSession();
+    setUser(null);
+    window.location.href = "/";
+  };
 
   return (
     <header
@@ -79,6 +92,30 @@ export function NavBar() {
               {link.label}
             </Link>
           ))}
+          {user ? (
+            <>
+              <Link
+                href="/admin"
+                className="rounded-full px-4 py-2 text-sm font-semibold text-am-primary transition hover:bg-white/5 hover:text-am-primaryStrong"
+              >
+                Panel
+              </Link>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-full px-4 py-2 text-sm font-semibold text-am-silver transition hover:bg-white/5 hover:text-white"
+              >
+                Salir
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-am-silver transition hover:bg-white/5 hover:text-white"
+            >
+              Ingresar
+            </Link>
+          )}
           <Link
             href="/contacto"
             className="mt-2 inline-flex items-center justify-center rounded-full bg-am-primary px-4 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong md:ml-2 md:mt-0"

@@ -6,6 +6,12 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { caseStudies, services } from "@/lib/site-data";
 
+export function generateStaticParams() {
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
+}
+
 type ServiceDetailPageProps = {
   params: { slug: string };
 };

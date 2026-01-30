@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AMSeguridad.Api.Models
 {
+    
     [Table("service_items")]
     public class ServiceItem
     {

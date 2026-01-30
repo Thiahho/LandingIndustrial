@@ -68,7 +68,8 @@ export default function HomePage() {
         "Cerco eléctrico y control perimetral.",
         "Asistencia inmediata ante incidentes."
       ],
-      cta: "Ver opciones para hogares"
+      cta: "Ver opciones para hogares",
+      href: "/segmentos/personas-hogar"
     },
     {
       id: "negocios-comercios",
@@ -80,7 +81,8 @@ export default function HomePage() {
         "Custodias y rondas preventivas.",
         "CCTV con analítica y reportes."
       ],
-      cta: "Ver opciones para comercios"
+      cta: "Ver opciones para comercios",
+      href: "/segmentos/negocios-comercios"
     },
     {
       id: "empresa-instituciones",
@@ -92,7 +94,8 @@ export default function HomePage() {
         "Seguridad patrimonial y medioambiental.",
         "Investigaciones e informes especiales."
       ],
-      cta: "Ver opciones para empresas"
+      cta: "Ver opciones para empresas",
+      href: "/segmentos/empresa-instituciones"
     }
   ];
   const habilitaciones = [
@@ -336,7 +339,7 @@ export default function HomePage() {
                     ))}
                   </ul>
                   <Link
-                    href="/contacto"
+                    href={segmento.href}
                     className="mt-auto inline-flex w-fit items-center justify-center rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-am-primary hover:text-white"
                   >
                     {segmento.cta}

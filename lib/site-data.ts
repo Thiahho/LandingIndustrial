@@ -4,6 +4,7 @@ export type ServiceDetail = {
   summary: string;
   image: string;
   itemsDetails: ServiceItemDetail[];
+  descripcion: string;
   problems: string[];
   steps: string[];
   includes: string[];

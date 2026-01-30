@@ -67,7 +67,7 @@ export default function ContactoPage() {
             <label className="grid gap-2 text-sm">
               Tipo de consulta
               <select className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-am-primary focus:outline-none">
-                <option>Soluciones</option>
+                <option>Servicios</option>
                 <option>Tecnología</option>
                 <option>Casos reales</option>
                 <option>Otro</option>

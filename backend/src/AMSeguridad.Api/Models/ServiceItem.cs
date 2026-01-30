@@ -19,5 +19,8 @@ namespace AMSeguridad.Api.Models
         [Required]
         [Column("value")]
         public string Value { get; set; } = string.Empty;
+
+        [Column("descripcion")]
+        public string? Descripcion {get;set;} = string.Empty;
     }
 }

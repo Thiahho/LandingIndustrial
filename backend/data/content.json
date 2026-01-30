@@ -1,227 +1,234 @@
 {
   "hero": {
-    "eyebrow": "Seguridad empresarial en Argentina",
-    "title": "Seguridad física y monitoreo empresarial para operaciones críticas.",
-    "lead": "Nos convertimos en socios estratégicos para empresas medianas y grandes: definimos necesidades, diseñamos protocolos y ejecutamos soluciones integrales con respuesta inmediata.",
-    "primaryCta": "Configurar mi solución",
-    "secondaryCta": "Ver todas las soluciones",
-    "contactCta": "Hablar con ventas",
+    "eyebrow": "Seguridad integral para personas, comercios y empresas",
+    "title": "Solidez operativa en seguridad física y electrónica.",
+    "lead": "Protegemos activos críticos con tecnología, equipos entrenados y respuesta inmediata, sin rodeos.",
+    "primaryCta": "Seguridad física",
+    "secondaryCta": "Seguridad electrónica",
+    "contactCta": "Contacto rápido",
     "imagePublicId": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2070&auto=format&fit=crop",
     "highlights": [
       {
-        "title": "Seguridad monitoreada 24/7",
-        "text": "Central con protocolos activos, trazabilidad y respaldo operativo."
+        "title": "Operación 24/7",
+        "text": "Central activa y coordinación con recursos en campo."
       },
       {
-        "title": "Empresas medianas y grandes",
-        "text": "Soluciones adaptadas por sector, horario y cantidad de sedes."
+        "title": "Habilitaciones vigentes",
+        "text": "Cumplimiento legal y auditorías disponibles."
       },
       {
         "title": "Respuesta inmediata",
-        "text": "Coordinación con recursos en campo y seguimiento continuo."
+        "text": "Protocolos claros para incidentes reales."
       }
     ]
   },
   "guidance": {
-    "eyebrow": "Asistente estratégico",
-    "title": "¿Qué solución necesita tu empresa?",
-    "text": "Respondé tres pasos y te recomendamos el servicio exacto según sector, riesgos y escala.",
+    "eyebrow": "Asesoramiento guiado",
+    "title": "¿Qué solución es para vos?",
+    "text": "Recomendaciones rápidas por tipo de cliente para elegir sin vueltas.",
     "tags": [
-      "Empresas grandes",
-      "Empresas medianas",
-      "Logística",
-      "Industria"
+      "Hogar",
+      "Comercio",
+      "Empresa",
+      "Flota"
     ]
   },
   "services": [
     {
-      "title": "Vigilancia física",
-      "description": "Personal habilitado y protocolos claros para proteger activos críticos.",
-      "imagePublicId": "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop",
+      "title": "Central de monitoreo",
+      "description": "Supervisión remota 24/7 con protocolos y trazabilidad.",
+      "imagePublicId": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
       "items": [
-        "Vigilancia fija y móvil",
-        "Custodias y rondas",
-        "Prevención de incidentes",
-        "Supervisión activa"
+        "Monitoreo de cámaras",
+        "Monitoreo de alarmas",
+        "Análisis logístico",
+        "Seguimiento satelital",
+        "Otros servicios"
       ]
     },
     {
-      "title": "Monitoreo y centro de control",
-      "description": "Alertas inteligentes, protocolos de respuesta y reportes ejecutivos.",
-      "imagePublicId": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+      "title": "Vigilancia física",
+      "description": "Presencia profesional, custodia y prevención en campo.",
+      "imagePublicId": "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop",
       "items": [
-        "Monitoreo 24/7",
-        "Escalamiento de incidentes",
-        "Reportes para auditoría",
-        "Coordinación en campo"
+        "Vigilancia fija",
+        "Custodia de mercaderías en tránsito",
+        "Custodia personal",
+        "Prevención de incendios",
+        "Otros servicios"
       ]
     },
     {
       "title": "Seguridad electrónica",
-      "description": "CCTV, alarmas y sensores integrados para detección temprana.",
+      "description": "Detección temprana con sensores y video inteligente.",
       "imagePublicId": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
       "items": [
-        "CCTV con analítica",
-        "Alarmas monitoreadas",
-        "Control perimetral",
-        "Mantenimiento preventivo"
+        "Alarmas",
+        "Cámaras de vigilancia (CCTV)",
+        "Control de acceso",
+        "Cerco eléctrico"
       ]
     },
     {
-      "title": "Control de accesos",
-      "description": "Trazabilidad total de ingresos y salidas con credenciales seguras.",
-      "imagePublicId": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop",
+      "title": "Seguridad patrimonial",
+      "description": "Cobertura integral para operaciones y cumplimiento normativo.",
+      "imagePublicId": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop",
       "items": [
-        "Credenciales físicas o biométricas",
-        "Reportes automáticos",
-        "Integración con CCTV",
-        "Alertas por excepción"
+        "Seguridad e higiene",
+        "Seguridad medioambiental",
+        "Otros servicios"
       ]
     },
     {
-      "title": "Investigaciones corporativas",
-      "description": "Informes confidenciales para decisiones críticas y compliance.",
+      "title": "Investigaciones",
+      "description": "Informes estratégicos para decisiones críticas.",
       "imagePublicId": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop",
       "items": [
-        "Investigación de fraudes",
-        "Informes ejecutivos",
-        "Apoyo documental",
-        "Recomendaciones de mejora"
+        "Investigación de fraude",
+        "Informe ambiental",
+        "Capacitaciones",
+        "Siniestros"
       ]
     },
     {
-      "title": "Servicios complementarios",
-      "description": "Capacitaciones, auditorías y refuerzos para elevar estándares.",
+      "title": "Control de pérdidas",
+      "description": "Prevención, auditoría y planes de mejora continua.",
       "imagePublicId": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
       "items": [
-        "Capacitaciones en seguridad",
-        "Auditorías internas",
-        "Planes de mejora",
-        "Control de pérdidas"
+        "Auditorías operativas",
+        "Prevención en puntos críticos",
+        "Reportes de desvíos",
+        "Planes de mejora"
       ]
     }
   ],
   "solutions": [
     {
+      "tag": "Hogar",
+      "title": "Protección cotidiana",
+      "text": "Ideal para viviendas con monitoreo remoto y alertas inmediatas."
+    },
+    {
+      "tag": "Comercio",
+      "title": "Seguridad en aperturas y cierres",
+      "text": "Recomendado para locales con control de accesos y CCTV."
+    },
+    {
       "tag": "Empresa",
-      "title": "Seguridad monitoreada",
-      "text": "Respuesta rápida y trazabilidad completa para operaciones críticas."
+      "title": "Operaciones críticas protegidas",
+      "text": "Cobertura integral con vigilancia física y tecnología."
     },
     {
-      "tag": "Logística",
-      "title": "Protección de cadena de suministro",
-      "text": "CCTV, control de accesos y monitoreo 24/7 para centros de distribución."
-    },
-    {
-      "tag": "Industria",
-      "title": "Plantas seguras y auditables",
-      "text": "Vigilancia física, protocolos de ingreso y reportes para compliance."
-    },
-    {
-      "tag": "Oficinas",
-      "title": "Accesos controlados",
-      "text": "Gestión segura de visitantes, proveedores y personal interno."
+      "tag": "Flotas",
+      "title": "Seguimiento satelital",
+      "text": "Visibilidad total de recorridos y custodia logística."
     }
   ],
   "technology": [
     {
       "title": "Central 24/7",
-      "text": "Operadores especializados con escalamiento de incidentes y reportes en tiempo real.",
+      "text": "Operadores especializados con escalamiento inmediato.",
       "meta": "Monitoreo constante",
       "imagePublicId": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
     },
     {
-      "title": "Datos para decidir",
-      "text": "KPIs y reportes que respaldan decisiones operativas y auditorías.",
-      "meta": "Visibilidad ejecutiva",
-      "imagePublicId": "https://images.unsplash.com/photo-1551281044-8b9a3c711d7b?q=80&w=2070&auto=format&fit=crop"
+      "title": "Video inteligente",
+      "text": "CCTV con analítica para detección temprana.",
+      "meta": "Tecnología aplicada",
+      "imagePublicId": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=2070&auto=format&fit=crop"
     },
     {
-      "title": "Integración tecnológica",
-      "text": "Unificamos hardware, software y protocolos para continuidad operativa.",
-      "meta": "Ecosistema integrado",
-      "imagePublicId": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
+      "title": "Panel de autogestión",
+      "text": "Actualizá imágenes, textos y novedades sin depender de terceros.",
+      "meta": "Autogestión",
+      "imagePublicId": "https://images.unsplash.com/photo-1551281044-8b9a3c711d7b?q=80&w=2070&auto=format&fit=crop"
     }
   ],
   "products": [
     {
-      "name": "CCTV inteligente",
+      "name": "CCTV profesional",
       "category": "Video vigilancia",
-      "description": "Cámaras con analítica, grabación segura y acceso remoto.",
+      "description": "Cámaras con grabación segura y acceso remoto.",
       "imagePublicId": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      "name": "Alarmas monitoreadas",
+      "category": "Intrusión",
+      "description": "Alertas en tiempo real conectadas con la central.",
+      "imagePublicId": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2070&auto=format&fit=crop"
     },
     {
       "name": "Control de accesos",
       "category": "Accesos",
-      "description": "Gestión segura de ingresos con credenciales físicas o biométricas.",
+      "description": "Credenciales físicas o biométricas con registro automático.",
       "imagePublicId": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop"
     },
     {
-      "name": "Alarmas perimetrales",
+      "name": "Cerco eléctrico",
       "category": "Perímetro",
-      "description": "Detección temprana con sensores inteligentes y alertas inmediatas.",
-      "imagePublicId": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2070&auto=format&fit=crop"
+      "description": "Protección perimetral con disuasión activa.",
+      "imagePublicId": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop"
     }
   ],
   "company": [
     {
-      "value": "+20",
+      "value": "+30",
       "label": "Años en seguridad",
-      "text": "Experiencia en operaciones críticas y entornos complejos."
+      "text": "Experiencia real en entornos críticos."
     },
     {
       "value": "24/7",
       "label": "Cobertura operativa",
-      "text": "Protocolos activos con respuesta inmediata."
+      "text": "Monitoreo y coordinación permanente."
     },
     {
       "value": "100%",
-      "label": "Cumplimiento",
-      "text": "Habilitaciones y normativa vigente siempre auditables."
+      "label": "Habilitaciones",
+      "text": "Cumplimiento legal y auditorías disponibles."
     },
     {
-      "value": "+300",
-      "label": "Empresas atendidas",
-      "text": "Casos reales en logística, industria, retail y oficinas."
+      "value": "+500",
+      "label": "Clientes activos",
+      "text": "Empresas, comercios y hogares protegidos."
     }
   ],
   "news": [
     {
       "id": 1,
-      "date": "Buenas prácticas",
-      "title": "Checklist de seguridad para empresas medianas",
-      "text": "Guía rápida para reforzar controles en accesos, monitoreo y protocolos internos.",
-      "imagePublicId": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2070&auto=format&fit=crop"
+      "date": "Novedades",
+      "title": "Nueva flota operativa",
+      "text": "Sumamos móviles y recursos para ampliar cobertura 24/7.",
+      "imagePublicId": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2070&auto=format&fit=crop"
     },
     {
       "id": 2,
-      "date": "Actualización tecnológica",
-      "title": "Nuevos dashboards de monitoreo",
-      "text": "Sumamos tableros con KPIs para seguimiento ejecutivo y auditoría.",
+      "date": "Tecnología",
+      "title": "Actualización en monitoreo",
+      "text": "Mejoras en cámaras, analítica y trazabilidad operativa.",
       "imagePublicId": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
     },
     {
       "id": 3,
-      "date": "Casos reales",
-      "title": "Expansión en centros logísticos",
-      "text": "Más cobertura 24/7 con vigilancia física y electrónica integrada.",
-      "imagePublicId": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2070&auto=format&fit=crop"
+      "date": "Clientes",
+      "title": "Nuevas cuentas corporativas",
+      "text": "Más operaciones protegidas en industria y logística.",
+      "imagePublicId": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2070&auto=format&fit=crop"
     }
   ],
   "contact": {
     "eyebrow": "Contacto directo",
     "title": "Hablemos hoy",
-    "text": "Contactanos para ofrecerte el servicio exacto que estás buscando, sin fricciones y con respuesta inmediata.",
-    "whatsapp": "https://wa.me/5491100000000",
-    "commercialEmail": "ventas@empresa.com",
+    "text": "Canales rápidos para consultas comerciales y clientes activos.",
+    "whatsapp": "https://wa.me/5491156714600",
+    "commercialEmail": "comercial@amseguridad.com.ar",
     "channels": [
       {
         "label": "Ventas",
-        "value": "ventas@empresa.com"
+        "value": "comercial@amseguridad.com.ar"
       },
       {
         "label": "WhatsApp",
-        "value": "+54 11 0000 0000"
+        "value": "+54 11 5671-4600"
       },
       {
         "label": "Horario",
@@ -233,30 +240,30 @@
         "id": 1,
         "title": "Carta de presentación (PDF)",
         "href": "/contacto",
-        "description": "Documento corporativo para compartir con compras y operaciones."
+        "description": "Descargá el PDF corporativo para compartir con compras."
       },
       {
         "id": 2,
-        "title": "Ver casos reales",
-        "href": "/casos-reales",
-        "description": "Conocé implementaciones con resultados comprobables."
+        "title": "WhatsApp directo",
+        "href": "https://wa.me/5491156714600",
+        "description": "Iniciá una conversación con el equipo comercial."
       },
       {
         "id": 3,
-        "title": "Ver tecnología",
-        "href": "/tecnologia",
-        "description": "Equipos y software que respaldan cada servicio."
+        "title": "Ver habilitaciones",
+        "href": "/nosotros#habilitaciones",
+        "description": "Cumplimiento legal actualizado y verificable."
       }
     ]
   },
   "jobs": {
     "eyebrow": "Trabajá con nosotros",
-    "title": "Sumate a un equipo de seguridad profesional.",
-    "text": "Canal exclusivo para postulaciones y carga de CV.",
+    "title": "Sumate a un equipo profesional.",
+    "text": "Postulaciones y carga de CV con seguimiento interno.",
     "points": [
-      "Procesos claros y seguimiento.",
-      "Roles operativos y técnicos.",
-      "Capacitación continua."
+      "Proceso simple y claro.",
+      "Capacitación continua.",
+      "Canal directo con RR.HH."
     ]
   }
 }

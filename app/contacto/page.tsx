@@ -10,8 +10,8 @@ export default function ContactoPage() {
       <main className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12 pb-24 pt-28">
         <SectionHeading
           eyebrow="Contacto"
-          title="Canales directos para ventas y consultas corporativas."
-          description="Si tu empresa cuenta con correo corporativo, podés escribirnos directamente a ventas."
+          title="Contacto rápido y sin vueltas."
+          description="Canales comerciales y soporte para clientes activos."
         />
 
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
@@ -41,6 +41,13 @@ export default function ContactoPage() {
               <p>
                 <strong className="text-white">Dirección:</strong> {" "}
                 {contactInfo.address}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm text-am-muted">
+              <p className="font-semibold text-white">Recursos</p>
+              <p className="mt-2">
+                Descargá la carta de presentación y compartila con tu equipo de
+                compras.
               </p>
             </div>
           </div>
@@ -92,13 +99,16 @@ export default function ContactoPage() {
         <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
           <h3 className="text-lg font-semibold">Trabajá con nosotros</h3>
           <p className="mt-2 text-sm text-am-muted">
-            Si querés enviar tu CV, escribinos a
-            {" "}
+            Envianos tu CV a{" "}
             <a
-              href="mailto:rrhh@empresa.com"
+              href="mailto:incorporaciones@amseguridad.com.ar"
               className="text-am-primaryStrong"
             >
-              rrhh@empresa.com
+              incorporaciones@amseguridad.com.ar
+            </a>{" "}
+            o completá el formulario en{" "}
+            <a href="/trabaja" className="text-am-primaryStrong">
+              trabajá con nosotros
             </a>
             .
           </p>

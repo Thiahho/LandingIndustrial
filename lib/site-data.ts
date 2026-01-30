@@ -662,9 +662,9 @@ export const newsPosts: NewsPost[] = [
 ];
 
 export const contactInfo = {
-  whatsapp: "https://wa.me/5491100000000",
-  commercialEmail: "ventas@empresa.com",
+  whatsapp: "https://wa.me/5491156714600",
+  commercialEmail: "comercial@amseguridad.com.ar",
   address: "Av. Corrientes 1234, CABA, Argentina",
-  phone: "+54 11 0000 0000",
+  phone: "(011) 5671-4600",
   schedule: "Lun a Vie · 09:00 a 18:00 · Operación 24/7"
 };

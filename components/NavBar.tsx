@@ -8,12 +8,12 @@ import { getSessionUser, clearSession } from "@/lib/auth/session";
 
 const links = [
   { href: "/", label: "Inicio" },
-  { href: "/soluciones", label: "Soluciones" },
-  { href: "/sectores", label: "Sectores" },
-  { href: "/tecnologia", label: "Tecnología" },
-  { href: "/casos-reales", label: "Casos reales" },
-  { href: "/novedades", label: "Novedades" },
-  { href: "/nosotros", label: "Nosotros" }
+  { href: "/nosotros", label: "Nuestra empresa" },
+  { href: "/nosotros#habilitaciones", label: "Habilitaciones" },
+  { href: "/trabaja", label: "Trabajá con nosotros" },
+  { href: "/#personas-hogar", label: "Personas y hogar" },
+  { href: "/#negocios-comercios", label: "Negocios y comercios" },
+  { href: "/#empresa-instituciones", label: "Empresa e instituciones" }
 ];
 
 export function NavBar() {

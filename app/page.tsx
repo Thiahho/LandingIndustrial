@@ -57,6 +57,66 @@ export default function HomePage() {
   const heroImage = content?.hero.imagePublicId
     ? buildCloudinaryUrl(content.hero.imagePublicId)
     : "";
+  const segmentos = [
+    {
+      id: "personas-hogar",
+      title: "Personas y hogar",
+      description:
+        "Soluciones confiables para viviendas, consorcios y barrios cerrados.",
+      bullets: [
+        "Monitoreo remoto de cámaras y alarmas.",
+        "Cerco eléctrico y control perimetral.",
+        "Asistencia inmediata ante incidentes."
+      ],
+      cta: "Ver opciones para hogares"
+    },
+    {
+      id: "negocios-comercios",
+      title: "Negocios y comercios",
+      description:
+        "Protección operativa para locales, depósitos y cadenas comerciales.",
+      bullets: [
+        "Aperturas y cierres con seguimiento.",
+        "Custodias y rondas preventivas.",
+        "CCTV con analítica y reportes."
+      ],
+      cta: "Ver opciones para comercios"
+    },
+    {
+      id: "empresa-instituciones",
+      title: "Empresa e instituciones",
+      description:
+        "Estructura profesional para operaciones críticas y alta exposición.",
+      bullets: [
+        "Vigilancia física y custodia logística.",
+        "Seguridad patrimonial y medioambiental.",
+        "Investigaciones e informes especiales."
+      ],
+      cta: "Ver opciones para empresas"
+    }
+  ];
+  const habilitaciones = [
+    {
+      title: "Ciudad Autónoma de Buenos Aires",
+      detail: "Disposición Nro. DI-2016-47-DGSPR."
+    },
+    {
+      title: "Provincia de Buenos Aires",
+      detail: "Resolución Nro. 73778 - 31/01/1993 - OPGSP."
+    },
+    {
+      title: "Provincia de Santa Fe",
+      detail: "Resolución Nro. 0050 – 01/08/2013 - DPSP."
+    },
+    {
+      title: "Legítimo Usuario Colectivo",
+      detail: "Resolución Nro. 217.506 - ANMaC."
+    },
+    {
+      title: "Prefectura Naval Argentina",
+      detail: "Código PBIP inclusive - Registro Matriz N°: 922."
+    }
+  ];
 
   // Loading state
   if (state === "loading" || state === "idle") {
@@ -155,19 +215,19 @@ export default function HomePage() {
 
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href="/configurador"
+                  href="#servicios"
                   className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
                 >
                   {content.hero.primaryCta}
                 </Link>
                 <Link
-                  href="/soluciones"
+                  href="#tecnologia"
                   className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-white/40 hover:text-white"
                 >
                   {content.hero.secondaryCta}
                 </Link>
                 <Link
-                  href="/contacto"
+                  href="#contacto"
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-am-primary/60 hover:text-white"
                 >
                   {content.hero.contactCta}
@@ -234,8 +294,8 @@ export default function HomePage() {
           <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
             <SectionHeading
               eyebrow="Servicios"
-              title="Cobertura integral con foco operativo."
-              description="Todo lo necesario para prevenir, detectar y actuar sin fricción."
+              title="Servicios claros, directos y diferenciados."
+              description="Seguridad física y electrónica con alcance nacional."
             />
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {content.services.map((service, index) => (
@@ -244,6 +304,44 @@ export default function HomePage() {
                   service={service}
                   index={index}
                 />
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection id="segmentos" className="py-24">
+          <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">
+            <SectionHeading
+              eyebrow="Segmentos"
+              title="Soluciones pensadas para cada tipo de cliente."
+              description="Elegí el enfoque según tu contexto operativo."
+              align="left"
+            />
+            <div className="grid gap-6 lg:grid-cols-3">
+              {segmentos.map((segmento) => (
+                <article
+                  key={segmento.id}
+                  id={segmento.id}
+                  className="flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-[#0e1716]/95 p-6"
+                >
+                  <div>
+                    <h3 className="text-xl font-semibold">{segmento.title}</h3>
+                    <p className="mt-2 text-sm text-am-muted">
+                      {segmento.description}
+                    </p>
+                  </div>
+                  <ul className="grid gap-2 text-sm text-am-silver">
+                    {segmento.bullets.map((item) => (
+                      <li key={item}>• {item}</li>
+                    ))}
+                  </ul>
+                  <Link
+                    href="/contacto"
+                    className="mt-auto inline-flex w-fit items-center justify-center rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-am-primary hover:text-white"
+                  >
+                    {segmento.cta}
+                  </Link>
+                </article>
               ))}
             </div>
           </div>
@@ -385,6 +483,42 @@ export default function HomePage() {
                 />
               ))}
             </div>
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+              <div className="rounded-3xl border border-white/10 bg-[#0e1716]/95 p-6">
+                <h3 className="text-lg font-semibold text-white">
+                  Habilitaciones vigentes
+                </h3>
+                <p className="mt-2 text-sm text-am-muted">
+                  Dirección administrativa: Av. Corrientes 1234, CABA.
+                </p>
+                <ul className="mt-4 grid gap-3 text-sm text-am-silver">
+                  {habilitaciones.map((item) => (
+                    <li key={item.title}>
+                      <strong className="text-white">{item.title}:</strong>{" "}
+                      {item.detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                {habilitaciones.slice(0, 4).map((item) => (
+                  <article
+                    key={item.title}
+                    className="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.04] p-5"
+                  >
+                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-am-primaryStrong">
+                      Documento
+                    </p>
+                    <h4 className="text-lg font-semibold text-white">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-am-muted">
+                      Imagen disponible para cargar.
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </AnimatedSection>
 
@@ -440,7 +574,7 @@ export default function HomePage() {
         </AnimatedSection>
 
         <AnimatedSection id="trabaja" className="py-24">
-          <div className="mx-auto grid w-[min(1200px,92vw)] gap-10 lg:grid-cols-2">
+          <div className="mx-auto grid w-[min(1200px,92vw)] gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
             <div className="space-y-6">
               <SectionHeading
                 eyebrow={content.jobs.eyebrow}
@@ -458,69 +592,38 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
+              <div className="text-sm text-am-muted">
+                <p>
+                  Teléfono: <span className="text-white">(011) 5671-4600</span>
+                </p>
+                <p>
+                  Email RR.HH.:{" "}
+                  <a
+                    href="mailto:incorporaciones@amseguridad.com.ar"
+                    className="text-am-primaryStrong"
+                  >
+                    incorporaciones@amseguridad.com.ar
+                  </a>
+                </p>
+              </div>
             </div>
-            <form className="space-y-4 rounded-[28px] border border-white/10 bg-gradient-to-br from-[#10201c]/95 to-[#0b1110] p-8 shadow-glow">
-              {[
-                {
-                  id: "job-name",
-                  label: "Nombre y apellido",
-                  type: "text",
-                  placeholder: "Tu nombre",
-                },
-                {
-                  id: "job-email",
-                  label: "Email",
-                  type: "email",
-                  placeholder: "tu@email.com",
-                },
-              ].map((field) => (
-                <label
-                  key={field.id}
-                  className="grid gap-2 text-sm font-semibold"
-                >
-                  {field.label}
-                  <input
-                    id={field.id}
-                    name={field.id}
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-am-primary focus:outline-none"
-                    required
-                  />
-                </label>
-              ))}
-
-              <label className="grid gap-2 text-sm font-semibold">
-                Perfil
-                <select className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-am-primary focus:outline-none">
-                  <option>Seleccioná una opción</option>
-                  <option>Vigilador</option>
-                  <option>Custodia</option>
-                  <option>Técnico electrónico</option>
-                  <option>Operador de monitoreo</option>
-                  <option>Administrativo</option>
-                </select>
-              </label>
-
-              <label className="grid gap-2 text-sm font-semibold">
-                Mensaje breve
-                <textarea
-                  rows={4}
-                  placeholder="Contanos tu experiencia"
-                  className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-am-primary focus:outline-none"
-                />
-              </label>
-
-              <button
-                type="button"
-                className="inline-flex w-full items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
+            <div className="flex h-full flex-col justify-between gap-6 rounded-[28px] border border-white/10 bg-gradient-to-br from-[#10201c]/95 to-[#0b1110] p-8 shadow-glow">
+              <div className="space-y-3">
+                <p className="eyebrow">Postulaciones</p>
+                <h3 className="text-2xl font-semibold">
+                  Cargá tu CV en minutos.
+                </h3>
+                <p className="text-sm text-am-muted">
+                  Formulario completo con datos personales y adjunto de CV.
+                </p>
+              </div>
+              <Link
+                href="/trabaja"
+                className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
               >
-                Enviar CV
-              </button>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-am-muted">
-                Canal exclusivo para postulaciones
-              </p>
-            </form>
+                Ir al formulario
+              </Link>
+            </div>
           </div>
         </AnimatedSection>
 

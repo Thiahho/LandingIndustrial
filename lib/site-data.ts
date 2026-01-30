@@ -662,9 +662,532 @@ export const newsPosts: NewsPost[] = [
 ];
 
 export const contactInfo = {
-  whatsapp: "https://wa.me/5491100000000",
-  commercialEmail: "ventas@empresa.com",
+  whatsapp: "https://wa.me/5491156714600",
+  commercialEmail: "comercial@amseguridad.com.ar",
   address: "Av. Corrientes 1234, CABA, Argentina",
-  phone: "+54 11 0000 0000",
+  phone: "(011) 5671-4600",
   schedule: "Lun a Vie · 09:00 a 18:00 · Operación 24/7"
 };
+
+export type SegmentServiceItem = {
+  slug: string;
+  title: string;
+  summary: string;
+  description: string;
+  image: string;
+  tips: string[];
+};
+
+export type SegmentCategory = {
+  slug: string;
+  title: string;
+  description: string;
+  items: SegmentServiceItem[];
+};
+
+export type SegmentDetail = {
+  slug: string;
+  title: string;
+  description: string;
+  heroImage: string;
+  categories: SegmentCategory[];
+};
+
+export const segmentDetails: SegmentDetail[] = [
+  {
+    slug: "personas-hogar",
+    title: "Personas y hogar",
+    description:
+      "Protección integral para viviendas, consorcios y barrios cerrados con foco en respuesta inmediata.",
+    heroImage:
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=2000&auto=format&fit=crop",
+    categories: [
+      {
+        slug: "monitoreo-remoto",
+        title: "Sistemas de monitoreo remoto",
+        description:
+          "Central activa 24/7 con seguimiento de cámaras, alarmas y activos críticos.",
+        items: [
+          {
+            slug: "monitoreo-camaras",
+            title: "Monitoreo de cámaras",
+            summary:
+              "Supervisión continua con alertas y reporte de eventos relevantes.",
+            description:
+              "Integramos cámaras con la central para visualización en tiempo real y protocolos de respuesta.",
+            image:
+              "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Recomendado para hogares y consorcios con accesos múltiples.",
+              "Incluye seguimiento en horarios críticos.",
+              "Alertas configurables por evento."
+            ]
+          },
+          {
+            slug: "monitoreo-alarmas",
+            title: "Monitoreo de alarmas",
+            summary:
+              "Alarmas conectadas con operadores especializados y respuesta inmediata.",
+            description:
+              "Gestión de eventos de intrusión con verificación y escalamiento según protocolo.",
+            image:
+              "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Ideal para viviendas y comercios familiares.",
+              "Verificación rápida con respuesta coordinada.",
+              "Reporte posterior del evento."
+            ]
+          },
+          {
+            slug: "analisis-logistico",
+            title: "Análisis logístico",
+            summary:
+              "Cobertura del movimiento de activos y control de aperturas.",
+            description:
+              "Seguimiento de rutas, horarios y puntos sensibles para operaciones residenciales y pequeñas flotas.",
+            image:
+              "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Alineado con entregas y recepción de mercadería.",
+              "Reportes claros por evento.",
+              "Control de accesos y aperturas."
+            ]
+          },
+          {
+            slug: "seguimiento-satelital",
+            title: "Seguimiento satelital",
+            summary:
+              "Ubicación y control de activos con visibilidad total.",
+            description:
+              "Monitoreo de vehículos y activos móviles con alertas ante desvíos.",
+            image:
+              "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Recomendado para vehículos familiares o de trabajo.",
+              "Alertas por zonas y horarios.",
+              "Acceso a reportes históricos."
+            ]
+          },
+          {
+            slug: "otros-servicios",
+            title: "Otros servicios",
+            summary: "Asesoramiento y servicios complementarios.",
+            description:
+              "Consultanos para soluciones específicas fuera del paquete estándar.",
+            image:
+              "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Evaluación personalizada.",
+              "Integraciones adicionales.",
+              "Atención directa con el equipo técnico."
+            ]
+          }
+        ]
+      },
+      {
+        slug: "seguridad-electronica",
+        title: "Seguridad electrónica",
+        description:
+          "Disuasión activa con sensores, CCTV y control perimetral.",
+        items: [
+          {
+            slug: "alarmas",
+            title: "Alarmas",
+            summary: "Protección perimetral con alertas inmediatas.",
+            description:
+              "Sistemas de detección temprana integrados con monitoreo remoto.",
+            image:
+              "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Configuraciones adaptadas al inmueble.",
+              "Alertas con verificación previa.",
+              "Mantenimiento preventivo."
+            ]
+          },
+          {
+            slug: "camaras-vigilancia",
+            title: "Cámaras de vigilancia",
+            summary: "CCTV con cobertura y registro permanente.",
+            description:
+              "Implementación de cámaras fijas o móviles con acceso remoto seguro.",
+            image:
+              "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Monitoreo en tiempo real.",
+              "Grabación y evidencias disponibles.",
+              "Integración con alarmas."
+            ]
+          },
+          {
+            slug: "control-acceso",
+            title: "Control de acceso",
+            summary: "Gestión segura de ingresos y egresos.",
+            description:
+              "Sistemas de credenciales y control de visitantes para viviendas y consorcios.",
+            image:
+              "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Registro automático de accesos.",
+              "Compatibilidad con CCTV.",
+              "Alertas por excepción."
+            ]
+          },
+          {
+            slug: "cerco-electrico",
+            title: "Cerco eléctrico",
+            summary: "Disuasión perimetral activa y segura.",
+            description:
+              "Instalación y mantenimiento de cercos eléctricos certificados.",
+            image:
+              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Ideal para perímetros vulnerables.",
+              "Integración con alarmas.",
+              "Cumplimiento normativo."
+            ]
+          }
+        ]
+      },
+      {
+        slug: "seguridad-fisica",
+        title: "Seguridad física",
+        description:
+          "Presencia profesional para custodias y prevención en campo.",
+        items: [
+          {
+            slug: "vigilancia-fisica",
+            title: "Vigilancia física",
+            summary: "Guardias con protocolos claros y supervisión activa.",
+            description:
+              "Cobertura presencial para eventos, consorcios y residencias.",
+            image:
+              "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Dotación flexible según horarios.",
+              "Supervisión permanente.",
+              "Coordinación con monitoreo."
+            ]
+          },
+          {
+            slug: "custodia-mercaderias",
+            title: "Custodia de mercaderías en tránsito",
+            summary: "Seguimiento y custodia para traslados críticos.",
+            description:
+              "Protocolos de acompañamiento y seguimiento en rutas sensibles.",
+            image:
+              "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Monitoreo coordinado.",
+              "Protocolos de desvío.",
+              "Reporte posterior."
+            ]
+          },
+          {
+            slug: "custodia-personal",
+            title: "Custodia personal",
+            summary: "Protección personalizada para situaciones especiales.",
+            description:
+              "Cobertura discreta y profesional en traslados o eventos.",
+            image:
+              "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Equipo entrenado y habilitado.",
+              "Planificación previa del recorrido.",
+              "Coordinación con central."
+            ]
+          },
+          {
+            slug: "prevencion-incendios",
+            title: "Prevención de incendios",
+            summary: "Planes preventivos y respuesta coordinada.",
+            description:
+              "Inspección, protocolos y acompañamiento en situaciones de riesgo.",
+            image:
+              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Protocolos con normativa vigente.",
+              "Capacitación en sitio.",
+              "Control periódico."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    slug: "negocios-comercios",
+    title: "Negocios y comercios",
+    description:
+      "Cobertura integral para locales, depósitos y cadenas comerciales.",
+    heroImage:
+      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2000&auto=format&fit=crop",
+    categories: [
+      {
+        slug: "monitoreo-remoto",
+        title: "Sistema de monitoreo remoto",
+        description:
+          "Alertas inteligentes y control de aperturas en tiempo real.",
+        items: [
+          {
+            slug: "monitoreo-camaras",
+            title: "Monitoreo de cámaras",
+            summary: "Control visual para operaciones comerciales.",
+            description:
+              "Seguimiento continuo de cámaras con alertas por eventos críticos.",
+            image:
+              "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Cobertura de cajas y accesos.",
+              "Alertas ante movimientos fuera de horario.",
+              "Reportes para auditoría."
+            ]
+          },
+          {
+            slug: "monitoreo-alarmas",
+            title: "Monitoreo de alarmas",
+            summary: "Protocolos de respuesta rápida y coordinada.",
+            description:
+              "Integración de alarmas con la central y escalamiento inmediato.",
+            image:
+              "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Aperturas y cierres seguros.",
+              "Notificación a responsables.",
+              "Soporte 24/7."
+            ]
+          },
+          {
+            slug: "analisis-logistico",
+            title: "Análisis logístico",
+            summary: "Visibilidad sobre rutas y activos en movimiento.",
+            description:
+              "Monitoreo de entregas, horarios críticos y puntos sensibles.",
+            image:
+              "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Seguimiento de entregas.",
+              "Alertas ante desvíos.",
+              "Reportes ejecutivos."
+            ]
+          },
+          {
+            slug: "seguimiento-satelital",
+            title: "Seguimiento satelital",
+            summary: "Control en tiempo real de flotas comerciales.",
+            description:
+              "Localización permanente con alertas por geocercas.",
+            image:
+              "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Control de entregas.",
+              "Optimización de rutas.",
+              "Historial de recorridos."
+            ]
+          },
+          {
+            slug: "otros-servicios",
+            title: "Otros servicios",
+            summary: "Servicios adicionales para operaciones comerciales.",
+            description:
+              "Consultanos para cobertura adicional en eventos o campañas.",
+            image:
+              "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Planes especiales.",
+              "Refuerzos temporales.",
+              "Cobertura flexible."
+            ]
+          }
+        ]
+      },
+      {
+        slug: "seguridad-fisica",
+        title: "Vigilancia física",
+        description:
+          "Presencia en campo para prevenir incidentes en locales y depósitos.",
+        items: [
+          {
+            slug: "vigilancia-fisica",
+            title: "Vigilancia física",
+            summary: "Guardias capacitados y protocolos claros.",
+            description:
+              "Cobertura presencial con rondas y control de accesos.",
+            image:
+              "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Cobertura en horarios críticos.",
+              "Supervisión permanente.",
+              "Reportes de novedades."
+            ]
+          },
+          {
+            slug: "custodia-mercaderias",
+            title: "Custodia de mercaderías en tránsito",
+            summary: "Seguimiento de cargas y operaciones sensibles.",
+            description:
+              "Custodias con protocolos definidos para traslados críticos.",
+            image:
+              "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Coordinación con monitoreo.",
+              "Protocolos ante desvíos.",
+              "Cobertura nacional."
+            ]
+          },
+          {
+            slug: "custodia-personal",
+            title: "Custodia personal",
+            summary: "Protección discreta para ejecutivos y personal clave.",
+            description:
+              "Equipo entrenado para situaciones especiales y eventos.",
+            image:
+              "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Planificación previa.",
+              "Equipo habilitado.",
+              "Cobertura flexible."
+            ]
+          },
+          {
+            slug: "prevencion-incendios",
+            title: "Prevención de incendios",
+            summary: "Planes y protocolos para locales y depósitos.",
+            description:
+              "Inspecciones y capacitación preventiva con cumplimiento normativo.",
+            image:
+              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Planes de evacuación.",
+              "Capacitación del personal.",
+              "Control de riesgos."
+            ]
+          }
+        ]
+      },
+      {
+        slug: "investigaciones",
+        title: "Investigaciones",
+        description:
+          "Informes para auditorías, compliance y toma de decisiones.",
+        items: [
+          {
+            slug: "investigacion-fraude",
+            title: "Investigación de fraude",
+            summary: "Detección y análisis de irregularidades.",
+            description:
+              "Investigaciones confidenciales con reporte ejecutivo.",
+            image:
+              "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Informe detallado.",
+              "Confidencialidad total.",
+              "Recomendaciones operativas."
+            ]
+          },
+          {
+            slug: "informe-ambiental",
+            title: "Informe ambiental",
+            summary: "Evaluaciones para entornos comerciales.",
+            description:
+              "Análisis de riesgos y recomendaciones de mejora.",
+            image:
+              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Cumplimiento normativo.",
+              "Reporte ejecutivo.",
+              "Planes preventivos."
+            ]
+          },
+          {
+            slug: "capacitaciones",
+            title: "Capacitaciones",
+            summary: "Entrenamiento para personal de operaciones.",
+            description:
+              "Programas de formación para reforzar protocolos.",
+            image:
+              "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Contenido práctico.",
+              "Equipos operativos y administrativos.",
+              "Actualización constante."
+            ]
+          },
+          {
+            slug: "siniestros",
+            title: "Siniestros",
+            summary: "Informe y seguimiento de eventos críticos.",
+            description:
+              "Documentación, análisis y reporte de incidentes.",
+            image:
+              "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Informe detallado.",
+              "Soporte para aseguradoras.",
+              "Gestión documental."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    slug: "empresa-instituciones",
+    title: "Empresa e instituciones",
+    description:
+      "Seguridad patrimonial y cumplimiento normativo para organizaciones complejas.",
+    heroImage:
+      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2000&auto=format&fit=crop",
+    categories: [
+      {
+        slug: "seguridad-patrimonial",
+        title: "Seguridad patrimonial",
+        description:
+          "Cobertura integral para operaciones críticas y cumplimiento legal.",
+        items: [
+          {
+            slug: "seguridad-higiene",
+            title: "Seguridad e higiene",
+            summary: "Protocolos y auditorías de cumplimiento.",
+            description:
+              "Planes de seguridad internos y asesoramiento en normativa vigente.",
+            image:
+              "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Diagnóstico inicial.",
+              "Plan de mejoras.",
+              "Seguimiento periódico."
+            ]
+          },
+          {
+            slug: "seguridad-medioambiental",
+            title: "Seguridad medioambiental",
+            summary: "Gestión de riesgos y cumplimiento ambiental.",
+            description:
+              "Evaluación de riesgos ambientales y planes de mitigación.",
+            image:
+              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Cumplimiento normativo.",
+              "Reportes claros.",
+              "Recomendaciones operativas."
+            ]
+          },
+          {
+            slug: "otros-servicios",
+            title: "Otros servicios",
+            summary: "Soluciones a medida para instituciones.",
+            description:
+              "Consultanos por necesidades específicas o coberturas especiales.",
+            image:
+              "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1400&auto=format&fit=crop",
+            tips: [
+              "Proyectos a medida.",
+              "Equipo dedicado.",
+              "Soporte continuo."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];

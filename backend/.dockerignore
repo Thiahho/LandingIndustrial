@@ -9,5 +9,3 @@
 **/appsettings.Development.json
 **/appsettings.Local.json
 *.md
-Dockerfile*
-docker-compose*

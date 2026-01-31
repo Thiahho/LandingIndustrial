@@ -723,7 +723,7 @@ export default function AdminPage() {
                 </div>
 
                 <div className="grid gap-3">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <h3 className="text-lg font-semibold">Diferenciales</h3>
                     <button
                       type="button"
@@ -784,14 +784,14 @@ export default function AdminPage() {
                 id="servicios"
                 className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0d1716]/80 p-6"
               >
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="eyebrow">Servicios</p>
                     <h2 className="text-2xl font-semibold">
                       Cobertura y detalle operativo
                     </h2>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     <button
                       type="button"
                       onClick={saveServices}
@@ -859,7 +859,7 @@ export default function AdminPage() {
                       </div>
 
                       <div className="grid gap-2">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                           <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-am-silver">
                             Ítems del servicio
                           </h3>
@@ -876,7 +876,7 @@ export default function AdminPage() {
                           {service.items.map((item, itemIndex) => (
                             <div
                               key={`service-${serviceIndex}-item-${itemIndex}`}
-                              className="flex items-center gap-2"
+                              className="flex flex-col gap-2 sm:flex-row sm:items-center"
                             >
                               <input
                                 value={item}
@@ -921,14 +921,14 @@ export default function AdminPage() {
                 id="productos"
                 className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1514]/80 p-6"
               >
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="eyebrow">Productos tecnológicos</p>
                     <h2 className="text-2xl font-semibold">
                       Catálogo interno y recursos disponibles
                     </h2>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     <button
                       type="button"
                       onClick={saveProducts}
@@ -1017,14 +1017,14 @@ export default function AdminPage() {
                 id="tecnologia"
                 className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1514]/80 p-6"
               >
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="eyebrow">Tecnología</p>
                     <h2 className="text-2xl font-semibold">
                       Diferenciales tecnológicos y recursos
                     </h2>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     <button
                       type="button"
                       onClick={saveTechnology}
@@ -1117,14 +1117,14 @@ export default function AdminPage() {
                 id="novedades"
                 className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0c1413]/80 p-6"
               >
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="eyebrow">Novedades</p>
                     <h2 className="text-2xl font-semibold">
                       Actividad y evolución
                     </h2>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     <button
                       type="button"
                       onClick={saveNews}

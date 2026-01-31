@@ -1430,7 +1430,7 @@ export default function AdminPage() {
                 </ul>
               </section>
 
-              <section
+              {/* <section
                 id="publicacion"
                 className="flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-white/10 bg-[#0c1715]/80 p-6"
               >
@@ -1451,7 +1451,7 @@ export default function AdminPage() {
                 >
                   {saving ? "Guardando…" : "Guardar en backend"}
                 </button>
-              </section>
+              </section> */}
                 </>
               )}
             </main>

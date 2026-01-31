@@ -2,6 +2,8 @@ import { NavBar } from "@/components/NavBar";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { mission, values, vision } from "@/lib/site-data";
+import { useId, useState } from "react";
+import { TimelineHorizontal, type TimelineItem } from "@/components/TimeLineHorizontal";
 
 export default function NosotrosPage() {
   const habilitaciones = [
@@ -33,6 +35,56 @@ export default function NosotrosPage() {
     "Consorcios y barrios cerrados",
     "Instituciones educativas",
     "Entidades públicas"
+  ];
+   const timeline = [
+    {
+      year: "1991",
+      title: "Nace una nueva historia",
+      description:
+        "Fue en el barrio de Flores, entre muebles reciclados en una modesta oficina que comenzaba a escribirse esta historia."
+    },
+    {
+      year: "1994",
+      title: "Una lechuza para AM",
+      description:
+        "Surge la lechuza como símbolo de la empresa. Se crea el primer logo. Luego comienzan los ploteos a los primeros móviles y se diseñan los primeros uniformes de vigiladores con el flamante logo de la empresa."
+    },
+    {
+      year: "1998",
+      title: "¡Hola Morón!",
+      description:
+        "Gracias al incesante incremento de la actividad la oficina que vio nacer a la empresa no fue suficiente. Es por ello que se adquiere la propiedad que hasta el día de hoy es sede central."
+    },
+    {
+      year: "2000",
+      title: "La tecnología de nuestro lado",
+      description:
+        "La constante demanda de seguridad por parte de la sociedad, nos hizo pensar en la posibilidad de incorporar la tecnología a lo que mejor sabemos hacer. Es así que nace la “División Electrónica”. La pujante AM ya está preparada para brindar servicios de monitoreo de alarmas, sistemas CCTV y control satelital de vehículos."
+    },
+    {
+      year: "2003",
+      title: "Nueva Sucursal",
+      description:
+        "Se habilita una nueva sucursal, sito en Juana Manso 1661, Ciudad Autónoma de Buenos Aires."
+    },
+    {
+      year: "2008",
+      title: "Aires de Incesante Prosperidad",
+      description:
+        "En estos años AM continuaba en franca expansión; mayor dotación de personal, vehículos y equipos. Gradualmente las empresas multinacionales comenzaron a ver a AM Seguridad como una opción acertada en seguridad. Esto fue el resultado de la transparencia, la prolijidad y la vocación de servicio; principios rectores hasta el presente."
+    },
+    {
+      year: "2011",
+      title: "Se suman dos nuevos integrantes",
+      description:
+        "La creciente dimensión de la actividad tuvo su correlato en las dimensiones físicas de las instalaciones. AM adquiere un nuevo inmueble que lo transforma en base operativa para el servicio de Custodias de Mercaderías. Nace así el CENOP “Central Operativa”. Se habilita una nueva sucursal en la Ciudad de Rosario, lo que posibilitó desplegar el abanico de servicios de seguridad física en toda la provincia de Santa Fe."
+    },
+    {
+      year: "2014",
+      title: "ISO 9001",
+      description:
+        "Logramos la prestigiosa certificación ISO 9001. Esta garantiza la calidad y el consistente desempeño de los servicios que brindamos."
+    }
   ];
 
   return (
@@ -97,6 +149,16 @@ export default function NosotrosPage() {
 
         <section className="space-y-6">
           <SectionHeading
+            eyebrow="Línea de tiempo"
+            title="Evolución con foco tecnológico y crecimiento sostenido."
+            description="Una trayectoria marcada por innovación, nuevas sedes y mejora continua."
+            align="left"
+          />
+          <TimelineHorizontal timeline={timeline} />
+        </section>
+      
+        <section className="space-y-6">
+          <SectionHeading
             eyebrow="Valores"
             title="Principios que guían cada decisión."
             description="Vocación de servicio, dedicación y trabajo en equipo en cada operación."
@@ -155,5 +217,5 @@ export default function NosotrosPage() {
       </main>
       <SiteFooter />
     </div>
-  );
+   );
 }

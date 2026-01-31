@@ -531,6 +531,23 @@ export default function AdminPage() {
             </div>
           ) : null}
 
+              <div className="mx-auto w-[min(1200px,92vw)] lg:hidden">
+            <nav
+              className="flex gap-2 overflow-x-auto pb-3 text-xs font-bold uppercase tracking-[0.2em] text-am-silver"
+              aria-label="Módulos"
+            >
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className="shrink-0 rounded-full border border-white/10 px-3 py-2 transition hover:border-am-primary/60 hover:text-white"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+          
           <div className="mx-auto grid w-[min(1200px,92vw)] gap-6 pt-8 lg:grid-cols-[240px_1fr]">
             <aside className="sticky top-24 hidden h-fit rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6 lg:block">
               <div className="space-y-3">

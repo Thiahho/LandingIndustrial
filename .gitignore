@@ -1,15 +1,45 @@
 # Dependencies
 node_modules/
+.pnpm-store/
 
 # Next.js
 .next/
 out/
 .swc/
+.vercel/
 
-# Environment files
+# Environment files (SENSITIVE)
 .env
+.env.*
 .env.local
 .env.*.local
+.env.development
+.env.production
+.env.test
+
+# Secrets and credentials (SENSITIVE)
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets.json
+credentials.json
+serviceAccountKey.json
+firebase-adminsdk*.json
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+
+# Database connections (SENSITIVE)
+*.sqlite
+*.sqlite3
+*.db
+*.mdf
+*.ldf
+database.json
+connection.json
+ConnectionStrings.json
 
 # Debug logs
 npm-debug.log*
@@ -20,9 +50,22 @@ pnpm-debug.log*
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Testing
 coverage/
+.nyc_output/
+
+# Cache
+.cache/
+*.cache
+.eslintcache
+.stylelintcache
+.turbo/
+.parcel-cache/
+.npm/
+.yarn/cache/
+.pnp.*
 
 # .NET build outputs
 backend/**/bin/
@@ -30,7 +73,6 @@ backend/**/obj/
 *.dll
 *.pdb
 *.exe
-*.cache
 
 # .NET specific
 *.user
@@ -40,14 +82,18 @@ backend/**/obj/
 project.lock.json
 *.nuget.props
 *.nuget.targets
+appsettings.secrets.json
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+*.code-workspace
 
 # Misc
 *.log
 *.tmp
 *.temp
+*.bak
+*.backup

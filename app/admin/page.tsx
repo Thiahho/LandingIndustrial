@@ -41,8 +41,8 @@ export default function AdminPage() {
     const load = async () => {
       try {
         const data = await apiClient.getContent();
-        console.log("API Response:", data);
-        console.log("Services from API:", data.services);
+        // console.log("API Response:", data);
+        // console.log("Services from API:", data.services);
         setContent(data);
         setNotice({
           type: "success",
@@ -547,7 +547,7 @@ export default function AdminPage() {
               ))}
             </nav>
           </div>
-          
+
           <div className="mx-auto grid w-[min(1200px,92vw)] gap-6 pt-8 lg:grid-cols-[240px_1fr]">
             <aside className="sticky top-24 hidden h-fit rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6 lg:block">
               <div className="space-y-3">

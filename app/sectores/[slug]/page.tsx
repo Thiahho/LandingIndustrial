@@ -7,11 +7,12 @@ import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { caseStudies, sectors, services } from "@/lib/site-data";
 
 type SectorDetailPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export default function SectorDetailPage({ params }: SectorDetailPageProps) {
-  const sector = sectors.find((item) => item.slug === params.slug);
+export default async function SectorDetailPage({ params }: SectorDetailPageProps) {
+  const { slug } = await params;
+  const sector = sectors.find((item) => item.slug === slug);
   if (!sector) {
     notFound();
   }

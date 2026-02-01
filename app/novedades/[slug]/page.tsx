@@ -5,11 +5,12 @@ import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { newsPosts } from "@/lib/site-data";
 
 type NewsDetailPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export default function NewsDetailPage({ params }: NewsDetailPageProps) {
-  const post = newsPosts.find((item) => item.slug === params.slug);
+export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
+  const { slug } = await params;
+  const post = newsPosts.find((item) => item.slug === slug);
   if (!post) {
     notFound();
   }

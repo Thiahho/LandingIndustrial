@@ -6,11 +6,12 @@ import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { caseStudies, services } from "@/lib/site-data";
 
 type CaseDetailPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export default function CaseDetailPage({ params }: CaseDetailPageProps) {
-  const caseStudy = caseStudies.find((item) => item.slug === params.slug);
+export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
+  const { slug } = await params;
+  const caseStudy = caseStudies.find((item) => item.slug === slug);
   if (!caseStudy) {
     notFound();
   }

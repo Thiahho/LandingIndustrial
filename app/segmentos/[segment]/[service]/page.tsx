@@ -7,14 +7,15 @@ import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { segmentDetails } from "@/lib/site-data";
 
 type SegmentServicePageProps = {
-  params: { segment: string; service: string };
+  params: Promise<{ segment: string; service: string }>;
 };
 
-export default function SegmentServicePage({ params }: SegmentServicePageProps) {
-  const segment = segmentDetails.find((item) => item.slug === params.segment);
+export default async function SegmentServicePage({ params }: SegmentServicePageProps) {
+  const { segment: segmentSlug, service: serviceSlug } = await params;
+  const segment = segmentDetails.find((item) => item.slug === segmentSlug);
   const service = segment?.categories
     .flatMap((category) => category.items)
-    .find((item) => item.slug === params.service);
+    .find((item) => item.slug === serviceSlug);
 
   if (!segment || !service) {
     notFound();

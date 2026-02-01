@@ -6,17 +6,18 @@ import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { services } from "@/lib/site-data";
 
 type ServiceItemPageProps = {
-  params: { slug: string; itemSlug: string };
+  params: Promise<{ slug: string; itemSlug: string }>;
 };
 
-export default function ServiceItemPage({ params }: ServiceItemPageProps) {
-  const service = services.find((item) => item.slug === params.slug);
+export default async function ServiceItemPage({ params }: ServiceItemPageProps) {
+  const { slug, itemSlug } = await params;
+  const service = services.find((item) => item.slug === slug);
   if (!service) {
     notFound();
   }
 
   const serviceItem = service.itemsDetails.find(
-    (item) => item.slug === params.itemSlug,
+    (item) => item.slug === itemSlug,
   );
 
   if (!serviceItem) {

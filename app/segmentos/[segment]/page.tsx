@@ -7,11 +7,12 @@ import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { segmentDetails } from "@/lib/site-data";
 
 type SegmentPageProps = {
-  params: { segment: string };
+  params: Promise<{ segment: string }>;
 };
 
-export default function SegmentPage({ params }: SegmentPageProps) {
-  const segment = segmentDetails.find((item) => item.slug === params.segment);
+export default async function SegmentPage({ params }: SegmentPageProps) {
+  const { segment: segmentSlug } = await params;
+  const segment = segmentDetails.find((item) => item.slug === segmentSlug);
   if (!segment) {
     notFound();
   }

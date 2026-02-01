@@ -7,11 +7,12 @@ import { buildCloudinaryUrl } from "@/lib/cloudinary";
 import { caseStudies, services } from "@/lib/site-data";
 
 type ServiceDetailPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
-  const service = services.find((item) => item.slug === params.slug);
+export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
+  const { slug } = await params;
+  const service = services.find((item) => item.slug === slug);
   if (!service) {
     notFound();
   }

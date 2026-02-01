@@ -1,10 +1,11 @@
-import { SESSION_KEY } from "@/lib/auth/config";
 import type {
   LoginPayload,
   LoginResponse,
   Role,
   SessionUser,
 } from "@/lib/auth/types";
+
+const SESSION_KEY = "amseguridad.session";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000";

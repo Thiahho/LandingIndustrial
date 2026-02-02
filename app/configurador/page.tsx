@@ -58,6 +58,18 @@ export default function ConfiguradorPage() {
     url.searchParams.set("text", leadMessage);
     return url.toString();
   }, [leadMessage]);
+  const isLeadReady =
+    lead.name.trim() !== "" &&
+    lead.company.trim() !== "" &&
+    lead.whatsapp.trim() !== "";
+  const isConfigReady =
+    answers.companyType.trim() !== "" ||
+    answers.sector.trim() !== "" ||
+    answers.mainNeed.trim() !== "" ||
+    answers.location.trim() !== "" ||
+    answers.sites.trim() !== "" ||
+    answers.urgency.trim() !== "";
+  const canSendLead = isLeadReady && isConfigReady;
   const mailtoUrl = useMemo(() => {
     const subject = "Configurador - Solicitud de contacto";
     return `mailto:${contactInfo.commercialEmail}?subject=${encodeURIComponent(
@@ -71,8 +83,8 @@ export default function ConfiguradorPage() {
       <main className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12 pb-24 pt-28">
         <SectionHeading
           eyebrow="Configurador"
-          title="Respondé tres pasos y te recomendamos la mejor solución."
-          description="Pensado para empresas que buscan una respuesta directa sin perder tiempo."
+          title="Respondé 3 a 6 preguntas y te recomendamos la mejor solución."
+          description="Pensado para empresas que buscan una respuesta directa y contacto inmediato."
         />
 
         <section className="grid gap-6">
@@ -285,24 +297,118 @@ export default function ConfiguradorPage() {
             ))}
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href={whatsappUrl}
-              className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black"
-            >
-              Enviar por WhatsApp
-            </a>
-            <a
-              href={mailtoUrl}
-              className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black"
-            >
-              Enviar por email
-            </a>
+            {canSendLead ? (
+              <a
+                href={whatsappUrl}
+                className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black"
+              >
+                Enviar por WhatsApp
+              </a>
+            ) : (
+              <button
+                type="button"
+                disabled
+                className="inline-flex items-center justify-center rounded-full bg-am-primary/30 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black/50"
+              >
+                Enviar por WhatsApp
+              </button>
+            )}
+            {canSendLead ? (
+              <a
+                href={mailtoUrl}
+                className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black"
+              >
+                Enviar por email
+              </a>
+            ) : (
+              <button
+                type="button"
+                disabled
+                className="inline-flex items-center justify-center rounded-full bg-am-primary/30 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black/50"
+              >
+                Enviar por email
+              </button>
+            )}
             <Link
               href="/soluciones"
               className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver"
             >
               Ver detalle de servicios
             </Link>
+          </div>
+          {!canSendLead && (
+            <p className="mt-4 text-sm text-am-muted">
+              Para habilitar el envío, completá al menos un dato del
+              configurador y los campos obligatorios de contacto.
+            </p>
+          )}
+        </section>
+
+        <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+          <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="space-y-2">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-am-primaryStrong">
+                Pantalla final
+              </p>
+              <h2 className="text-xl font-semibold">
+                Resumen del pedido para ventas
+              </h2>
+              <p className="text-sm text-am-muted">
+                Este es el resumen que se enviará por WhatsApp o email.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-[#0b1110] p-5 text-sm text-am-silver">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-am-primaryStrong">
+                Contexto
+              </p>
+              <ul className="mt-3 grid gap-2">
+                <li>
+                  <strong className="text-white">Tipo de empresa:</strong>{" "}
+                  {answers.companyType || "No especificado"}
+                </li>
+                <li>
+                  <strong className="text-white">Sector:</strong>{" "}
+                  {answers.sector || "No especificado"}
+                </li>
+                <li>
+                  <strong className="text-white">Necesidad:</strong>{" "}
+                  {answers.mainNeed || "No especificado"}
+                </li>
+                <li>
+                  <strong className="text-white">Zona o sedes:</strong>{" "}
+                  {answers.location || "No especificado"}
+                </li>
+                <li>
+                  <strong className="text-white">Cantidad de sedes:</strong>{" "}
+                  {answers.sites || "No especificado"}
+                </li>
+                <li>
+                  <strong className="text-white">Urgencia:</strong>{" "}
+                  {answers.urgency || "No especificado"}
+                </li>
+              </ul>
+              <p className="mt-4 text-xs font-bold uppercase tracking-[0.24em] text-am-primaryStrong">
+                Contacto
+              </p>
+              <ul className="mt-3 grid gap-2">
+                <li>
+                  <strong className="text-white">Nombre:</strong>{" "}
+                  {lead.name || "No especificado"}
+                </li>
+                <li>
+                  <strong className="text-white">Empresa:</strong>{" "}
+                  {lead.company || "No especificado"}
+                </li>
+                <li>
+                  <strong className="text-white">WhatsApp:</strong>{" "}
+                  {lead.whatsapp || "No especificado"}
+                </li>
+                <li>
+                  <strong className="text-white">Email:</strong>{" "}
+                  {lead.email || "No especificado"}
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
       </main>

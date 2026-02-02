@@ -13,6 +13,7 @@ export type ServiceDetail = {
   cases: string[];
   faqs: { question: string; answer: string }[];
   gallery: string[];
+  tips: string[];
 };
 
 export type ServiceItemDetail = {
@@ -148,6 +149,12 @@ export const services: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop"
+    ],
+    tips: [
+      "Definí claramente los puntos de control y accesos prioritarios.",
+      "Coordiná con el equipo interno los protocolos de emergencia.",
+      "Solicitá reportes periódicos para evaluar el servicio.",
+      "Integrá vigilancia física con tecnología para mayor cobertura."
     ]
   },
   {
@@ -210,6 +217,12 @@ export const services: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1556155092-8707de31f9c4?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop"
+    ],
+    tips: [
+      "Definí protocolos claros para cada tipo de alerta.",
+      "Asegurate de tener contactos de emergencia actualizados.",
+      "Revisá periódicamente los reportes para detectar patrones.",
+      "Integrá todas las señales en una única plataforma de monitoreo."
     ]
   },
   {
@@ -272,6 +285,12 @@ export const services: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop"
+    ],
+    tips: [
+      "Elegí cámaras con resolución adecuada para cada zona.",
+      "Configurá alertas inteligentes para reducir falsas alarmas.",
+      "Asegurate de tener respaldo de grabaciones por al menos 30 días.",
+      "Integrá el sistema con monitoreo remoto para respuesta inmediata."
     ]
   },
   {
@@ -334,6 +353,12 @@ export const services: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop"
+    ],
+    tips: [
+      "Definí niveles de acceso según roles y responsabilidades.",
+      "Mantené actualizada la base de credenciales activas.",
+      "Configurá alertas para accesos fuera de horario.",
+      "Revisá periódicamente los reportes de ingresos y egresos."
     ]
   },
   {
@@ -396,6 +421,12 @@ export const services: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop"
+    ],
+    tips: [
+      "Definí el alcance y objetivos antes de iniciar la investigación.",
+      "Mantené la confidencialidad durante todo el proceso.",
+      "Solicitá informes parciales para seguimiento del avance.",
+      "Usá las recomendaciones para prevenir futuros incidentes."
     ]
   },
   {
@@ -458,6 +489,164 @@ export const services: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
+    ],
+    tips: [
+      "Identificá las áreas con mayor necesidad de capacitación.",
+      "Programá auditorías periódicas para mantener estándares.",
+      "Documentá los procedimientos para facilitar el seguimiento.",
+      "Involucrá a todos los niveles de la organización."
+    ]
+  },
+  {
+    slug: "seguridad-patrimonial",
+    title: "Seguridad patrimonial",
+    summary:
+      "Cobertura integral para operaciones y cumplimiento normativo en materia de seguridad e higiene.",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop",
+    itemsDetails: [
+      {
+        slug: "seguridad-higiene",
+        title: "Seguridad e higiene",
+        description:
+          "Asesoramiento y auditoría para cumplimiento de normativas de seguridad laboral."
+      },
+      {
+        slug: "seguridad-medioambiental",
+        title: "Seguridad medioambiental",
+        description:
+          "Evaluación de riesgos ambientales y planes de mitigación."
+      },
+      {
+        slug: "consultoria-integral",
+        title: "Consultoría integral",
+        description:
+          "Diagnóstico y plan de mejora para la gestión patrimonial."
+      }
+    ],
+    problems: [
+      "Cumplimiento de normativas de seguridad laboral.",
+      "Gestión de riesgos ambientales.",
+      "Necesidad de auditorías y certificaciones."
+    ],
+    steps: [
+      "Diagnóstico inicial y relevamiento.",
+      "Plan de acción con prioridades.",
+      "Implementación y seguimiento continuo."
+    ],
+    includes: [
+      "Auditorías de cumplimiento.",
+      "Asesoramiento normativo.",
+      "Planes de mejora continua."
+    ],
+    idealFor: [
+      "Empresas con operaciones industriales.",
+      "Organizaciones que buscan certificaciones.",
+      "Clientes con requisitos de compliance."
+    ],
+    technologies: ["/tecnologia/integraciones"],
+    cases: ["planta-industrial-segura"],
+    faqs: [
+      {
+        question: "¿Qué normativas cubren?",
+        answer:
+          "Trabajamos con normativas nacionales de seguridad e higiene y estándares internacionales según el sector."
+      },
+      {
+        question: "¿Incluye capacitación del personal?",
+        answer:
+          "Sí, las capacitaciones son parte del plan de mejora para garantizar el cumplimiento."
+      }
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop"
+    ],
+    tips: [
+      "Mantené la documentación de cumplimiento siempre actualizada.",
+      "Realizá simulacros periódicos con el personal.",
+      "Asegurate de cumplir con todas las normativas locales.",
+      "Solicitá auditorías externas para validar el estado."
+    ]
+  },
+  {
+    slug: "control-de-perdidas",
+    title: "Control de pérdidas",
+    summary:
+      "Prevención, auditoría y planes de mejora continua para reducir desvíos y mermas operativas.",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
+    itemsDetails: [
+      {
+        slug: "auditorias-operativas",
+        title: "Auditorías operativas",
+        description:
+          "Revisión de procesos para identificar puntos de fuga y desvíos."
+      },
+      {
+        slug: "prevencion-puntos-criticos",
+        title: "Prevención en puntos críticos",
+        description:
+          "Control reforzado en áreas con mayor riesgo de pérdidas."
+      },
+      {
+        slug: "reportes-desvios",
+        title: "Reportes de desvíos",
+        description:
+          "Documentación clara de incidentes y recomendaciones de acción."
+      },
+      {
+        slug: "planes-mejora",
+        title: "Planes de mejora",
+        description:
+          "Acciones correctivas y preventivas con seguimiento medible."
+      }
+    ],
+    problems: [
+      "Mermas y desvíos sin trazabilidad.",
+      "Falta de control en puntos críticos.",
+      "Necesidad de reportes para toma de decisiones."
+    ],
+    steps: [
+      "Diagnóstico de pérdidas actuales.",
+      "Identificación de puntos críticos.",
+      "Implementación de controles y seguimiento."
+    ],
+    includes: [
+      "Auditorías periódicas.",
+      "Reportes ejecutivos.",
+      "Plan de mejora con KPIs."
+    ],
+    idealFor: [
+      "Retail y cadenas de locales.",
+      "Centros de distribución.",
+      "Operaciones con inventarios sensibles."
+    ],
+    technologies: ["/tecnologia/software"],
+    cases: ["operacion-logistica-24-7"],
+    faqs: [
+      {
+        question: "¿Cómo miden la efectividad?",
+        answer:
+          "Definimos KPIs de reducción de pérdidas y reportamos avances mensuales."
+      },
+      {
+        question: "¿Se integra con seguridad electrónica?",
+        answer:
+          "Sí, combinamos auditorías con CCTV y control de accesos para mayor trazabilidad."
+      }
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1200&auto=format&fit=crop"
+    ],
+    tips: [
+      "Identificá los puntos críticos con mayor incidencia de pérdidas.",
+      "Implementá controles cruzados entre áreas.",
+      "Revisá los reportes de desvíos semanalmente.",
+      "Combiná auditorías con tecnología para mayor efectividad."
     ]
   }
 ];

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import type {
   CompanyMetric,
@@ -10,6 +11,15 @@ import type {
   TechnologyItem,
 } from "@/lib/types";
 import { buildCloudinaryUrl } from "@/lib/cloudinary";
+
+const serviceSlugMap: Record<string, string> = {
+  "Central de monitoreo": "monitoreo",
+  "Vigilancia física": "vigilancia-fisica",
+  "Seguridad electrónica": "seguridad-electronica",
+  "Seguridad patrimonial": "seguridad-patrimonial",
+  "Investigaciones": "investigaciones",
+  "Control de pérdidas": "control-de-perdidas",
+};
 
 type CardProps = {
   index: number;
@@ -22,59 +32,62 @@ const fadeUp = {
 
 export function ServiceCard({ service, index }: { service: Service } & CardProps) {
   const imageUrl = buildCloudinaryUrl(service.imagePublicId);
+  const serviceSlug = serviceSlugMap[service.title] || "monitoreo";
+
   return (
     <motion.article
-      className="group relative min-h-[320px] overflow-visible rounded-3xl border border-white/10 bg-gradient-to-br from-am-surface/95 to-[#0b1211]/95 shadow-glow [perspective:1200px]"
+      className="group relative min-h-[320px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-am-surface/95 to-[#0b1211]/95 shadow-glow transition-colors hover:border-am-primary/60"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45, delay: index * 0.04 }}
     >
-      <div className="relative h-full w-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-        <div className="absolute inset-0 flex h-full w-full flex-col gap-5 overflow-hidden rounded-3xl p-6 [backface-visibility:hidden]">
-          <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-am-primary/20 blur-3xl" />
-          <div className="relative h-36 w-full overflow-hidden rounded-2xl border border-white/10">
-            {imageUrl ? (
-              <>
-                <img
-                  src={imageUrl}
-                  alt={service.title}
-                  className="h-full w-full object-cover opacity-70"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/30 to-transparent" />
-              </>
-            ) : (
-              <>
-                <div className="h-full w-full bg-gradient-to-br from-am-primary/20 via-[#0f1a18] to-[#0b1110]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/30 to-transparent" />
-              </>
-            )}
-          </div>
-          <header className="space-y-2">
-            <h3 className="text-xl font-semibold">{service.title}</h3>
-            <p className="text-sm text-am-muted">{service.description}</p>
-          </header>
+      <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-am-primary/20 blur-3xl" />
+      <div className="flex h-full flex-col gap-5 p-6">
+        <div className="relative h-36 w-full overflow-hidden rounded-2xl border border-white/10">
+          {imageUrl ? (
+            <>
+              <img
+                src={imageUrl}
+                alt={service.title}
+                className="h-full w-full object-cover opacity-70 transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/30 to-transparent" />
+            </>
+          ) : (
+            <>
+              <div className="h-full w-full bg-gradient-to-br from-am-primary/20 via-[#0f1a18] to-[#0b1110]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/30 to-transparent" />
+            </>
+          )}
         </div>
-
-        <div className="absolute inset-0 flex h-full w-full flex-col gap-4 overflow-hidden rounded-3xl border border-white/5 bg-[#0b1211]/95 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <div className="pointer-events-none absolute -left-20 -top-20 h-48 w-48 rounded-full bg-am-primary/20 blur-3xl" />
-          <h3 className="text-lg font-semibold text-white">Detalle operativo</h3>
-          <ul className="grid gap-2 text-sm">
-            {service.items.map((item) => (
-              <li
-                key={item}
-                className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2 font-semibold text-am-silver"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-          <span className="mt-auto text-xs font-bold uppercase tracking-[0.2em] text-am-primaryStrong">
-            {service.title}
-          </span>
+        <header className="space-y-2">
+          <h3 className="text-xl font-semibold">{service.title}</h3>
+          <p className="text-sm text-am-muted">{service.description}</p>
+        </header>
+        <div className="mt-auto flex flex-wrap gap-2">
+          {service.items.slice(0, 3).map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-am-silver"
+            >
+              {item}
+            </span>
+          ))}
+          {service.items.length > 3 && (
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-am-silver">
+              +{service.items.length - 3} más
+            </span>
+          )}
         </div>
+        <Link
+          href={`/servicios/${serviceSlug}`}
+          className="inline-flex items-center justify-center rounded-full bg-am-primary px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-black transition-transform hover:scale-105"
+        >
+          Ver servicio completo
+        </Link>
       </div>
     </motion.article>
   );

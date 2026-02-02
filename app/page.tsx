@@ -325,95 +325,100 @@ export default function HomePage() {
         </div>
 
         <AnimatedSection id="configurador" className="py-24">
-          <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-10">
-            <SectionHeading
-              eyebrow="Configurador"
-              title="Configurá tu solución en minutos."
-              description="Respondé 2 o 3 preguntas rápidas y te llevamos al configurador completo."
-              align="left"
-            />
-            <form
-              onSubmit={handleQuickConfigSubmit}
-              className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0e1716]/95 p-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]"
-            >
-              <div className="grid gap-4 md:grid-cols-3">
-                <label className="grid gap-2 text-sm text-am-silver">
-                  Tipo de empresa
-                  <select
-                    value={quickConfig.companyType}
-                    onChange={(event) =>
-                      handleQuickConfigChange(
-                        "companyType",
-                        event.target.value,
-                      )
-                    }
-                    className="rounded-2xl border border-white/10 bg-[#0b1110] px-4 py-3 text-sm text-white"
-                  >
-                    <option value="">Seleccionar</option>
-                    <option value="industria">Industria</option>
-                    <option value="logistica">Logística</option>
-                    <option value="retail">Retail</option>
-                    <option value="oficinas">Oficinas</option>
-                    <option value="otros">Otro</option>
-                  </select>
-                </label>
-                <label className="grid gap-2 text-sm text-am-silver">
-                  Necesidad principal
-                  <select
-                    value={quickConfig.mainNeed}
-                    onChange={(event) =>
-                      handleQuickConfigChange("mainNeed", event.target.value)
-                    }
-                    className="rounded-2xl border border-white/10 bg-[#0b1110] px-4 py-3 text-sm text-white"
-                  >
-                    <option value="">Seleccionar</option>
-                    <option value="vigilancia-fisica">
-                      Vigilancia física
-                    </option>
-                    <option value="seguridad-electronica">
-                      Seguridad electrónica
-                    </option>
-                    <option value="monitoreo">Monitoreo 24/7</option>
-                    <option value="investigaciones">Investigaciones</option>
-                    <option value="mixto">Necesidad combinada</option>
-                  </select>
-                </label>
-                <label className="grid gap-2 text-sm text-am-silver">
-                  Zona o sedes
-                  <input
-                    type="text"
-                    value={quickConfig.location}
-                    onChange={(event) =>
-                      handleQuickConfigChange("location", event.target.value)
-                    }
-                    placeholder="Ej: CABA, GBA, interior"
-                    className="rounded-2xl border border-white/10 bg-[#0b1110] px-4 py-3 text-sm text-white placeholder:text-am-muted"
-                  />
-                </label>
-              </div>
-              <div className="flex h-full flex-col justify-between gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-5">
-                <div className="space-y-2">
-                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-am-primaryStrong">
-                    Paso 1 de 2
-                  </p>
-                  <h3 className="text-lg font-semibold text-white">
-                    Seguimos con el configurador completo
-                  </h3>
-                  <p className="text-sm text-am-muted">
-                    En el siguiente paso pedimos más datos y generamos la
-                    recomendación personalizada para enviar a ventas.
-                  </p>
-                </div>
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
-                >
-                  Continuar
-                </button>
-              </div>
-            </form>
+  <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-10">
+    <SectionHeading
+      eyebrow="Configurador"
+      title="Configurá tu solución en minutos."
+      description="Respondé 2 o 3 preguntas rápidas y te llevamos al configurador completo."
+      align="left"
+    />
+
+    <form
+      onSubmit={handleQuickConfigSubmit}
+      // CAMBIO: grid-cols fluido con alineación vertical centrada (items-center)
+      className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0e1716]/95 p-6 lg:grid-cols-[1fr_320px] lg:items-center"
+    >
+      {/* SECCIÓN DE INPUTS */}
+      {/* CAMBIO: Eliminado anchos fijos, ahora es un grid de 3 columnas iguales */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 w-full">
+        
+        <label className="grid gap-2 text-sm text-am-silver w-full">
+          Tipo de empresa
+          <select
+            className="w-full rounded-2xl border border-white/10 bg-[#0b1110] px-4 py-2 text-sm text-white focus:border-am-primary focus:outline-none focus:ring-1 focus:ring-am-primary"
+            value={quickConfig.companyType}
+            onChange={(event) =>
+              handleQuickConfigChange("companyType", event.target.value)
+            }
+          >
+            <option value="">Seleccionar</option>
+            <option value="industria">Industria</option>
+            <option value="logistica">Logística</option>
+            <option value="retail">Retail</option>
+            <option value="oficinas">Oficinas</option>
+            <option value="otros">Otro</option>
+          </select>
+        </label>
+
+        <label className="grid gap-2 text-sm text-am-silver w-full">
+          Necesidad principal
+          <select
+            value={quickConfig.mainNeed}
+            onChange={(event) =>
+              handleQuickConfigChange("mainNeed", event.target.value)
+            }
+            // CAMBIO: py-2 para reducir altura
+            className="w-full rounded-2xl border border-white/10 bg-[#0b1110] px-4 py-2 text-sm text-white focus:border-am-primary focus:outline-none focus:ring-1 focus:ring-am-primary"
+          >
+            <option value="">Seleccionar</option>
+            <option value="vigilancia-fisica">Vigilancia física</option>
+            <option value="seguridad-electronica">Seguridad electrónica</option>
+            <option value="monitoreo">Monitoreo 24/7</option>
+            <option value="investigaciones">Investigaciones</option>
+            <option value="mixto">Necesidad combinada</option>
+          </select>
+        </label>
+
+        <label className="grid gap-2 text-sm text-am-silver w-full">
+          Zona o sedes
+          <input
+            type="text"
+            value={quickConfig.location}
+            onChange={(event) =>
+              handleQuickConfigChange("location", event.target.value)
+            }
+            placeholder="Ej: CABA, GBA"
+            // CAMBIO: py-2 para reducir altura
+            className="w-full rounded-2xl border border-white/10 bg-[#0b1110] px-4 py-2 text-sm text-white placeholder:text-am-muted focus:border-am-primary focus:outline-none focus:ring-1 focus:ring-am-primary"
+          />
+        </label>
+      </div>
+
+      {/* SECCIÓN CAJA DE ACCIÓN (Derecha) */}
+      <div className="flex flex-col justify-between gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-5 h-full">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-am-primaryStrong">
+              Paso 1 de 2
+            </p>
           </div>
-        </AnimatedSection>
+          <h3 className="text-base font-semibold text-white leading-tight">
+            Seguimos con el configurador completo
+          </h3>
+          <p className="text-xs text-am-muted leading-relaxed">
+            Pedimos más datos y generamos la recomendación personalizada.
+          </p>
+        </div>
+        <button
+          type="submit"
+          className="inline-flex w-full items-center justify-center rounded-full bg-am-primary px-6 py-2.5 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
+        >
+          Continuar
+        </button>
+      </div>
+    </form>
+  </div>
+</AnimatedSection>
 
         <AnimatedSection id="servicios" className="py-24">
           <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">

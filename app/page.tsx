@@ -492,7 +492,7 @@ export default function HomePage() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection
+        {/* <AnimatedSection
           id="soluciones"
           className="border-y border-white/10 bg-[#0d1716]/85 py-24"
         >
@@ -528,7 +528,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </AnimatedSection>
+        </AnimatedSection> */}
 
         <AnimatedSection id="casos-reales" className="py-24">
           <div className="mx-auto flex w-[min(1200px,92vw)] flex-col gap-12">

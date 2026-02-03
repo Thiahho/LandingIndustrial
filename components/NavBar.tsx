@@ -7,6 +7,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { createPortal } from "react-dom";
 import type { SessionUser } from "@/lib/auth/types";
 import { getSessionUser, clearSession } from "@/lib/auth/session";
+import { contactInfo } from "@/lib/site-data";
 
 const primaryLinks = [
   { href: "/", label: "Inicio" },
@@ -165,13 +166,15 @@ export function NavBar() {
             </Link>
           )}
 
-          <Link
-            href="/contacto"
-            title="Hablar con ventas de AM Seguridad"
+          <a
+            href={contactInfo.whatsapp}
+            title="Hablar por WhatsApp con un asesor"
+            target="_blank"
+            rel="noreferrer"
             className="ml-2 inline-flex items-center justify-center rounded-full bg-am-primary px-4 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
           >
-            Hablar con ventas
-          </Link>
+            WhatsApp ahora
+          </a>
         </nav>
 
         {/* Burger button (mobile) */}
@@ -312,14 +315,16 @@ export function NavBar() {
                         </Link>
                       )}
 
-                      <Link
-                        href="/contacto"
-                        title="Hablar con ventas de AM Seguridad"
+                      <a
+                        href={contactInfo.whatsapp}
+                        title="Hablar por WhatsApp con un asesor"
+                        target="_blank"
+                        rel="noreferrer"
                         onClick={closeMenu}
                         className="mt-1 inline-flex items-center justify-center rounded-2xl bg-am-primary px-4 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
                       >
-                        Hablar con ventas
-                      </Link>
+                        WhatsApp ahora
+                      </a>
                     </div>
                   </div>
                 </motion.nav>

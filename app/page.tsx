@@ -66,9 +66,9 @@ export default function HomePage() {
     "AM Seguridad: Soluciones de seguridad física y electrónica 24/7 en Argentina";
   const heroLead =
     "Seguridad electrónica, monitoreo 24/7, CCTV y control de accesos para empresas, industrias y comercios en todo el país.";
-  const heroPrimaryCta = "Solicitar evaluación de seguridad";
-  const heroSecondaryCta = "Ver tecnología y monitoreo 24/7";
-  const heroContactCta = "Hablar con un asesor ahora";
+  const heroPrimaryCta = "Hablar por WhatsApp ahora";
+  const heroSecondaryCta = "Solicitar evaluación de seguridad";
+  const heroContactCta = "Ver servicios disponibles";
   const heroImage = content?.hero.imagePublicId
     ? buildCloudinaryUrl(content.hero.imagePublicId)
     : "";
@@ -255,23 +255,25 @@ export default function HomePage() {
               </p>
 
               <div className="flex flex-wrap gap-3">
-                <Link
-                  href="#servicios"
-                  title="Solicitar evaluación de seguridad"
+                <a
+                  href={content.contact.whatsapp}
+                  title="Hablar por WhatsApp con un asesor"
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
                 >
                   {heroPrimaryCta}
-                </Link>
+                </a>
                 <Link
-                  href="#tecnologia"
-                  title="Ver tecnología y monitoreo 24/7"
+                  href="#configurador"
+                  title="Solicitar evaluación de seguridad"
                   className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-white/40 hover:text-white"
                 >
                   {heroSecondaryCta}
                 </Link>
                 <Link
-                  href="#contacto"
-                  title="Hablar con un asesor de seguridad"
+                  href="#servicios"
+                  title="Ver servicios de seguridad"
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-am-primary/60 hover:text-white"
                 >
                   {heroContactCta}

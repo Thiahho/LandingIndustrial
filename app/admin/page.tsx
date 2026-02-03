@@ -649,12 +649,12 @@ export default function AdminPage() {
                 className="grid gap-6 rounded-[28px] border border-white/10 bg-[#0f1a18]/80 p-6"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <p className="eyebrow">Hero</p>
+                  {/* <div>
+                    {/* <p className="eyebrow">Hero</p> 
                     <h2 className="text-2xl font-semibold">
                       Mensaje principal e imagen
                     </h2>
-                  </div>
+                  </div> */}
                   <div className="flex gap-2">
                     <button
                       type="button"
@@ -673,7 +673,7 @@ export default function AdminPage() {
                   </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                {/* <div className="grid gap-4 md:grid-cols-2">
                   {[
                     {
                       label: "Eyebrow",
@@ -737,7 +737,7 @@ export default function AdminPage() {
                       </label>
                     ),
                   )}
-                </div>
+                </div> */}
 
                 <div className="grid gap-3">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">

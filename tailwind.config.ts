@@ -30,6 +30,15 @@ const config: Config = {
         "hero-grid":
           "linear-gradient(rgba(198, 211, 207, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(198, 211, 207, 0.12) 1px, transparent 1px)",
         "hero-overlay": "radial-gradient(circle at 20% 20%, rgba(31, 138, 91, 0.4), transparent 55%)"
+      },
+      animation: {
+        scroll: "scroll 30s linear infinite"
+      },
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" }
+        }
       }
     }
   },

@@ -1,6 +1,7 @@
 import { NavBar } from "@/components/NavBar";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ClientsCarousel } from "@/components/ClientsCarousel";
 import { mission, values, vision } from "@/lib/site-data";
 import { useId, useState } from "react";
 import { TimelineHorizontal, type TimelineItem } from "@/components/TimeLineHorizontal";
@@ -145,6 +146,18 @@ export default function NosotrosPage() {
             <h2 className="text-xl font-semibold">Visión</h2>
             <p className="mt-2 text-sm text-am-muted">{vision}</p>
           </article>
+        </section>
+
+        <section className="space-y-6">
+          <SectionHeading
+            eyebrow="Empresas"
+            title="Confían en nosotros"
+            description="Trabajamos con empresas líderes de diversos sectores que valoran la seguridad y el compromiso."
+            align="left"
+          />
+          <div className="rounded-3xl border border-white/10 bg-white/[0.04] py-4">
+            <ClientsCarousel />
+          </div>
         </section>
 
         <section className="space-y-6">

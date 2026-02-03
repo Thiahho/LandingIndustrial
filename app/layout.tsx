@@ -12,7 +12,10 @@ export const metadata: Metadata = {
   title: "AM Seguridad | Solidez, tecnología y confianza",
   description:
     "Soluciones integrales de seguridad física y electrónica con monitoreo 24/7, respuesta coordinada y foco operativo.",
-  metadataBase: new URL("https://amseguridad.com.ar")
+  metadataBase: new URL("https://amseguridad.com.ar"),
+  icons: {
+    icon: "/favicon.ico"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

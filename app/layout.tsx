@@ -9,10 +9,27 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "AM Seguridad | Solidez, tecnología y confianza",
+  title: "AM Seguridad | Soluciones de seguridad física y electrónica 24/7",
   description:
-    "Soluciones integrales de seguridad física y electrónica con monitoreo 24/7, respuesta coordinada y foco operativo.",
+    "Seguridad electrónica, monitoreo 24/7, CCTV y control de accesos para empresas e industrias en Argentina.",
+  keywords: [
+    "seguridad electrónica",
+    "monitoreo 24/7",
+    "CCTV",
+    "control de accesos",
+    "seguridad para empresas",
+    "seguridad industrial",
+    "seguridad en Buenos Aires",
+    "seguridad en Santa Fe"
+  ],
   metadataBase: new URL("https://amseguridad.com.ar"),
+  alternates: {
+    canonical: "/"
+  },
+  robots: {
+    index: true,
+    follow: true
+  },
   icons: {
     icon: "/favicon.ico"
   }

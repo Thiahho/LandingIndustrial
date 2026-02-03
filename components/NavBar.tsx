@@ -72,7 +72,12 @@ export function NavBar() {
       } backdrop-blur`}
     >
       <div className="mx-auto flex w-[min(1200px,92vw)] items-center justify-between gap-4 py-4">
-        <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
+        <Link
+          href="/"
+          title="Ir al inicio de AM Seguridad"
+          className="flex items-center gap-3"
+          onClick={closeMenu}
+        >
           <motion.div
             className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-am-primary to-emerald-900 font-extrabold text-black shadow-glow"
             initial={{ scale: 0.9, opacity: 0 }}
@@ -93,6 +98,7 @@ export function NavBar() {
             <Link
               key={link.href}
               href={link.href}
+              title={link.label}
               className="rounded-full px-4 py-2 text-sm font-semibold text-am-silver transition hover:bg-white/5 hover:text-white"
             >
               {link.label}
@@ -122,6 +128,7 @@ export function NavBar() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  title={link.label}
                   onClick={() => setSegmentsOpen(false)}
                   className="rounded-2xl border border-white/5 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-am-silver transition hover:border-am-primary hover:text-white"
                 >
@@ -135,6 +142,7 @@ export function NavBar() {
             <>
               <Link
                 href="/admin"
+                title="Ir al panel de administración"
                 className="rounded-full px-4 py-2 text-sm font-semibold text-am-primary transition hover:bg-white/5 hover:text-am-primaryStrong"
               >
                 Panel
@@ -150,6 +158,7 @@ export function NavBar() {
           ) : (
             <Link
               href="/login"
+              title="Ingresar al portal"
               className="rounded-full px-4 py-2 text-sm font-semibold text-am-silver transition hover:bg-white/5 hover:text-white"
             >
               Ingresar
@@ -158,6 +167,7 @@ export function NavBar() {
 
           <Link
             href="/contacto"
+            title="Hablar con ventas de AM Seguridad"
             className="ml-2 inline-flex items-center justify-center rounded-full bg-am-primary px-4 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
           >
             Hablar con ventas
@@ -227,6 +237,7 @@ export function NavBar() {
                       <Link
                         key={link.href}
                         href={link.href}
+                        title={link.label}
                         onClick={closeMenu}
                         className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-white/90 transition hover:border-am-primary hover:text-white"
                       >
@@ -260,6 +271,7 @@ export function NavBar() {
                             <Link
                               key={link.href}
                               href={link.href}
+                              title={link.label}
                               onClick={closeMenu}
                               className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-white/85 transition hover:border-am-primary hover:text-white"
                             >
@@ -275,6 +287,7 @@ export function NavBar() {
                         <>
                           <Link
                             href="/admin"
+                            title="Ir al panel de administración"
                             onClick={closeMenu}
                             className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-am-primary transition hover:border-am-primaryStrong hover:text-am-primaryStrong"
                           >
@@ -291,6 +304,7 @@ export function NavBar() {
                       ) : (
                         <Link
                           href="/login"
+                          title="Ingresar al portal"
                           onClick={closeMenu}
                           className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-white/90 transition hover:border-white/20 hover:text-white"
                         >
@@ -300,6 +314,7 @@ export function NavBar() {
 
                       <Link
                         href="/contacto"
+                        title="Hablar con ventas de AM Seguridad"
                         onClick={closeMenu}
                         className="mt-1 inline-flex items-center justify-center rounded-2xl bg-am-primary px-4 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
                       >

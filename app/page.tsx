@@ -62,6 +62,13 @@ export default function HomePage() {
     () => content?.hero.highlights.slice(0, 3) ?? [],
     [content?.hero.highlights],
   );
+  const heroTitle =
+    "AM Seguridad: Soluciones de seguridad física y electrónica 24/7 en Argentina";
+  const heroLead =
+    "Seguridad electrónica, monitoreo 24/7, CCTV y control de accesos para empresas, industrias y comercios en todo el país.";
+  const heroPrimaryCta = "Solicitar evaluación de seguridad";
+  const heroSecondaryCta = "Ver tecnología y monitoreo 24/7";
+  const heroContactCta = "Hablar con un asesor ahora";
   const heroImage = content?.hero.imagePublicId
     ? buildCloudinaryUrl(content.hero.imagePublicId)
     : "";
@@ -241,30 +248,33 @@ export default function HomePage() {
             >
               <p className="eyebrow">{content.hero.eyebrow}</p>
               <h1 className="text-4xl font-extrabold leading-[1.02] md:text-6xl">
-                {content.hero.title}
+                {heroTitle}
               </h1>
               <p className="text-lg text-am-silver md:text-xl">
-                {content.hero.lead}
+                {heroLead}
               </p>
 
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="#servicios"
+                  title="Solicitar evaluación de seguridad"
                   className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
                 >
-                  {content.hero.primaryCta}
+                  {heroPrimaryCta}
                 </Link>
                 <Link
                   href="#tecnologia"
+                  title="Ver tecnología y monitoreo 24/7"
                   className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-white/40 hover:text-white"
                 >
-                  {content.hero.secondaryCta}
+                  {heroSecondaryCta}
                 </Link>
                 <Link
                   href="#contacto"
+                  title="Hablar con un asesor de seguridad"
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-am-primary/60 hover:text-white"
                 >
-                  {content.hero.contactCta}
+                  {heroContactCta}
                 </Link>
               </div>
             </motion.div>
@@ -315,9 +325,9 @@ export default function HomePage() {
                 key={item.title}
                 className="space-y-2 rounded-3xl border border-white/5 bg-white/[0.03] p-5"
               >
-                <h2 className="text-lg font-semibold text-white">
+                <h3 className="text-lg font-semibold text-white">
                   {item.title}
-                </h2>
+                </h3>
                 <p className="text-sm text-am-muted">{item.text}</p>
               </article>
             ))}
@@ -331,6 +341,7 @@ export default function HomePage() {
       title="Configurá tu solución en minutos."
       description="Respondé 2 o 3 preguntas rápidas y te llevamos al configurador completo."
       align="left"
+      as="h2"
     />
 
     <form
@@ -425,6 +436,7 @@ export default function HomePage() {
               eyebrow="Servicios"
               title="Servicios claros, directos y diferenciados."
               description="Seguridad física y electrónica con alcance nacional."
+              as="h2"
             />
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {content.services.map((service, index) => (
@@ -445,6 +457,7 @@ export default function HomePage() {
               title="Soluciones pensadas para cada tipo de cliente."
               description="Elegí el enfoque según tu contexto operativo."
               align="left"
+              as="h2"
             />
             <div className="grid gap-6 lg:grid-cols-3">
               {segmentos.map((segmento) => (
@@ -466,6 +479,7 @@ export default function HomePage() {
                   </ul>
                   <Link
                     href={segmento.href}
+                    title={segmento.cta}
                     className="mt-auto inline-flex w-fit items-center justify-center rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-am-primary hover:text-white"
                   >
                     {segmento.cta}
@@ -487,6 +501,7 @@ export default function HomePage() {
                 title={content.guidance.title}
                 description={content.guidance.text}
                 align="left"
+                as="h2"
                 actions={
                   <div className="flex flex-wrap gap-2">
                     {content.guidance.tags.map((tag) => (
@@ -519,6 +534,7 @@ export default function HomePage() {
               eyebrow="Casos reales"
               title="Resultados comprobables en operaciones reales."
               description="Implementaciones con foco en seguridad empresarial, continuidad operativa y respuesta rápida."
+              as="h2"
             />
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {caseStudies.map((item) => (
@@ -558,6 +574,7 @@ export default function HomePage() {
               title="Innovación aplicada a resultados reales."
               description="Mostramos cómo evolucionamos: equipamiento, datos y mejoras operativas."
               align="left"
+              as="h2"
             />
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {content.technology.map((item, index) => (
@@ -574,6 +591,7 @@ export default function HomePage() {
               title="Equipamiento confiable, listo para operar."
               description="Seleccionamos recursos tecnológicos que sostienen continuidad operativa y control total."
               align="left"
+              as="h3"
             />
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {content.products.map((item, index) => (
@@ -602,6 +620,7 @@ export default function HomePage() {
               title="Estructura profesional para operar en serio."
               description="Combinamos experiencia, habilitaciones, recursos y metodología para proteger personas, activos y operaciones."
               align="left"
+              as="h2"
             />
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {content.company.map((metric, index) => (
@@ -657,6 +676,7 @@ export default function HomePage() {
               eyebrow="Nosotros"
               title="Misión, visión y valores que guían cada operación."
               description="Operamos con foco en el cliente, cumplimiento real y mejora continua en cada servicio."
+              as="h3"
             />
             <div className="grid gap-6 lg:grid-cols-2">
               <article className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
@@ -693,6 +713,7 @@ export default function HomePage() {
               eyebrow="Novedades"
               title="Actividad constante, mejoras continuas."
               description="Señales claras de una empresa activa, presente y en crecimiento."
+              as="h3"
             />
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {content.news.map((item, index) => (
@@ -705,12 +726,13 @@ export default function HomePage() {
         <AnimatedSection id="trabaja" className="py-24">
           <div className="mx-auto grid w-[min(1200px,92vw)] gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
             <div className="space-y-6">
-              <SectionHeading
-                eyebrow={content.jobs.eyebrow}
-                title={content.jobs.title}
-                description={content.jobs.text}
-                align="left"
-              />
+            <SectionHeading
+              eyebrow={content.jobs.eyebrow}
+              title={content.jobs.title}
+              description={content.jobs.text}
+              align="left"
+              as="h3"
+            />
               <ul className="grid gap-2 text-sm">
                 {content.jobs.points.map((point) => (
                   <li
@@ -729,6 +751,7 @@ export default function HomePage() {
                   Email RR.HH.:{" "}
                   <a
                     href="mailto:incorporaciones@amseguridad.com.ar"
+                    title="Enviar email a Recursos Humanos"
                     className="text-am-primaryStrong"
                   >
                     incorporaciones@amseguridad.com.ar
@@ -748,6 +771,7 @@ export default function HomePage() {
               </div>
               <Link
                 href="/trabaja"
+                title="Ir al formulario de postulaciones"
                 className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
               >
                 Ir al formulario
@@ -770,16 +794,19 @@ export default function HomePage() {
                 title={content.contact.title}
                 description={content.contact.text}
                 align="left"
+                as="h2"
               />
               <div className="flex flex-wrap gap-3">
                 <a
                   href={content.contact.whatsapp}
+                  title="Contactar por WhatsApp"
                   className="inline-flex items-center justify-center rounded-full bg-am-primary px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-black transition hover:bg-am-primaryStrong"
                 >
                   WhatsApp
                 </a>
                 <a
                   href={`mailto:${content.contact.commercialEmail}`}
+                  title="Enviar email al equipo comercial"
                   className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-am-silver transition hover:border-white/40 hover:text-white"
                 >
                   Contacto comercial
